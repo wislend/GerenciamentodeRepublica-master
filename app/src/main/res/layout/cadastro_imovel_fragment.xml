@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/activity_vertical_margin"
+    android:layout_marginEnd="@dimen/nav_header_vertical_spacing"
+    android:layout_marginLeft="@dimen/nav_header_vertical_spacing"
+    android:layout_marginRight="@dimen/nav_header_vertical_spacing"
+    android:layout_marginStart="@dimen/nav_header_vertical_spacing"
+    android:orientation="vertical"
+    tools:context=".fragments.CadastroImovelFragment">
+
+    <TextView
+        android:text="@string/registre_imovel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textSize="22sp"
+        android:layout_gravity="center"/>
+
+
+
+    <EditText
+        android:id="@+id/edtNome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:hint="@string/nome_fantansia"
+        android:textStyle="bold" />
+
+
+    <EditText
+        android:id="@+id/edtCep"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/cep"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/edtRua"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:hint="@string/rua"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/edtNumero"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/numero"
+        />
+
+    <EditText
+        android:id="@+id/edtPontoReferencia"
+        android:layout_width="match_parent"
+        android:textStyle="bold"
+        android:layout_height="wrap_content"
+        android:hint="@string/ponto_de_referencia"
+      />
+
+
+    <EditText
+        android:id="@+id/edtJurosDia"
+        android:layout_width="match_parent"
+        android:textStyle="bold"
+        android:layout_height="wrap_content"
+        android:hint="@string/juros_do_dia"
+        />
+
+    <EditText
+        android:id="@+id/edtJurosMes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/juros_do_mes"
+        android:textStyle="bold"
+        />
+
+    <Spinner
+        android:id="@+id/spSituacaoImovel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+</LinearLayout>

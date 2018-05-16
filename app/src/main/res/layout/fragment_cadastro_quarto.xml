@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/activity_vertical_margin"
+    android:layout_marginEnd="@dimen/nav_header_vertical_spacing"
+    android:layout_marginLeft="@dimen/nav_header_vertical_spacing"
+    android:layout_marginRight="@dimen/nav_header_vertical_spacing"
+    android:layout_marginStart="@dimen/nav_header_vertical_spacing"
+    android:orientation="vertical"
+    tools:context=".fragments.CadastroQuartoFragment">
+
+
+    <TextView
+        android:text="@string/registrar_quartos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textSize="22sp"
+        android:layout_gravity="center"/>
+
+    <EditText
+        android:id="@+id/edtIdentificacaoQuarto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/identificacao_quarto"
+        android:textStyle="bold" />
+
+    <TextView
+        android:text="@string/moveis"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <CheckBox
+            android:text="Cama"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <CheckBox
+            android:text="Armário"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <CheckBox
+            android:text="Rack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <CheckBox
+            android:text="Televisão"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    <CheckBox
+        android:text="Ar condicionado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <CheckBox
+        android:text="Ventilador"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+    <TextView
+        android:text="@string/adicionar_mais_algum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <RadioGroup
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Ocupado" />
+
+        <RadioButton
+            android:id="@+id/radioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Vazio" />
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/edtLocatario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/locatario"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/edtPreco"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/valor_quarto"
+        android:textStyle="bold" />
+
+
+</LinearLayout>

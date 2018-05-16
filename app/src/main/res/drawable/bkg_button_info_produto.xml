@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android" android:exitFadeDuration="@android:integer/config_shortAnimTime">
+    <item android:state_pressed="true">
+        <shape android:dither="true" android:shape="oval">
+            <solid android:color="@color/primaryColor_select" />
+        </shape>
+    </item>
+    <item>
+        <shape android:dither="true" android:shape="oval">
+            <solid android:color="@color/primaryColor" />
+        </shape>
+    </item>
+</selector>

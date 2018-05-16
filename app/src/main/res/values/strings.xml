@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">Gerenciamento de Republica</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="resgistrar_se">Resgistrar-se</string>
+    <string name="realizar_login">Realizar Login</string>
+    <string name="sou_cadastrado">Sou Cadastrado</string>
+    <string name="nome_administrador">Nome Administrador</string>
+    <string name="telefone">Telefone</string>
+    <string name="email">Email</string>
+    <string name="confirme_sua_senha">Confirme sua senha</string>
+    <string name="senha">Senha</string>
+    <string name="nome_fantansia">Nome Fantasia</string>
+    <string name="cep">CEP</string>
+    <string name="rua">Rua</string>
+    <string name="numero">Numero</string>
+    <string name="ponto_de_referencia">Ponto de Referência</string>
+    <string name="juros_do_dia">Juros do dia</string>
+    <string name="juros_do_mes">Juros ao mês</string>
+    <string name="registre_imovel">Registre o Imóvel que você administra</string>
+    <string name="informacoes_importantes">Informações importantes....</string>
+    <string name="registrar_quartos">Não se preocupe esse cadastro será realizado apenas uma vez.</string>
+    <string name="locatario">Locatário</string>
+    <string name="valor_quarto">Valor quarto</string>
+    <string name="moveis">Movéis: </string>
+    <string name="identificacao_quarto">Identificação do quarto</string>
+    <string name="adicionar_mais_algum">Adicionar mais algum ?</string>
+
+    <string-array name="situacao">
+        <item>Selecione</item>
+        <item>Alugado</item>
+        <item>Própio</item>
+
+    </string-array>
+</resources>
