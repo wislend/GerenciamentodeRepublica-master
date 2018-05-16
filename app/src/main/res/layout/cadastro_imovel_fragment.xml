@@ -3,86 +3,113 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="@dimen/activity_vertical_margin"
     android:layout_marginEnd="@dimen/nav_header_vertical_spacing"
     android:layout_marginLeft="@dimen/nav_header_vertical_spacing"
     android:layout_marginRight="@dimen/nav_header_vertical_spacing"
     android:layout_marginStart="@dimen/nav_header_vertical_spacing"
+    android:layout_marginTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
     tools:context=".fragments.CadastroImovelFragment">
 
     <TextView
-        android:text="@string/registre_imovel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
         android:gravity="center"
-        android:textSize="22sp"
-        android:layout_gravity="center"/>
+        android:text="@string/registre_imovel"
+        android:textSize="22sp" />
 
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
 
+        <RadioButton
+            android:id="@+id/rdPropio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Própio" />
+
+        <RadioButton
+            android:id="@+id/rdAlugado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Alugado" />
+    </RadioGroup>
 
     <EditText
         android:id="@+id/edtNome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:hint="@string/nome_fantansia"
-        android:textStyle="bold" />
+        android:hint="@string/nome_fantansia" />
 
 
-    <EditText
-        android:id="@+id/edtCep"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/cep"
-        android:textStyle="bold" />
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edtCep"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/cep" />
+
+        <ImageButton
+            android:id="@+id/imageButtonSearchCEP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:src="@drawable/ic_action_search_cep"
+            android:tint="@color/black"
+            tools:ignore="ContentDescription" />
+
+    </LinearLayout>
+
 
     <EditText
         android:id="@+id/edtRua"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:hint="@string/rua"
-        android:textStyle="bold" />
+        android:hint="@string/rua" />
 
     <EditText
         android:id="@+id/edtNumero"
-        android:textStyle="bold"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/numero"
-        />
+        android:hint="@string/numero" />
 
     <EditText
         android:id="@+id/edtPontoReferencia"
         android:layout_width="match_parent"
-        android:textStyle="bold"
+
         android:layout_height="wrap_content"
-        android:hint="@string/ponto_de_referencia"
-      />
+        android:hint="@string/ponto_de_referencia" />
 
 
     <EditText
         android:id="@+id/edtJurosDia"
         android:layout_width="match_parent"
-        android:textStyle="bold"
+
         android:layout_height="wrap_content"
-        android:hint="@string/juros_do_dia"
-        />
+        android:hint="@string/juros_do_dia" />
 
     <EditText
         android:id="@+id/edtJurosMes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/juros_do_mes"
-        android:textStyle="bold"
-        />
 
-    <Spinner
-        android:id="@+id/spSituacaoImovel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        />
 
 
 </LinearLayout>
