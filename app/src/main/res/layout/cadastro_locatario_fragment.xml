@@ -1,60 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="viewGroup"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginEnd="@dimen/nav_header_vertical_spacing"
-    android:layout_marginLeft="@dimen/nav_header_vertical_spacing"
-    android:layout_marginRight="@dimen/nav_header_vertical_spacing"
-    android:layout_marginStart="@dimen/nav_header_vertical_spacing"
-    android:layout_marginTop="@dimen/activity_vertical_margin"
+    android:animateLayoutChanges="true"
     android:orientation="vertical"
+    android:padding="@dimen/android_space_large"
     tools:context=".fragments.CadastroLocatarioFragment">
 
-    <TextView
+    <com.devspark.robototextview.widget.RobotoTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="@dimen/android_space_medium"
         android:gravity="center"
         android:text="@string/informacoes_importantes"
-        android:textSize="22sp"
-        android:textStyle="bold" />
+        android:textSize="24sp"
+        app:robotoTypeface="roboto_italic" />
 
 
-    <EditText
+    <com.rengwuxian.materialedittext.MaterialEditText
         android:id="@+id/edtNome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginTop="@dimen/android_space_large"
         android:hint="@string/nome_administrador"
-        android:textStyle="bold" />
+        android:textSize="20sp"
+        app:robotoTypeface="roboto_condensed_bold_italic" />
 
-    <EditText
+    <com.rengwuxian.materialedittext.MaterialEditText
         android:id="@+id/edtTelefone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/telefone"
-        android:textStyle="bold" />
+        android:textSize="20sp"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:hint="@string/telefone" />
 
-    <EditText
+    <com.rengwuxian.materialedittext.MaterialEditText
         android:id="@+id/edtEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/email"
-        android:textStyle="bold" />
+        android:textSize="20sp"
+        android:hint="@string/email" />
 
-    <EditText
+    <com.rengwuxian.materialedittext.MaterialEditText
         android:id="@+id/edtSenha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/senha"
-        android:textStyle="bold" />
+        android:textSize="20sp"
+        android:hint="@string/senha" />
 
-    <EditText
+    <com.rengwuxian.materialedittext.MaterialEditText
         android:id="@+id/edtConfirmacaoSenha"
         android:layout_width="match_parent"
+        android:textSize="20sp"
         android:layout_height="wrap_content"
-        android:hint="@string/confirme_sua_senha"
-        android:textStyle="bold" />
+        android:hint="@string/confirme_sua_senha" />
 
 </LinearLayout>

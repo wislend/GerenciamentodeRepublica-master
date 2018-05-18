@@ -1,6 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#37474F</color>
+    <color name="colorPrimaryDark">#263238</color>
+    <color name="colorAccent">#1B5E20</color>
+
+  <!--  <color name="primaryColor">?colorPrimary</color>
+    <color name="primaryColorDark">?colorPrimaryDark</color>
+    <color name="accentColor">#4285F4</color>-->
+
+    <color name="color_trans_download_A">#1CA4AF</color>
+    <color name="color_trans_download_B">#19BBE0</color>
+    <color name="color_trans_download_C">#26a69a</color>
+    <color name="color_trans_download_D">#7e57c2</color>
+    <color name="color_trans_download_E">#e84e40</color>
+    <color name="color_trans_download_F">#90a4ae</color>
+    <color name="color_trans_download_G">#78909c</color>
+
+    <color name="lancamento">#3B70A2</color>
+    <color name="brinde">#95DBFA</color>
+    <color name="politica_desconto">#FFC166</color>
+    <color name="preco_fixo">#B079C7</color>
+    <color name="desconto_quantidade">#86BF83</color>
+    <color name="positivacao_mes">#66AFA6</color>
+    <color name="positivacao_dia">#8C97D3</color>
+    <color name="monitoracao">#DA749D</color>
+    <color name="fora_linha">#E84E40</color>
+    <color name="mixideal">#1B5E20</color>
+    <color name="semvenda">#880E4F</color>
+
+    <color name="circle_icon_beauty_color">#33616161</color>
+    <color name="photo_scrim">#33000000</color>
+    <color name="session_photo_scrim">#4000</color>
+    <color name="session_photo_scrim_white">#4FFF</color>
+    <color name="body_text_1_inverse">#deffffff</color>
+    <color name="body_text_2_inverse">#8affffff</color>
+    <color name="color_catalog">#794c79</color>
+    <color name="color_catalog_dark">#5d405d</color>
+    <color name="color_theme_ion">#e84e40</color>
+    <color name="color_theme_clientes">#19BBE0</color>
+    <color name="color_theme_admission">#1CA4AF</color>
+    <color name="color_theme_pedidos">#26a69a</color>
+    <color name="color_theme_consultas">#7e57c2</color>
+    <color name="color_theme_mensagens">#e84e40</color>
+    <color name="color_theme_atividades">#90a4ae</color>
+    <color name="color_theme_sincronizar">#78909c</color>
+    <color name="color_theme_visao_geral">#1CA4AF</color>
+    <color name="color_theme_produtos">#4CAF50</color>
+    <color name="color_theme_produtos_transparent">#264CAF50</color>
+    <color name="color_theme_developer">#616161</color>
+    <color name="color_theme_developer_dark">#424242</color>
+    <color name="color_theme_reports">#64c178</color>
+
+    <color name="color_theme_clientes_select">#0eb0d4</color>
+    <color name="color_theme_admission_select">#188C96</color>
+    <color name="color_theme_pedidos_select">#009688</color>
+    <color name="color_theme_consultas_select">#673ab7</color>
+    <color name="color_theme_mensagens_select">#b93221</color>
+    <color name="color_theme_atividades_select">#78909c</color>
+    <color name="color_theme_sincronizar_select">#607d8b</color>
+    <color name="color_theme_visao_geral_select">#188C96</color>
+    <color name="color_theme_produtos_select">#43A047</color>
+
+
+    <color name="color_theme_visao_geral_highlight">#C9EDF0</color>
+
+    <color name="status_pedido_enviado">#52C5CF</color>
+    <color name="status_pedido_liberado">#CCD91A</color>
+    <color name="status_pedido_bloqueio_envio">#F6BD1A</color>
+    <color name="status_pedido_pendente">#EC834E</color>
+    <color name="gray">#989898</color>
+    <color name="grey_light">#F2F2F2</color>
+    <color name="white">#FFF</color>
+    <color name="blue_ligth">#33B5E5</color>
+    <color name="blue_ligth_dark">#7FB8DD</color>
+    <color name="gray_shadow_card">#DBDBDB</color>
+    <color name="gray_shadow_card_dark">#4C4C4C</color>
+    <color name="black_alpha_5">#0D000000</color>
+    <color name="gray_back">#F2F2F2</color>
+    <color name="gray_back_transparent">#E6F2F2F2</color>
+    <color name="gray_back_light">#FAFAFA</color>
+    <color name="gray_back_light_transparent">#E2FAFAFA</color>
+    <color name="select_bright">#26F2F2F2</color>
+    <color name="background_gray_card">#F2F2F2</color>
+    <color name="view_separator">#E0E0E0</color>
+    <color name="view_separator_dark">#525252</color>
+    <color name="background_card_dark">#212121</color>
+    <color name="list_item_title">#fff</color>
+    <color name="background_dark">#424242</color>
+    <color name="black">#000000</color>
+    <color name="nav_list_background_dark_transparent">#E6212121</color>
+    <color name="nav_list_background_second_section_dark">#262626</color>
+    <color name="nav_last_sync_dark">#E6E3E3E3</color>
+    <color name="nav_last_sync">#E64C4C4C</color>
+    <color name="blue_dark">#07538D</color>
+    <color name="half_black">#808080</color>
+    <color name="white_pressed">#f1f1f1</color>
+    <color name="pink">#e91e63</color>
+    <color name="pink_pressed">#ec407a</color>
+    <color name="blue_light">#4ac0dd</color>
+    <color name="white_alpha_5">#0DFFFFFF</color>
+    <color name="white_alpha_10">#1AFFFFFF</color>
+    <color name="white_alpha_20">#33FFFFFF</color>
+    <color name="white_alpha_40">#66FFFFFF</color>
+    <color name="white_alpha_60">#99FFFFFF</color>
+    <color name="white_alpha_75">#BFFFFFFF</color>
+    <color name="white_alpha_85">#D9FFFFFF</color>
+    <color name="grey_900_alpha">#D9262626</color>
+    <color name="grey_800_alpha">#D93B3B3B</color>
+    <color name="grey_100_alpha">#D9f5f5f5</color>
+    <color name="grey_50_alpha">#D9FAFAFA</color>
+
+    <!-- cores padroes da aplicacao-->
+    <color name="default_blue_dark_select">#9FE1FF</color>
+    <color name="default_color_app_acent">#85d2d6</color>
+    <color name="default_color_app_acent_select">#54c1c5</color>
+    <color name="default_color_app">#19BBE0</color>
+    <color name="default_color_app_dark">#0eb0d4</color>
+    <color name="default_yellow">#CEA23F</color>
+    <color name="default_yellow_dark">#E5D99B</color>
+    <color name="default_green">#004C3F</color>
+    <color name="default_green_dark">#86BF83</color>
+    <color name="default_green_light">#14E715</color>
+    <color name="default_green_light2">#5AF158</color>
+    <color name="default_blue">#19BBE0</color>
+    <color name="default_blue_select">#40C4FF</color>
+    <color name="default_blue_transparente">#D919BBE0</color>
+    <color name="default_red">#FF1643</color>
+    <color name="default_red_dark">#CC7686</color>
+    <color name="default_gray_light">#777777</color>
+    <color name="default_gray_light_transparent">#E6989898</color>
+    <color name="default_gray_dark">#58585B</color>
+    <color name="default_gray_dark_transparent">#E24C4C4C</color>
+    <color name="default_gray_medium">#777777</color>
+    <color name="default_gray_medium_dark">#BBB</color>
+    <color name="list_divider">#ddd</color>
+    <color name="object_background_activated">#E2F1FC</color>
+    <color name="object_background_default">#FCFCFD</color>
+    <color name="object_background_blocked">#E8E8E8</color>
+
+    <!-- Google colors -->
+    <color name="google_red">#c00</color>
+    <color name="google_red_light">#f44</color>
+
 </resources>

@@ -3,98 +3,121 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="@dimen/activity_vertical_margin"
     android:layout_marginEnd="@dimen/nav_header_vertical_spacing"
     android:layout_marginLeft="@dimen/nav_header_vertical_spacing"
     android:layout_marginRight="@dimen/nav_header_vertical_spacing"
     android:layout_marginStart="@dimen/nav_header_vertical_spacing"
+    android:layout_marginTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
     tools:context=".fragments.CadastroQuartoFragment">
 
 
     <TextView
-        android:text="@string/registrar_quartos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
+        android:layout_gravity="center"
         android:gravity="center"
+        android:text="@string/registrar_quartos"
         android:textSize="22sp"
-        android:layout_gravity="center"/>
+        />
 
     <EditText
         android:id="@+id/edtIdentificacaoQuarto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
         android:hint="@string/identificacao_quarto"
-        android:textStyle="bold" />
+        />
 
     <TextView
-        android:text="@string/moveis"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:text="@string/moveis" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_horizontal_margin">
 
         <CheckBox
-            android:text="Cama"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:text="@string/cama" />
+
         <CheckBox
-            android:text="Armário"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:text="@string/armario" />
+
         <CheckBox
-            android:text="Rack"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:text="@string/rack" />
+
         <CheckBox
-            android:text="Televisão"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:text="@string/televisao" />
 
     </LinearLayout>
 
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
 
-    <CheckBox
-        android:text="Ar condicionado"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <CheckBox
-        android:text="Ventilador"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_horizontal_margin">
+
+        <CheckBox
+            android:layout_marginRight="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ar_condicionado" />
+
+        <CheckBox
+            android:layout_marginRight="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ventilador" />
     </LinearLayout>
 
 
     <TextView
-        android:text="@string/adicionar_mais_algum"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:text="@string/adicionar_mais_algum" />
 
     <RadioGroup
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:orientation="horizontal">
 
         <RadioButton
             android:id="@+id/radioButton2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Ocupado" />
+            android:text="@string/ocupado" />
 
         <RadioButton
             android:id="@+id/radioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Vazio" />
+            android:text="@string/vago" />
     </RadioGroup>
 
     <EditText
@@ -102,14 +125,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/locatario"
-        android:textStyle="bold" />
+        />
 
     <EditText
         android:id="@+id/edtPreco"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/valor_quarto"
-        android:textStyle="bold" />
+        />
 
 
 </LinearLayout>

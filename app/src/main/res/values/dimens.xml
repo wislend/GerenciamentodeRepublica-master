@@ -1,8 +1,179 @@
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="nav_header_vertical_spacing">8dp</dimen>
     <dimen name="nav_header_height">176dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <!-- Settings chart -->
+    <dimen name="chart_line_height">220dp</dimen>
+    <!-- /Settings chart -->
+
+    <dimen name="button_nav_more_dimen">42dp</dimen>
+    <dimen name="product_image_size">72dp</dimen>
+    <dimen name="cliente_row_padding">24dp</dimen>
+    <dimen name="navdrawer_chosen_account_height">140dp</dimen>
+    <dimen name="navdrawer_width">260dp</dimen>
+    <dimen name="navdrawer_profile_image_size">40dp</dimen>
+    <integer name="num_columns_grid_catalogo_itens">2</integer>
+
+    <!-- body content -->
+    <dimen name="element_spacing_normal">8dp</dimen>
+    <dimen name="content_padding_normal">16dp</dimen>
+    <dimen name="text_size_xsmall">11sp</dimen>
+    <dimen name="text_size_small">12sp</dimen>
+    <dimen name="text_size_medium">14sp</dimen>
+    <dimen name="text_size_large">18sp</dimen>
+    <dimen name="text_size_xlarge">20sp</dimen>
+    <dimen name="text_size_diff_large_small">6sp</dimen>
+    <dimen name="speaker_image_size">40dp</dimen>
+    <dimen name="min_heiht_view_list_view">140dp</dimen>
+    <dimen name="status_padding">0dp</dimen>
+
+    <dimen name="item_grid_width">90dp</dimen>
+    <dimen name="item_grid_height">106dp</dimen>
+
+    <!-- Action Bar auto-hide-on-scroll behavior parameters -->
+    <dimen name="action_bar_auto_hide_min_y">152dp</dimen>
+    <dimen name="action_bar_auto_hide_sensivity">48dp</dimen>
+
+    <dimen name="keyline_1">16dp</dimen>
+    <dimen name="keyline_1_minus_8dp">8dp</dimen>
+    <dimen name="keyline_2">72dp</dimen>
+    <dimen name="keyline_2_minus_16dp">56dp</dimen>
+    <dimen name="filterbar_height">48dp</dimen>
+    <dimen name="filter_spinner_width">0dp</dimen>
+    <integer name="filter_spinner_weight">1</integer>
+
+    <dimen name="swipe_refresh_progress_bar_start_margin">-40dp</dimen>
+    <dimen name="swipe_refresh_progress_bar_end_margin">16dp</dimen>
+    <dimen name="headerbar_elevation">4dp</dimen>
+    <dimen name="margin_text_adimission">24dp</dimen>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">4dp</dimen>
+    <dimen name="activity_vertical_margin">2dp</dimen>
+    <dimen name="padding_pagertitlestrip">4dp</dimen>
+    <dimen name="margin_rot_with_img_separator">84dp</dimen>
+    <dimen name="margin_rot_with_img_description">32dp</dimen>
+    <!-- /Default screen margins, per the Android Design guidelines. -->
+
+    <!-- Tamanhos de fonts -->
+    <dimen name="font_size_title_small">17sp</dimen>
+    <dimen name="font_size_title_medium">18dp</dimen>
+    <dimen name="font_size_title_large">24dp</dimen>
+    <dimen name="font_size_label_small_little">13sp</dimen>
+    <dimen name="font_size_label_small">14sp</dimen>
+    <dimen name="font_size_label_medium">16sp</dimen>
+    <dimen name="font_size_label_large">20sp</dimen>
+    <dimen name="font_size_title_separator">20sp</dimen>
+    <!-- /Tamanhos de fonts -->
+
+    <!-- DIMENSOES -->
+    <dimen name="actionbar_height">56dp</dimen>
+    <dimen name="nav_drawer_width">280dp</dimen>
+    <dimen name="dialog_field_multiline_height">160dp</dimen>
+    <dimen name="dimen_logo_ion">48dp</dimen>
+    <dimen name="dimen_title_ion">48dp</dimen>
+    <!-- /DIMENSOES -->
+
+    <!-- TextviewIonSmall Separator -->
+    <dimen name="textviewion_small_separator_side_margin">3dp</dimen>
+    <!-- /TextviewIonSmall Separator -->
+
+    <!-- Espaçamentos -->
+
+    <dimen name="divider_margin_left">85dp</dimen>
+    <dimen name="space_card_with_popupview_top">64dp</dimen>
+    <dimen name="space_card_with_popupview_top2">68dp</dimen>
+    <!-- DEFAULT ANDROID SPACES -->
+    <dimen name="android_space_small_bit">2dp</dimen>
+    <dimen name="android_space_small">4dp</dimen>
+    <dimen name="android_space_medium">8dp</dimen>
+    <dimen name="android_space_medium_plus">12dp</dimen>
+    <dimen name="android_space_large">16dp</dimen>
+    <dimen name="android_space_large_plus">20dp</dimen>
+    <dimen name="android_space_xlarge">24dp</dimen>
+    <dimen name="android_space_xlarge_plus">32dp</dimen>
+    <dimen name="android_space_xxlarge">48dp</dimen>
+    <dimen name="card_margin_sides">4dp</dimen>
+    <dimen name="increase_ballon_last_sync_time">68dp</dimen>
+    <!-- /DEFAULT ANDROID SPACES -->
+
+    <dimen name="mark_product_size">20dp</dimen>
+    <dimen name="padding_top_list_view_card">10dp</dimen>
+    <dimen name="padding_bottom_list_view_card">10dp</dimen>
+    <dimen name="padding_sides_list_view_card">8dp</dimen>
+    <dimen name="padding_bottom_with_fab">90dp</dimen>
+    <dimen name="table_row_padding_vertical">1dp</dimen>
+    <dimen name="page_tab_strip_heigth">52dp</dimen>
+    <dimen name="margin_right_nav_drawer">8dp</dimen>
+    <dimen name="nav_drawer_button_padding">10dp</dimen>
+    <dimen name="nav_drawer_button_padding_left">16dp</dimen>
+    <dimen name="nav_height_panel_user">128dp</dimen>
+    <dimen name="nav_image_user_dimen">56dp</dimen>
+    <dimen name="nav_image_user_dimen_small">42dp</dimen>
+    <dimen name="nav_image_user_dimen_medium">64dp</dimen>
+    <dimen name="nav_image_user_dimen_large">96dp</dimen>
+    <dimen name="nav_image_user_dimen_large_land">96dp</dimen>
+    <dimen name="nav_image_user_margin_left">16dp</dimen>
+    <dimen name="nav_image_user_margin_right">10dp</dimen>
+    <dimen name="nav_last_sync_height">45dp</dimen>
+    <dimen name="nav_padding_bottom_first_section">90dp</dimen>
+    <dimen name="nav_last_sync_pedding">2dp</dimen>
+    <dimen name="nav_button_second_section_heigth">45dp</dimen>
+    <dimen name="nav_button_second_section_pedding_left">5dp</dimen>
+    <dimen name="nav_button_new_message_pedding_left">10dp</dimen>
+    <dimen name="margin_default">12dp</dimen>
+    <dimen name="margin_default_card">12dp</dimen>
+    <dimen name="padding_default_card">12dp</dimen>
+    <dimen name="viewgroup_margin_top">16dp</dimen>
+    <dimen name="viewgroup_margin_left">16dp</dimen>
+    <dimen name="padding_view_fab_bottom">78dp</dimen>
+    <dimen name="margin_top_widget_login">14dp</dimen>
+    <dimen name="login_margin_top">16dp</dimen>
+    <dimen name="margin_sides_widget_login">24dp</dimen>
+    <dimen name="button_menu_padding">10dp</dimen>
+    <dimen name="button_menu_padding_top_bottom">10dp</dimen>
+    <dimen name="margin_button_menu">5dp</dimen>
+    <dimen name="height_list_view">200dp</dimen>
+    <dimen name="height_main_button">120dp</dimen>
+
+    <!-- LOGIN -->
+    <dimen name="login_height_button">56dp</dimen>
+    <dimen name="login_margin_button">24dp</dimen>
+    <dimen name="login_margin_button_land">48dp</dimen>
+    <dimen name="login_width_fileds">230dp</dimen>
+    <dimen name="login_margin_top_spinner">12dp</dimen>
+    <dimen name="login_margin_top_profile_land">30dp</dimen>
+    <dimen name="login_margin_top_bottom_separator_land">80dp</dimen>
+    <dimen name="login_margin_top_spinner_land">75dp</dimen>
+    <dimen name="login_margin_top_button_land">50dp</dimen>
+    <!-- /LOGIN -->
+
+    <!--FLOATING BUTTON ION -->
+    <dimen name="fab_size_normal">56dp</dimen>
+    <dimen name="fab_size_mini">40dp</dimen>
+    <dimen name="fab_shadow_size">8dp</dimen>
+    <dimen name="fab_mini_shadow_size">6dp</dimen>
+    <!--/FLOATING BUTTON ION -->
+
+    <!-- CALCULADORA -->
+    <dimen name="calc_width_column">68dp</dimen>
+    <dimen name="calc_padding_top_bottom">5dp</dimen>
+    <dimen name="calc_font_text_large">30dp</dimen>
+    <dimen name="calc_font_text_large_scale_1">30dp</dimen>
+    <dimen name="calc_font_text_medium">22dp</dimen>
+    <dimen name="dialog_margin">16dp</dimen>
+
+    <!-- ROW -->
+    <dimen name="button_neworder">75dip</dimen>
+    <dimen name="button_options">75dip</dimen>
+
+    <dimen name="keyline">16dp</dimen>
+    <dimen name="keyline_half">8dp</dimen>
+    <dimen name="keyline_2x">32dp</dimen>
+    <dimen name="keyline_content">72dp</dimen>
+    <dimen name="keyline_content_minus_keyline_2x">40dp</dimen>
+    <dimen name="keyline_content_minus_keyline_3x">56dp</dimen>
+    <dimen name="keyline_content_minus_keyline">56dp</dimen>
+    <dimen name="keyline_between_large">54dp</dimen>
 </resources>

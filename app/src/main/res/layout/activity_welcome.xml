@@ -3,23 +3,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/welcome"
     tools:context=".activitys.WelcomeActivity">
 
-
-    <Button
-        android:id="@+id/btnRegistrar"
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/btnLogin"
-        android:text="@string/resgistrar_se" />
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/welcome"
+        tools:ignore="ContentDescription" />
 
-    <Button
-        android:id="@+id/btnLogin"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:text="@string/sou_cadastrado" />
+        android:layout_height="match_parent"
+        android:background="@color/white_alpha_60">
 
+        <Button
+            android:id="@+id/btnRegistrar"
+            android:layout_width="270dp"
+            android:layout_height="60sp"
+            android:layout_above="@+id/btnLogin"
+            android:layout_centerInParent="true"
+            android:textColor="@color/grey_900_alpha"
+            android:background="@drawable/background_button"
+            android:text="@string/resgistrar_se" />
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="270dp"
+            android:layout_height="60sp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:textColor="@color/grey_900_alpha"
+            android:layout_marginBottom="@dimen/android_space_medium"
+            android:layout_marginTop="@dimen/android_space_large"
+            android:background="@drawable/background_button"
+            android:text="@string/sou_cadastrado"
+             />
+
+    </RelativeLayout>
 
 </RelativeLayout>
