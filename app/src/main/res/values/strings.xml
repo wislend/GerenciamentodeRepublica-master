@@ -42,8 +42,16 @@
     <string name="cama">Cama</string>
     <string name="alugado">Alugado</string>
     <string name="bairro">Bairro</string>
-    <string name="campo_obrigatorio">Campos Obrigatório.</string>
+    <string name="campo_obrigatorio">Campo Obrigatório.</string>
     <string name="aguarde">aguarde</string>
+    <string name="cidade">Cidade</string>
+    <string name="senhas_diferentes">Senhas Diferentes</string>
+    <string name="tamanho_senha">A senha deve ter no mínimo 6 dígitos.</string>
+    <string name="email_invalido">E-Mail inválido</string>
+    <string name="senha_invalido">Senha inválida</string>
+
+
+
 
     <string-array name="situacao">
         <item>Selecione</item>

@@ -1,4 +1,6 @@
 package com.example.deyvi.gerenciamentoderepublica.entitys;
 
-public class BaseEntitys {
+import java.io.Serializable;
+
+public class BaseEntitys implements Serializable {
 }

@@ -12,12 +12,19 @@ import com.example.deyvi.gerenciamentoderepublica.R;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.InstanceState;
 
 
 @SuppressLint("Registered")
 @EActivity
 public class BaseActivity extends AppCompatActivity {
 
+    @InstanceState
+    protected boolean progressShowing;
+    @InstanceState
+    protected boolean progrableShowing;
+    @InstanceState
+    protected String messageProgress;
 
     @AfterViews
     @CallSuper
@@ -46,4 +53,7 @@ public class BaseActivity extends AppCompatActivity {
         }
 
     }
+
+
+
 }

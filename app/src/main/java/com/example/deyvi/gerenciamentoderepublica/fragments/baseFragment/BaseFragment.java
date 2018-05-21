@@ -11,8 +11,13 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.example.deyvi.gerenciamentoderepublica.R;
+import com.example.deyvi.gerenciamentoderepublica.activitys.BaseActivity;
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.VerificationError;
+
+import org.androidannotations.annotations.InstanceState;
+
+import java.util.logging.LogManager;
 
 public class BaseFragment extends Fragment  implements Step {
 
@@ -21,7 +26,6 @@ public class BaseFragment extends Fragment  implements Step {
     protected String TAG = this.getClass().getName();
 
 
-    @Nullable
     @Override
     public VerificationError verifyStep() {
         return null;
@@ -52,6 +56,29 @@ public class BaseFragment extends Fragment  implements Step {
         return R.string.aguarde;
     }
 
+
+    public final BaseActivity getBaseActivity() {
+        if (getActivity() instanceof BaseActivity) {
+            return (BaseActivity) getActivity();
+        }
+
+        throw new RuntimeException("A Activity atual não é uma especificação de BaseActivity");
+    }
+
+    public final void dismissProgressDialog() {
+
+        if (!isStateValid()) {
+            return;
+        }
+
+        if (mProgressDialog != null) {
+            mProgressDialog.dismiss();
+            mProgressDialog = null;
+            Log.d("PROGRESS_DIAOG_FRAG", "dismissProgressDialog()");
+        }
+
+
+    }
 
 
     /**
