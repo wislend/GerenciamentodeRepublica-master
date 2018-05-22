@@ -3,12 +3,12 @@ package com.example.deyvi.gerenciamentoderepublica.activitys;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.example.deyvi.gerenciamentoderepublica.R;
 import com.example.deyvi.gerenciamentoderepublica.adapters.CadastroStepAdapter;
+import com.example.deyvi.gerenciamentoderepublica.entitys.Endereco;
 import com.example.deyvi.gerenciamentoderepublica.entitys.Locatario;
 import com.stepstone.stepper.StepperLayout;
 import com.stepstone.stepper.VerificationError;
@@ -17,16 +17,17 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.InstanceState;
 
-
 @SuppressLint("Registered")
 @EActivity(R.layout.activity_cadastro)
 public class CadastroActivity extends BaseActivity implements StepperLayout.StepperListener{
 
     private StepperLayout mStepperLayout;
 
-
     @InstanceState
     Locatario locatario;
+
+    @InstanceState
+    Endereco endereco;
 
     @AfterViews
     void initCadastroActitity() {
@@ -48,7 +49,8 @@ public class CadastroActivity extends BaseActivity implements StepperLayout.Step
 
     @Override
     public void onCompleted(View completeButton) {
-
+            MainActivity_.intent(this).start();
+            finish();
     }
 
     @Override
@@ -68,7 +70,6 @@ public class CadastroActivity extends BaseActivity implements StepperLayout.Step
 
     @Override
     public void onBackPressed() {
-
         new AlertDialog.Builder(this)
                 .setTitle("Descartar seu cadastro?")
                 .setMessage("As informações preenchidas até agora serão perdidas.")
@@ -87,6 +88,14 @@ public class CadastroActivity extends BaseActivity implements StepperLayout.Step
 
     public void setLocatario(Locatario locatario) {
         this.locatario = locatario;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
 
     @Override

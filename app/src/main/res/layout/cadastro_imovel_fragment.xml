@@ -1,155 +1,231 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView android:id="@+id/scrollerView"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/scrollerView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:clipToPadding="false"
     android:paddingBottom="@dimen/padding_bottom_with_fab"
     android:scrollbarStyle="outsideOverlay"
-    android:visibility="visible"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    style="viewGroup"
-    android:padding="@dimen/android_space_large"
-    android:orientation="vertical">
-
-    <com.devspark.robototextview.widget.RobotoTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="8dp"
-        android:gravity="center"
-        android:textSize="24sp"
-        app:robotoTypeface="roboto_italic"
-        android:text="@string/registre_imovel"
-        />
-
-    <RadioGroup
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:orientation="horizontal">
-
-        <RadioButton
-            android:id="@+id/rdPropio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Própio" />
-
-        <RadioButton
-            android:id="@+id/rdAlugado"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Alugado" />
-    </RadioGroup>
-
-    <com.rengwuxian.materialedittext.MaterialEditText
-        android:id="@+id/edtNome"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:hint="@string/nome_fantansia" />
-
+    android:visibility="visible">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:padding="@dimen/android_space_large">
 
-        <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/edtCep"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="@string/cep" />
-
-        <ImageButton
-            android:id="@+id/imageButtonSearchCEP"
+        <com.devspark.robototextview.widget.RobotoTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:src="@drawable/ic_action_search_cep"
-            android:tint="@color/black" />
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="@string/registre_imovel"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:robotoTypeface="roboto_italic" />
 
-    </LinearLayout>
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/rdPropio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/propio"
+                android:textSize="20sp" />
+
+            <RadioButton
+                android:id="@+id/rdAlugado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/alugado"
+                android:textSize="20sp" />
+        </RadioGroup>
 
         <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/edtRua"
-            android:layout_width="0dp"
+            android:id="@+id/edtValorAluguel"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:hint="@string/rua" />
+            android:layout_marginTop="@dimen/android_space_medium"
+            android:hint="@string/valor"
+            android:textSize="20sp"
+            android:visibility="gone"
+            app:robotoTypeface="roboto_condensed_bold_italic" />
+
 
         <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/edtNumero"
-            android:layout_width="0dp"
+            android:id="@+id/edtNomeImovel"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="@string/numero" />
-
-    </LinearLayout>
-
-
-    <com.rengwuxian.materialedittext.MaterialEditText
-        android:id="@+id/edtPontoReferencia"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/ponto_de_referencia" />
+            android:layout_marginTop="@dimen/android_space_medium"
+            android:hint="@string/nome_fantansia"
+            android:textColor="@color/colorAccent"
+            android:textSize="20sp"
+            app:robotoTypeface="roboto_condensed_bold_italic" />
 
 
-    <com.rengwuxian.materialedittext.MaterialEditText
-        android:id="@+id/edtBairro"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/bairro" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/edtCep"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+                android:hint="@string/cep"
+                android:inputType="number"
+                android:textColor="@color/colorAccent"
+                android:textSize="20sp"
+                app:robotoTypeface="roboto_condensed_bold_italic" />
+
+            <ImageButton
+                android:id="@+id/imageButtonSearchCEP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:src="@drawable/ic_action_search_cep"
+                android:tint="@color/black" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/edtRua"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+
+                android:layout_weight="3"
+                android:hint="@string/rua"
+                android:textColor="@color/colorAccent"
+                android:textSize="20sp"
+                app:robotoTypeface="roboto_condensed_bold_italic" />
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/edtNumero"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_marginStart="2dp"
+                android:layout_weight="1"
+                android:hint="@string/numero"
+                android:textColor="@color/colorAccent" />
+
+        </LinearLayout>
+
 
         <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/edtCidade"
-            android:layout_width="0dp"
+            android:id="@+id/edtPontoReferencia"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:hint="@string/cidade" />
+            android:hint="@string/ponto_de_referencia"
 
-        <Spinner
-            android:id="@+id/spinnerEstado"
-            android:layout_weight="0.5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:textColor="@color/colorAccent"
+            android:textSize="20sp"
+            app:robotoTypeface="roboto_condensed_bold_italic" />
+
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/edtBairro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/bairro"
+            android:textColor="@color/colorAccent"
+            android:textSize="20sp"
+            app:robotoTypeface="roboto_condensed_bold_italic" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/edtCidade"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+
+                android:layout_weight="2"
+                android:hint="@string/cidade"
+                android:textColor="@color/colorAccent"
+                android:textSize="20sp"
+                app:robotoTypeface="roboto_condensed_bold_italic" />
+
+            <Spinner
+                android:id="@+id/spinnerEstado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_weight="0.5"
+                android:textColor="@color/colorAccent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.devspark.robototextview.widget.RobotoTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/juros_do_dia"
+                android:textSize="20sp"
+                app:robotoTypeface="roboto_italic" />
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/edtJurosDia"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/colorAccent"
+                android:textSize="20sp"
+                app:robotoTypeface="roboto_condensed_bold_italic" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.devspark.robototextview.widget.RobotoTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/juros_do_mes"
+                android:textSize="20sp"
+                app:robotoTypeface="roboto_italic" />
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/edtJurosMes"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/colorAccent"
+                android:textSize="20sp"
+                app:robotoTypeface="roboto_condensed_bold_italic" />
+
+        </LinearLayout>
 
     </LinearLayout>
-
-
-    <com.rengwuxian.materialedittext.MaterialEditText
-        android:id="@+id/edtJurosDia"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/juros_do_dia" />
-
-    <com.rengwuxian.materialedittext.MaterialEditText
-        android:id="@+id/edtJurosMes"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/juros_do_mes" />
-
-    </LinearLayout>
-    </ScrollView>
+</ScrollView>
 

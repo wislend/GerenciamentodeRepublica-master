@@ -17,4 +17,5 @@ public class PreferencesApplication extends BasePreferences {
 
 
 
-}
+
+    }

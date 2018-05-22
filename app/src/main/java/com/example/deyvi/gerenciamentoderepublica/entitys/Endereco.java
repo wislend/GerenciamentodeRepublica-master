@@ -1,7 +1,12 @@
 package com.example.deyvi.gerenciamentoderepublica.entitys;
 
-public class Endereco {
+public class Endereco extends BaseEntitys {
 
+    private int id;
+
+    private int idLocatario;
+
+    private int idImovel;
 
     private String rua;
 

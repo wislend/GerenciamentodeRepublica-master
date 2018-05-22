@@ -14,7 +14,6 @@ public class EnderecoUtil {
 
     public static Endereco discover(String cep) {
 
-        String urlString = "http://viacep.com.br/ws/" + cep + "/json/";
         try {
             URL url = new URL("http://viacep.com.br/ws/" + cep + "/json/");
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();

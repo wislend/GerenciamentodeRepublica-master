@@ -1,6 +1,7 @@
 package com.example.deyvi.gerenciamentoderepublica.fragments.baseFragment;
 
 import com.example.deyvi.gerenciamentoderepublica.activitys.CadastroActivity;
+import com.example.deyvi.gerenciamentoderepublica.entitys.Endereco;
 import com.example.deyvi.gerenciamentoderepublica.entitys.Locatario;
 
 public class BaseStepCadastroLocatarioFragment extends BaseFragment {
@@ -10,10 +11,27 @@ public class BaseStepCadastroLocatarioFragment extends BaseFragment {
                 ((CadastroActivity) getActivity()).getLocatario();
     }
 
-    public void setLocatario(Locatario Locatario) {
+    public void setLocatario(Locatario locatario) {
         if (getActivity() == null || !(getActivity() instanceof CadastroActivity)) {
             return;
         }
-        ((CadastroActivity) getActivity()).setLocatario(Locatario);
+        ((CadastroActivity) getActivity()).setLocatario(locatario);
     }
+
+
+    public Endereco getEndereco() {
+        return getActivity() == null || !(getActivity() instanceof CadastroActivity) ? null :
+                ((CadastroActivity) getActivity()).getEndereco();
+    }
+
+    public void setEndereco(Endereco endereco) {
+        if (getActivity() == null || !(getActivity() instanceof CadastroActivity)) {
+            return;
+        }
+        ((CadastroActivity) getActivity()).setEndereco(endereco);
+    }
+
+
+
+
 }

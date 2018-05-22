@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.deyvi.gerenciamentoderepublica.R;
+import com.example.deyvi.gerenciamentoderepublica.constantsApp.ManagerPrefs;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
@@ -17,6 +18,9 @@ public class Splash extends AppCompatActivity {
 
     @AfterViews
     void initSplash(){
+
+        ManagerPrefs.isFistUtils();
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

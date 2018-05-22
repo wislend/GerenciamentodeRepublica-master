@@ -22,10 +22,10 @@
     <string name="rua">Rua</string>
     <string name="numero">Numero</string>
     <string name="ponto_de_referencia">Ponto de Referência</string>
-    <string name="juros_do_dia">Juros do dia</string>
+    <string name="juros_do_dia">Juros ao dia</string>
     <string name="juros_do_mes">Juros ao mês</string>
     <string name="registre_imovel">Registre o Imóvel que você administra</string>
-    <string name="informacoes_importantes">Informações Importantes...</string>
+    <string name="informacoes_importantes">Informações Básicas...</string>
     <string name="registrar_quartos">Não se preocupe esse cadastro será realizado apenas uma vez.</string>
     <string name="locatario">Nome Locatário</string>
     <string name="valor_quarto">Valor quarto</string>
@@ -40,7 +40,6 @@
     <string name="rack">Rack</string>
     <string name="armario">Armário</string>
     <string name="cama">Cama</string>
-    <string name="alugado">Alugado</string>
     <string name="bairro">Bairro</string>
     <string name="campo_obrigatorio">Campo Obrigatório.</string>
     <string name="aguarde">aguarde</string>
@@ -49,7 +48,43 @@
     <string name="tamanho_senha">A senha deve ter no mínimo 6 dígitos.</string>
     <string name="email_invalido">E-Mail inválido</string>
     <string name="senha_invalido">Senha inválida</string>
+    <string name="opcao_nenhum">[NENHUM]</string>
+    <string name="informe_cep">Informe o CEP primeiro</string>
+    <string name="alugado">Alugado</string>
+    <string name="propio">Própio</string>
+    <string name="valor">Valor</string>
+    <string name="estado">Estado</string>
 
+
+    <string-array name="estados_brasileiros">
+        <item>AC</item>
+        <item>AL</item>
+        <item>AP</item>
+        <item>AM</item>
+        <item>BA</item>
+        <item>CE</item>
+        <item>DF</item>
+        <item>ES</item>
+        <item>GO</item>
+        <item>MA</item>
+        <item>MT</item>
+        <item>MS</item>
+        <item>MG</item>
+        <item>PA</item>
+        <item>PB</item>
+        <item>PR</item>
+        <item>PE</item>
+        <item>PI</item>
+        <item>RJ</item>
+        <item>RN</item>
+        <item>RS</item>
+        <item>RO</item>
+        <item>RR</item>
+        <item>SC</item>
+        <item>SP</item>
+        <item>SE</item>
+        <item>TO</item>
+    </string-array>
 
 
 

@@ -21,29 +21,49 @@ public class CadastroStepAdapter extends AbstractFragmentStepAdapter {
     @Override
     public Step createStep(int position) {
         switch (position){
+            case 0:
+                return CadastroLocatarioFragment_.builder().build();
+
             case 1:
-                return new CadastroImovelFragment_();
+                return  CadastroImovelFragment_.builder().build();
 
-            case 2:
-                return new CadastroImovelFragment_();
+            default:
+                throw new IllegalArgumentException("Unsupported position: " + position);
         }
-
-        return  new CadastroLocatarioFragment_();
-
-
-
     }
 
     @Override
     public int getCount() {
-        return 3;
+        return 2;
     }
 
     @NonNull
     @Override
     public StepViewModel getViewModel(@IntRange(from = 0) int position) {
-        return new StepViewModel.Builder(context)
-                .setTitle("Cadastro")
-                .create();
+
+        StepViewModel.Builder builder;
+
+        switch (position) {
+            case 0:
+                builder = new StepViewModel.Builder(context)
+                        .setTitle("Validação Inicial")
+                        .setBackButtonVisible(false)
+                        .setEndButtonLabel("Avançar");
+                break;
+
+            case 1:
+                builder = new StepViewModel.Builder(context)
+                        .setTitle("Cadastro Imovél")
+                        .setBackButtonVisible(false)
+                        .setEndButtonLabel("Concluir");
+                break;
+
+            default:
+                throw new IllegalArgumentException("Unsupported position: " + position);
+        }
+
+
+        return builder.create();
+
     }
 }
