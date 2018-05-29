@@ -52,8 +52,10 @@
     <string name="informe_cep">Informe o CEP primeiro</string>
     <string name="alugado">Alugado</string>
     <string name="propio">Própio</string>
-    <string name="valor">Valor</string>
+    <string name="valor">Valor: </string>
     <string name="estado">Estado</string>
+    <string name="nome_imovel">Nome Imóvel</string>
+    <string name="numero_de_quartos">Quartos: </string>
 
 
     <string-array name="estados_brasileiros">
