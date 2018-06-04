@@ -1,25 +1,31 @@
 package com.example.deyvi.gerenciamentoderepublica.entitys;
 
+
+import com.activeandroid.annotation.Column;
+import com.activeandroid.annotation.Table;
+
+@Table(name = "ENDERECO")
 public class Endereco extends BaseEntitys {
 
-    private int id;
-
+    @Column(onDelete = Column.ForeignKeyAction.CASCADE,onUpdate = Column.ForeignKeyAction.CASCADE)
     private int idLocatario;
 
+    @Column(onDelete = Column.ForeignKeyAction.CASCADE,onUpdate = Column.ForeignKeyAction.CASCADE)
     private int idImovel;
 
+    @Column
     private String rua;
-
+    @Column
     private int numero;
-
+    @Column
     private String cep;
-
+    @Column
     private String pontoReferencia;
-
+    @Column
     private String bairro;
-
+    @Column
     private String cidade;
-
+    @Column
     private String estado;
 
     public String getRua() {

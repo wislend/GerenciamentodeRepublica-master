@@ -17,16 +17,18 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/transparent"
         android:orientation="horizontal">
 
         <com.devspark.robototextview.widget.RobotoTextView
             android:id="@+id/toggleButton2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
             android:layout_marginEnd="44dp"
             android:layout_marginRight="44dp"
             android:text="Editar"
-            android:textSize="@dimen/android_space_large"
+            android:textAppearance="@style/TextAppearance.AppCompat.Button"
             app:layout_constraintBottom_toBottomOf="@+id/imageButton3"
             app:layout_constraintEnd_toStartOf="@+id/imageButton3"
             card_view:ignore="MissingConstraints,RtlHardcoded,SpUsage" />
@@ -59,7 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:ellipsize="end"
-            android:maxLines="2"
+            android:maxLines="1"
             android:text="Imovél Tal"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/android_space_xlarge"
@@ -74,13 +76,14 @@
             android:id="@+id/txtValorImovel"
             android:layout_width="wrap_content"
             android:layout_height="19dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:text="1000.000"
-            app:layout_constraintBottom_toBottomOf="@+id/imageButton"
-            app:layout_constraintStart_toEndOf="@+id/imageButton"
-            card_view:ignore="MissingConstraints" />
+            app:layout_constraintEnd_toEndOf="@+id/txtNomeImovel"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/txtNomeImovel"
+            card_view:ignore="MissingConstraints"
+            card_view:layout_editor_absoluteY="59dp" />
 
 
         <ImageView
@@ -151,7 +154,6 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:layout_marginEnd="24dp"
-
             android:layout_marginRight="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imageButton2"
@@ -163,7 +165,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Editar"
-            android:textSize="@dimen/android_space_large"
+            android:textAppearance="@style/TextAppearance.AppCompat.Button"
             app:layout_constraintBottom_toBottomOf="@+id/toggleButton2"
             app:layout_constraintEnd_toStartOf="@+id/toggleButton2"
             app:layout_constraintHorizontal_bias="0.0"

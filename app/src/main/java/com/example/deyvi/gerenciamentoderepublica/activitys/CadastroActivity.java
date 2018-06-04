@@ -53,6 +53,8 @@ public class CadastroActivity extends BaseActivity implements StepperLayout.Step
             finish();
     }
 
+
+
     @Override
     public void onError(VerificationError verificationError) {
 

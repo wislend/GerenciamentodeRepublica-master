@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.ContextWrapper;
 
+import com.activeandroid.ActiveAndroid;
 import com.pixplicity.easyprefs.library.Prefs;
 
 
@@ -19,6 +20,7 @@ public class GerenciadorAluguelApplication extends Application {
                 .setPrefsName(getPackageName())
                 .setUseDefaultSharedPreference(true)
                 .build();
+        ActiveAndroid.initialize(this);
     }
 
     private static final String TAG = "GerenciadorAluguelApplication";

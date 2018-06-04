@@ -109,6 +109,7 @@
     <color name="grey_800_alpha">#D93B3B3B</color>
     <color name="grey_100_alpha">#D9f5f5f5</color>
     <color name="grey_50_alpha">#D9FAFAFA</color>
+    <color name="transparent">#00000000 </color>
 
     <!-- cores padroes da aplicacao-->
     <color name="default_blue_dark_select">#9FE1FF</color>

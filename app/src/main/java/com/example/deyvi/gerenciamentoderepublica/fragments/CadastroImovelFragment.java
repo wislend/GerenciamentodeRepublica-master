@@ -185,8 +185,27 @@ public class CadastroImovelFragment extends BaseStepCadastroLocatarioFragment im
         salvarCadastroBackground();
     }
 
+
+
     @Override
-    public void onCompleteClicked(StepperLayout.OnCompleteClickedCallback callback) {
+    @UiThread
+    public void onCompleteClicked(final StepperLayout.OnCompleteClickedCallback callback) {
+        showProgressDialog("Salvando seu cadastro...");
+        salvarCadastroClienteBackground();
+    }
+
+    @Background
+    void salvarCadastroClienteBackground() {
+
+        try {
+
+            //TODO: SALVAR_CLIENTE
+            Endereco cliente = getEndereco();
+
+            salvarCadastroClienteFinished(cliente, null);
+        } catch (Exception ex) {
+            salvarCadastroClienteFinished(null, ex);
+        }
     }
 
     @Override
@@ -196,7 +215,6 @@ public class CadastroImovelFragment extends BaseStepCadastroLocatarioFragment im
 
     @Background
     void salvarCadastroBackground() {
-
         try {
             //TODO: SALVAR_CLIENTE
             Endereco endereco = getEndereco();

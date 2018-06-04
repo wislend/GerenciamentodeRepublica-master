@@ -4,6 +4,7 @@ package com.example.deyvi.gerenciamentoderepublica.fragments;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.EditText;
 
 import com.example.deyvi.gerenciamentoderepublica.R;
@@ -14,6 +15,7 @@ import com.stepstone.stepper.Step;
 import com.stepstone.stepper.VerificationError;
 
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 
@@ -92,7 +94,7 @@ public class CadastroLocatarioFragment extends BaseStepCadastroLocatarioFragment
     @Override
     public VerificationError verifyStep() {
         //Valida se o campo está vazio e regex informados no afterViews
-        if (validation()) {
+        if (!validation()) {
             return new VerificationError("Corrija as pendências no formulário");
         }
 
@@ -101,7 +103,7 @@ public class CadastroLocatarioFragment extends BaseStepCadastroLocatarioFragment
         getLocatario().setEmail(edtEmail.getText().toString());
         getLocatario().setSenha(edtSenha.getText().toString());
         getLocatario().setTelefone(edtTelefone.getText().toString());
-
+        salvarLocatario();
         return null;
     }
 
@@ -111,7 +113,22 @@ public class CadastroLocatarioFragment extends BaseStepCadastroLocatarioFragment
         if (baseActivity != null && baseActivity.getSupportActionBar() != null) {
             baseActivity.setTitle("");
         }
+
     }
+
+
+    @Background
+    void salvarLocatario(){
+        showProgressDialog();
+       try {
+           getLocatario().save();
+           dismissProgressDialog();
+       }catch (Exception ex){
+           Log.e("BANCO","NÃO FOI POSSIVEL SALVAR CLIENTE.");
+       }
+
+    }
+
 
 
     @Override

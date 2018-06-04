@@ -1,24 +1,40 @@
 package com.example.deyvi.gerenciamentoderepublica.entitys;
 
+import com.activeandroid.annotation.Column;
+import com.activeandroid.annotation.Table;
+
 import java.util.Date;
 
-public class Locatario extends BaseEntitys{
+@Table(name = "LOCATARIO")
+public class Locatario extends BaseEntitys {
 
-    private int id;
+    @Column
     private String nome;
+    @Column
     private String telefone;
+    @Column
     private String whats;
+    @Column
     private String email;
+    @Column
     private int quartoId;
-    private int camaId;
+
+    @Column
     private ReferenciaLocatario referenciaLocatario;
+    @Column
     private Date dataPagamento;
+    @Column
     private String statusPagamento;
+    @Column
     private Date dataEntrada;
+    @Column
     private Date dataSaida;
     //TIPO AINDA NÃO DEFINIDO
+    @Column
     private String contrato;
+    @Column
     private String fotoDocumento;
+    @Column
     private String senha;
 
     public String getSenha() {
@@ -27,14 +43,6 @@ public class Locatario extends BaseEntitys{
 
     public void setSenha(String senha) {
         this.senha = senha;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getNome() {
@@ -77,13 +85,6 @@ public class Locatario extends BaseEntitys{
         this.quartoId = quartoId;
     }
 
-    public int getCamaId() {
-        return camaId;
-    }
-
-    public void setCamaId(int camaId) {
-        this.camaId = camaId;
-    }
 
     public ReferenciaLocatario getReferenciaLocatario() {
         return referenciaLocatario;
