@@ -9,7 +9,8 @@ import android.view.View;
 import com.example.deyvi.gerenciamentoderepublica.R;
 import com.example.deyvi.gerenciamentoderepublica.adapters.CadastroStepAdapter;
 import com.example.deyvi.gerenciamentoderepublica.entitys.Endereco;
-import com.example.deyvi.gerenciamentoderepublica.entitys.Locatario;
+import com.example.deyvi.gerenciamentoderepublica.entitys.Imovel;
+import com.example.deyvi.gerenciamentoderepublica.entitys.Locador;
 import com.stepstone.stepper.StepperLayout;
 import com.stepstone.stepper.VerificationError;
 
@@ -24,16 +25,20 @@ public class CadastroActivity extends BaseActivity implements StepperLayout.Step
     private StepperLayout mStepperLayout;
 
     @InstanceState
-    Locatario locatario;
+    Locador locador;
 
     @InstanceState
     Endereco endereco;
 
+
+    @InstanceState
+    Imovel imovel;
+
     @AfterViews
     void initCadastroActitity() {
 
-        if (locatario == null) {
-            locatario = new Locatario();
+        if (locador == null) {
+            locador = new Locador();
         }
 
         if (getSupportActionBar() != null) {
@@ -84,12 +89,12 @@ public class CadastroActivity extends BaseActivity implements StepperLayout.Step
                 .show();
     }
 
-    public Locatario getLocatario() {
-        return locatario;
+    public Locador getlocador() {
+        return locador;
     }
 
-    public void setLocatario(Locatario locatario) {
-        this.locatario = locatario;
+    public void setlocador(Locador locador) {
+        this.locador = locador;
     }
 
     public Endereco getEndereco() {
@@ -99,6 +104,15 @@ public class CadastroActivity extends BaseActivity implements StepperLayout.Step
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
+
+    public Imovel getImovel() {
+        return imovel;
+    }
+
+    public void setImovel(Imovel imovel) {
+        this.imovel = imovel;
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

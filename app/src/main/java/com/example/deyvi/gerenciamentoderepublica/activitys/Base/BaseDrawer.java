@@ -9,6 +9,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
 import com.example.deyvi.gerenciamentoderepublica.R;
 import com.example.deyvi.gerenciamentoderepublica.activitys.BaseActivity;
 
@@ -21,13 +23,17 @@ public abstract class BaseDrawer extends BaseActivity implements NavigationView.
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
+    private android.support.v7.widget.Toolbar mToolbar;
 
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         super.setContentView(R.layout.drawer_base);
+        setupNavDrawer();
+    }
 
+    private void setupNavDrawer() {
         mDrawerLayout = findViewById(R.id.drawer_layout);
         mDrawerToggle   = new ActionBarDrawerToggle(
                 this, mDrawerLayout,
@@ -35,7 +41,20 @@ public abstract class BaseDrawer extends BaseActivity implements NavigationView.
                 R.string.navigation_drawer_close);
         mDrawerLayout.addDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
+
+        if (mToolbar != null) {
+            mToolbar.setNavigationIcon(R.drawable.ic_drawer);
+            mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mDrawerLayout.openDrawer(GravityCompat.START);
+                }
+            });
+        }
+
+
     }
+
 
 
     @Override

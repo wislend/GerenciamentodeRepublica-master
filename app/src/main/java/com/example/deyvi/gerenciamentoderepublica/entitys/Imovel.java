@@ -4,11 +4,10 @@ package com.example.deyvi.gerenciamentoderepublica.entitys;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 
-@Table(name = "IMOVEL")
-public class Imovel {
+@Table(name ="IMOVEL")
+public class Imovel extends BaseEntitys{
 
-    @Column()
-    private int id;
+
     @Column
     private String nome;
     @Column
@@ -24,13 +23,7 @@ public class Imovel {
     @Column
     private double jurosMes;
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getNome() {
         return nome;

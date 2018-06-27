@@ -7,11 +7,15 @@ import com.activeandroid.annotation.Table;
 @Table(name = "ENDERECO")
 public class Endereco extends BaseEntitys {
 
-    @Column(onDelete = Column.ForeignKeyAction.CASCADE,onUpdate = Column.ForeignKeyAction.CASCADE)
-    private int idLocatario;
+    @Column(onDelete = Column.ForeignKeyAction.CASCADE, onUpdate = Column.ForeignKeyAction.CASCADE)
+    private long idLocador;
 
-    @Column(onDelete = Column.ForeignKeyAction.CASCADE,onUpdate = Column.ForeignKeyAction.CASCADE)
-    private int idImovel;
+    @Column(onDelete = Column.ForeignKeyAction.CASCADE, onUpdate = Column.ForeignKeyAction.CASCADE)
+    private long idImovel;
+
+    @Column(onDelete = Column.ForeignKeyAction.CASCADE, onUpdate = Column.ForeignKeyAction.CASCADE)
+    private long idLocatario;
+
 
     @Column
     private String rua;
@@ -58,6 +62,30 @@ public class Endereco extends BaseEntitys {
 
     public void setPontoReferencia(String pontoReferencia) {
         this.pontoReferencia = pontoReferencia;
+    }
+
+    public long getIdLocador() {
+        return idLocador;
+    }
+
+    public void setIdLocador(long idLocador) {
+        this.idLocador = idLocador;
+    }
+
+    public long getIdImovel() {
+        return idImovel;
+    }
+
+    public void setIdImovel(long idImovel) {
+        this.idImovel = idImovel;
+    }
+
+    public long getIdLocatario() {
+        return idLocatario;
+    }
+
+    public void setIdLocatario(long idLocatario) {
+        this.idLocatario = idLocatario;
     }
 
     public String getBairro() {

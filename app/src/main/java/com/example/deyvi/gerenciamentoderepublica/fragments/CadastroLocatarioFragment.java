@@ -99,11 +99,11 @@ public class CadastroLocatarioFragment extends BaseStepCadastroLocatarioFragment
         }
 
         //DADOS CADASTRAIS VALIDADOS
-        getLocatario().setNome(edtNome.getText().toString());
-        getLocatario().setEmail(edtEmail.getText().toString());
-        getLocatario().setSenha(edtSenha.getText().toString());
-        getLocatario().setTelefone(edtTelefone.getText().toString());
-        salvarLocatario();
+        getLocador().setNome(edtNome.getText().toString());
+        getLocador().setEmail(edtEmail.getText().toString());
+        getLocador().setSenha(edtSenha.getText().toString());
+        getLocador().setTelefone(edtTelefone.getText().toString());
+        getLocador();
         return null;
     }
 
@@ -121,8 +121,8 @@ public class CadastroLocatarioFragment extends BaseStepCadastroLocatarioFragment
     void salvarLocatario(){
         showProgressDialog();
        try {
-           getLocatario().save();
            dismissProgressDialog();
+           getLocador().save();
        }catch (Exception ex){
            Log.e("BANCO","NÃO FOI POSSIVEL SALVAR CLIENTE.");
        }

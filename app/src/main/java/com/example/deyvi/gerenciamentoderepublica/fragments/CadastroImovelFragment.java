@@ -7,15 +7,17 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+
 import com.example.deyvi.gerenciamentoderepublica.R;
 import com.example.deyvi.gerenciamentoderepublica.Util.validacion.EnderecoUtil;
 import com.example.deyvi.gerenciamentoderepublica.Util.validacion.MaskEditUtil;
 import com.example.deyvi.gerenciamentoderepublica.activitys.CadastroActivity;
 import com.example.deyvi.gerenciamentoderepublica.entitys.Endereco;
-import com.example.deyvi.gerenciamentoderepublica.fragments.baseFragment
-        .BaseStepCadastroLocatarioFragment;
+import com.example.deyvi.gerenciamentoderepublica.entitys.Imovel;
+import com.example.deyvi.gerenciamentoderepublica.fragments.baseFragment.BaseStepCadastroLocatarioFragment;
 import com.stepstone.stepper.BlockingStep;
 import com.stepstone.stepper.StepperLayout;
+
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Click;
@@ -190,23 +192,13 @@ public class CadastroImovelFragment extends BaseStepCadastroLocatarioFragment im
     @Override
     @UiThread
     public void onCompleteClicked(final StepperLayout.OnCompleteClickedCallback callback) {
+
+
         showProgressDialog("Salvando seu cadastro...");
-        salvarCadastroClienteBackground();
+        salvarCadastroBackground();
     }
 
-    @Background
-    void salvarCadastroClienteBackground() {
 
-        try {
-
-            //TODO: SALVAR_CLIENTE
-            Endereco cliente = getEndereco();
-
-            salvarCadastroClienteFinished(cliente, null);
-        } catch (Exception ex) {
-            salvarCadastroClienteFinished(null, ex);
-        }
-    }
 
     @Override
     public void onBackClicked(StepperLayout.OnBackClickedCallback callback) {
@@ -216,19 +208,25 @@ public class CadastroImovelFragment extends BaseStepCadastroLocatarioFragment im
     @Background
     void salvarCadastroBackground() {
         try {
-            //TODO: SALVAR_CLIENTE
-            Endereco endereco = getEndereco();
-            salvarCadastroClienteFinished(endereco, null);
+            Imovel imovel = new Imovel();
+            imovel.setNome(edtNomeImovel.getText().toString());
+            imovel.setAlugado(true);
+            imovel.setQuantQuartos(12);
+            imovel.setJurosDia(1200);
+            imovel.setJurosMes(1200);
+            imovel.save();
+            salvarCadastroClienteFinished(imovel, null);
         } catch (Exception ex) {
             salvarCadastroClienteFinished(null, ex);
         }
     }
 
     @UiThread(delay = 3000)
-        //todo remover esse delay
-    void salvarCadastroClienteFinished(Endereco endereco, Exception ex) {
+    void salvarCadastroClienteFinished(Imovel imovel, Exception ex) {
         dismissProgressDialog();
-        setEndereco(endereco);
+        //setImovel(imovel);
+        imovel.save();
+        //getImovel().save();
         ((CadastroActivity) getActivity()).onCompleted(null);
     }
 

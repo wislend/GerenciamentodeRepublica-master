@@ -2,20 +2,21 @@ package com.example.deyvi.gerenciamentoderepublica.fragments.baseFragment;
 
 import com.example.deyvi.gerenciamentoderepublica.activitys.CadastroActivity;
 import com.example.deyvi.gerenciamentoderepublica.entitys.Endereco;
-import com.example.deyvi.gerenciamentoderepublica.entitys.Locatario;
+import com.example.deyvi.gerenciamentoderepublica.entitys.Imovel;
+import com.example.deyvi.gerenciamentoderepublica.entitys.Locador;
 
 public class BaseStepCadastroLocatarioFragment extends BaseFragment {
 
-    public Locatario getLocatario() {
+    public Locador getLocador() {
         return getActivity() == null || !(getActivity() instanceof CadastroActivity) ? null :
-                ((CadastroActivity) getActivity()).getLocatario();
+                ((CadastroActivity) getActivity()).getlocador();
     }
 
-    public void setLocatario(Locatario locatario) {
+    public void setLocador(Locador locador) {
         if (getActivity() == null || !(getActivity() instanceof CadastroActivity)) {
             return;
         }
-        ((CadastroActivity) getActivity()).setLocatario(locatario);
+        ((CadastroActivity) getActivity()).setlocador(locador);
     }
 
 
@@ -32,6 +33,17 @@ public class BaseStepCadastroLocatarioFragment extends BaseFragment {
     }
 
 
+    public Imovel getImovel() {
+        return getActivity() == null || !(getActivity() instanceof CadastroActivity) ? null :
+                ((CadastroActivity) getActivity()).getImovel();
+    }
+
+    public void setImovel(Imovel imovel) {
+        if (getActivity() == null || !(getActivity() instanceof CadastroActivity)) {
+            return;
+        }
+        ((CadastroActivity) getActivity()).setImovel(imovel);
+    }
 
 
 }

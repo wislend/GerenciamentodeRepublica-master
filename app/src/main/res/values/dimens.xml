@@ -176,4 +176,6 @@
     <dimen name="keyline_content_minus_keyline_3x">56dp</dimen>
     <dimen name="keyline_content_minus_keyline">56dp</dimen>
     <dimen name="keyline_between_large">54dp</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
 </resources>

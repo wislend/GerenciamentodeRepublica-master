@@ -1,13 +1,22 @@
 package com.example.deyvi.gerenciamentoderepublica.entitys;
 
 
+import com.activeandroid.annotation.Column;
+import com.activeandroid.annotation.Table;
 
-public class Locador {
 
+@Table(name ="LOCADOR")
+public class Locador extends BaseEntitys{
+
+    @Column
     private String nome;
+    @Column
     private String email;
+    @Column
     private String senha;
 
+    @Column
+    private  String telefone;
 
     public String getNome() {
         return nome;
@@ -32,4 +41,14 @@ public class Locador {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
 }
