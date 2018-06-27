@@ -57,7 +57,6 @@
             android:layout_marginTop="@dimen/android_space_medium"
             android:hint="@string/valor"
             android:textSize="20sp"
-            android:visibility="gone"
             app:robotoTypeface="roboto_condensed_bold_italic" />
 
 

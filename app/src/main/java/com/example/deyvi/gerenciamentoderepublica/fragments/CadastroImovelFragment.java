@@ -192,8 +192,6 @@ public class CadastroImovelFragment extends BaseStepCadastroLocatarioFragment im
     @Override
     @UiThread
     public void onCompleteClicked(final StepperLayout.OnCompleteClickedCallback callback) {
-
-
         showProgressDialog("Salvando seu cadastro...");
         salvarCadastroBackground();
     }
