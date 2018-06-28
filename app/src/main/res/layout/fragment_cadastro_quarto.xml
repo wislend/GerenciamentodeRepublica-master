@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginEnd="@dimen/nav_header_vertical_spacing"
     android:layout_marginLeft="@dimen/nav_header_vertical_spacing"
     android:layout_marginRight="@dimen/nav_header_vertical_spacing"
@@ -119,17 +120,45 @@
         android:hint="@string/locatario"
         />
 
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/edtEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/email"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp"
+        app:robotoTypeface="roboto_condensed_bold_italic" />
+
 
     <com.rengwuxian.materialedittext.MaterialEditText
         android:id="@+id/edtTelefone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/telefone" />
+        android:hint="@string/telefone"
+        android:inputType="phone"
+        android:maxLength="17"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp"
+        app:robotoTypeface="roboto_condensed_bold_italic" />
+
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/edtWhats"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/whatsapp"
+        android:inputType="phone"
+        android:maxLength="17"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp"
+        app:robotoTypeface="roboto_condensed_bold_italic" />
 
     <com.rengwuxian.materialedittext.MaterialEditText
         android:id="@+id/edtPreco"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/valor_quarto" />
+
+
 
 </LinearLayout>

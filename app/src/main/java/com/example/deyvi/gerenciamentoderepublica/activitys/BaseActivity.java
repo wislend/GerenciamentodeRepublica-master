@@ -7,8 +7,11 @@ import android.support.annotation.CallSuper;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.widget.DatePicker;
 
 import com.example.deyvi.gerenciamentoderepublica.R;
+import com.example.deyvi.gerenciamentoderepublica.Util.validacion.Calendar.DatePickerFragment;
+import com.rengwuxian.materialedittext.MaterialEditText;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
@@ -41,6 +44,21 @@ public class BaseActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
+    public void setEditTextDatePicker(final MaterialEditText text) {
+        DatePickerFragment newFragment = new DatePickerFragment();
+        newFragment.setOnDateSelectedListener(new DatePickerFragment.OnDateSelectedListener() {
+            @Override
+            public void onDateSelected(DatePicker view, String formattedDate) {
+                text.setText(formattedDate);
+            }
+        });
+        newFragment.show(getSupportFragmentManager(), "date picker");
+    }
+
+
+
 
 
     @Override

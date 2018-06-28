@@ -27,6 +27,8 @@ public abstract class BaseDrawer extends BaseActivity implements NavigationView.
     private ActionBarDrawerToggle mDrawerToggle;
     private android.support.v7.widget.Toolbar mToolbar;
    private TextView openDrawer;
+    // Primary toolbar and drawer toggle
+    private Toolbar mActionBarToolbar;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,6 +50,17 @@ public abstract class BaseDrawer extends BaseActivity implements NavigationView.
             mToolbar = findViewById(R.id.toolbarDrawer);
            setSupportActionBar(mToolbar);
 
+
+             if (mActionBarToolbar != null) {
+            mActionBarToolbar.setNavigationIcon(R.drawable.ic_drawer);
+            mActionBarToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mDrawerLayout.openDrawer(GravityCompat.START);
+                }
+            });
+        }
+
             /* openDrawer = findViewById(R.id.openDrawer);
              openDrawer.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -58,6 +71,7 @@ public abstract class BaseDrawer extends BaseActivity implements NavigationView.
 
 
     }
+
 
 
     @Override

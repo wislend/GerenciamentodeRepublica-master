@@ -185,4 +185,7 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
+    <string name="whatsapp">WhatsApp</string>
+    <string name="data_saida">Data Saida</string>
+    <string name="data_de_entrada">Data de entrada</string>
 </resources>

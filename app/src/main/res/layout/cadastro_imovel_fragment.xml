@@ -134,6 +134,7 @@
                 android:layout_marginLeft="2dp"
                 android:layout_marginStart="2dp"
                 android:layout_weight="1"
+                android:inputType="number"
                 android:hint="@string/numero"
                 android:textColor="@color/colorAccent" />
 

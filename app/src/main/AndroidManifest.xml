@@ -18,9 +18,9 @@
         <meta-data
             android:name="AA_DB_VERSION"
             android:value="1" />
-        <!--<meta-data-->
-            <!--android:name=" AA_MODELS "-->
-            <!--android:value="com.example.deyvi.gerenciamentoderepublica.entitys" />-->
+        <!-- <meta-data -->
+        <!-- android:name=" AA_MODELS " -->
+        <!-- android:value="com.example.deyvi.gerenciamentoderepublica.entitys" /> -->
 
         <activity
             android:name=".activitys.MainActivity_"
@@ -44,6 +44,7 @@
             android:name=".activitys.ScrollingActivity_"
             android:label="@string/title_activity_scrolling"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activitys.CadastroQuartoActivity_"></activity>
     </application>
 
 </manifest>

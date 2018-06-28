@@ -1,7 +1,6 @@
 package com.example.deyvi.gerenciamentoderepublica.fragments;
 
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -176,8 +175,6 @@ public class CadastroImovelFragment extends BaseStepCadastroLocatarioFragment im
                 spin.setSelection(i);
             }
         }
-
-
     }
 
 

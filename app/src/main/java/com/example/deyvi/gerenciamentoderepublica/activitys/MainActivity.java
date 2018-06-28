@@ -1,12 +1,9 @@
 package com.example.deyvi.gerenciamentoderepublica.activitys;
 
-import android.animation.Animator;
 import android.annotation.SuppressLint;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.animation.AnimationUtils;
-import android.view.animation.Interpolator;
 
 import com.example.deyvi.gerenciamentoderepublica.R;
 import com.example.deyvi.gerenciamentoderepublica.activitys.Base.BaseDrawer;
@@ -14,6 +11,7 @@ import com.example.deyvi.gerenciamentoderepublica.adapters.AdapterImovel;
 import com.example.deyvi.gerenciamentoderepublica.entitys.Imovel;
 
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
@@ -42,7 +40,9 @@ public class MainActivity extends BaseDrawer {
         mAdapter = new AdapterImovel(setListImovelTest());
         mRecyclerView.setAdapter(mAdapter);
 
-        fab.setScaleX(0);
+
+        //
+       /* fab.setScaleX(0);
         fab.setScaleY(0);
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
@@ -81,10 +81,16 @@ public class MainActivity extends BaseDrawer {
 
                         }
                     });
-        }
+        }*/
 
 
     }
+
+
+    @Click
+        void fab(){
+            CadastroQuartoActivity_.intent(this).start();
+        }
 
     List<Imovel> setListImovelTest() {
         List<Imovel> listImovel = new ArrayList<>();
