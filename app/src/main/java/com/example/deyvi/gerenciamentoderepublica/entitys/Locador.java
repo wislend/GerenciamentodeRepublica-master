@@ -10,8 +10,10 @@ public class Locador extends BaseEntitys{
 
     @Column
     private String nome;
+
     @Column
     private String email;
+
     @Column
     private String senha;
 

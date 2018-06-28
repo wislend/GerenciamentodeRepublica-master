@@ -50,14 +50,7 @@
                 android:textSize="20sp" />
         </RadioGroup>
 
-        <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/edtValorAluguel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/android_space_medium"
-            android:hint="@string/valor"
-            android:textSize="20sp"
-            app:robotoTypeface="roboto_condensed_bold_italic" />
+
 
 
         <com.rengwuxian.materialedittext.MaterialEditText
@@ -67,6 +60,24 @@
             android:layout_marginTop="@dimen/android_space_medium"
             android:hint="@string/nome_fantansia"
             android:textColor="@color/colorAccent"
+            android:textSize="20sp"
+            app:robotoTypeface="roboto_condensed_bold_italic" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/edtValorAluguel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/android_space_medium"
+            android:hint="@string/valor"
+            android:textSize="20sp"
+            app:robotoTypeface="roboto_condensed_bold_italic" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/edtNumeroDeQuartos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/android_space_medium"
+            android:hint="@string/numero_de_quartos"
             android:textSize="20sp"
             app:robotoTypeface="roboto_condensed_bold_italic" />
 

@@ -12,16 +12,8 @@
     tools:context=".fragments.CadastroQuartoFragment">
 
 
-    <com.devspark.robototextview.widget.RobotoTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="@string/registrar_quartos"
-        android:textSize="22sp"
-        />
 
-    <EditText
+    <com.rengwuxian.materialedittext.MaterialEditText
         android:id="@+id/edtIdentificacaoQuarto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -120,19 +112,24 @@
             android:text="@string/vago" />
     </RadioGroup>
 
-    <EditText
+    <com.rengwuxian.materialedittext.MaterialEditText
         android:id="@+id/edtLocatario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/locatario"
         />
 
-    <EditText
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/edtTelefone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/telefone" />
+
+    <com.rengwuxian.materialedittext.MaterialEditText
         android:id="@+id/edtPreco"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/valor_quarto"
-        />
-
+        android:hint="@string/valor_quarto" />
 
 </LinearLayout>

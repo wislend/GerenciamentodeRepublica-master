@@ -72,7 +72,7 @@ public class CadastroImovelFragment extends BaseStepCadastroLocatarioFragment im
         inserirMask();
         setJurosPadrao();
         setCidadesSpinner();
-        edtValorAluguel.setVisibility(rdAlugado.isChecked() ? View.VISIBLE : View.GONE);
+      //  edtValorAluguel.setVisibility(rdAlugado.isChecked() ? View.VISIBLE : View.GONE);
     }
 
 
@@ -222,10 +222,8 @@ public class CadastroImovelFragment extends BaseStepCadastroLocatarioFragment im
     @UiThread(delay = 3000)
     void salvarCadastroClienteFinished(Imovel imovel, Exception ex) {
         dismissProgressDialog();
-        //setImovel(imovel);
-        imovel.save();
-        //getImovel().save();
         ((CadastroActivity) getActivity()).onCompleted(null);
+
     }
 
 

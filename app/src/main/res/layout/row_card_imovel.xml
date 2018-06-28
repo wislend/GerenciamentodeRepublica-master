@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:card_view="http://schemas.android.com/tools"
-    xmlns:tools="http://schemas.android.com/tools"
-    style="@style/CardView.Light"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:cardElevation="@dimen/android_space_large"
-    card_view:cardCornerRadius="16dp"
-    android:layout_marginTop="8dp"
-    android:layout_marginBottom="@dimen/android_space_medium"
-    android:layout_marginStart="8dp"
-    android:layout_marginEnd="8dp">
-
-    <android.support.constraint.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    <android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:card_view="http://schemas.android.com/tools"
+        xmlns:tools="http://schemas.android.com/tools"
+        style="@style/CardView.Light"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:cardElevation="@dimen/android_space_large"
+        card_view:cardCornerRadius="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="@dimen/android_space_medium"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp">
+
+        <android.support.constraint.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
 
         <com.devspark.robototextview.widget.RobotoTextView
             android:id="@+id/txtDescricao"
@@ -87,7 +89,7 @@
             android:minWidth="0dp"
             android:paddingEnd="8dp"
             android:paddingStart="8dp"
-            android:text="ACTION"
+            android:text="Adicionar Quartos"
             android:textColor="#DE000000"
             app:layout_constraintBottom_toBottomOf="@+id/action_button_2"
             app:layout_constraintHorizontal_chainStyle="spread_inside"
@@ -105,15 +107,15 @@
             android:minWidth="0dp"
             android:paddingEnd="8dp"
             android:paddingStart="8dp"
-            android:text="ACTION"
+            android:text=""
             android:textColor="#DE000000"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/barrier2"
             app:layout_constraintStart_toEndOf="@+id/action_button_1"
-            app:layout_constraintTop_toTopOf="@+id/imageButton4" />
+            app:layout_constraintTop_toTopOf="@+id/icExcluir" />
 
         <ImageButton
-            android:id="@+id/imageButton3"
+            android:id="@+id/icEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
@@ -121,23 +123,24 @@
             android:layout_marginTop="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintStart_toEndOf="@+id/imageButton4"
+            app:layout_constraintStart_toEndOf="@+id/icExcluir"
             app:layout_constraintTop_toBottomOf="@+id/barrier3"
-            app:srcCompat="@drawable/ic_favorite_white_24dp"
-            tools:ignore="MissingConstraints" />
+            app:srcCompat="@drawable/ic_fab_edit"
+            tools:ignore="MissingConstraints"
+            android:layout_marginStart="8dp" />
 
         <ImageButton
-            android:id="@+id/imageButton4"
+            android:id="@+id/icExcluir"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageButton3"
-            app:layout_constraintEnd_toStartOf="@+id/imageButton3"
+            app:layout_constraintBottom_toBottomOf="@+id/icEdit"
+            app:layout_constraintEnd_toStartOf="@+id/icEdit"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toEndOf="@+id/barrier2"
-            app:layout_constraintTop_toTopOf="@+id/imageButton3"
+            app:layout_constraintTop_toTopOf="@+id/icEdit"
             app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/ic_stat_action_delete"
             tools:ignore="MissingConstraints" />
@@ -177,3 +180,5 @@
     </android.support.constraint.ConstraintLayout>
 
 </android.support.v7.widget.CardView>
+
+

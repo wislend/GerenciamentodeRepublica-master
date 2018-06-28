@@ -55,7 +55,7 @@
     <string name="valor">Valor: </string>
     <string name="estado">Estado</string>
     <string name="nome_imovel">In the Material Design system, there are two light sources. One is a key light that sits above the top of the screen</string>
-    <string name="numero_de_quartos">Quartos: </string>
+    <string name="numero_de_quartos">Quartos </string>
 
 
     <string-array name="estados_brasileiros">

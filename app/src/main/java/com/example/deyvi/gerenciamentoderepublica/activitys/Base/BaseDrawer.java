@@ -7,9 +7,11 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.deyvi.gerenciamentoderepublica.R;
 import com.example.deyvi.gerenciamentoderepublica.activitys.BaseActivity;
@@ -24,7 +26,7 @@ public abstract class BaseDrawer extends BaseActivity implements NavigationView.
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
     private android.support.v7.widget.Toolbar mToolbar;
-
+   private TextView openDrawer;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,26 +37,27 @@ public abstract class BaseDrawer extends BaseActivity implements NavigationView.
 
     private void setupNavDrawer() {
         mDrawerLayout = findViewById(R.id.drawer_layout);
-        mDrawerToggle   = new ActionBarDrawerToggle(
+        mDrawerToggle = new ActionBarDrawerToggle(
                 this, mDrawerLayout,
                 R.string.navigation_drawer_open,
                 R.string.navigation_drawer_close);
         mDrawerLayout.addDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
 
-        if (mToolbar != null) {
-            mToolbar.setNavigationIcon(R.drawable.ic_drawer);
-            mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+
+            mToolbar = findViewById(R.id.toolbarDrawer);
+           setSupportActionBar(mToolbar);
+
+            /* openDrawer = findViewById(R.id.openDrawer);
+             openDrawer.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View view) {
+                public void onClick(View v) {
                     mDrawerLayout.openDrawer(GravityCompat.START);
                 }
-            });
-        }
+            });*/
 
 
     }
-
 
 
     @Override
