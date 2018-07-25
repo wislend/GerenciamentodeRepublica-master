@@ -13,7 +13,7 @@ public class BaseDbHelper extends SQLiteOpenHelper {
             "CREATE TABLE " + SqliteConstantes.DATA_BASE_NAME + "(" +
                     SqliteConstantes.ID_CONVIDADO + " integer primary key, " +
                     SqliteConstantes.NAME_CONVIDADE + " text, "+
-                    SqliteConstantes.PRESENCE + " integer);";
+                    SqliteConstantes.PRESENCE + " integer)";
 
     public static final String SQL_DROP_TABLE = "DROP TABLE IF NOT EXISTS " + SqliteConstantes.DATA_BASE_NAME;
 

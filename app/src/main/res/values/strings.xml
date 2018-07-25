@@ -188,4 +188,6 @@
     <string name="whatsapp">WhatsApp</string>
     <string name="data_saida">Data Saida</string>
     <string name="data_de_entrada">Data de entrada</string>
+    <string name="morador">Morador</string>
+    <string name="salvar">Salvar</string>
 </resources>

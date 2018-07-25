@@ -18,21 +18,20 @@
         <meta-data
             android:name="AA_DB_VERSION"
             android:value="1" />
-        <!-- <meta-data -->
-        <!-- android:name=" AA_MODELS " -->
-        <!-- android:value="com.example.deyvi.gerenciamentoderepublica.entitys" /> -->
+         <meta-data
+         android:name=" AA_MODELS "
+         android:value="com.example.deyvi.gerenciamentoderepublica.entitys" />
 
         <activity
-            android:name=".activitys.MainActivity_"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:name=".activitys.CadastroQuartoActivity_"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activitys.Splash_" />
+        <activity android:name=".activitys.MainActivity_" />
         <activity android:name=".activitys.BaseActivity_" />
         <activity
             android:name=".activitys.CadastroActivity_"
@@ -44,7 +43,7 @@
             android:name=".activitys.ScrollingActivity_"
             android:label="@string/title_activity_scrolling"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activitys.CadastroQuartoActivity_"></activity>
+        <activity android:name=".activitys.Splash_"></activity>
     </application>
 
 </manifest>

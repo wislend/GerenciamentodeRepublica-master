@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginEnd="@dimen/nav_header_vertical_spacing"
     android:layout_marginLeft="@dimen/nav_header_vertical_spacing"
     android:layout_marginRight="@dimen/nav_header_vertical_spacing"
@@ -22,8 +22,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_horizontal_margin"
-            android:hint="@string/identificacao_quarto"
-            />
+            android:hint="@string/identificacao_quarto" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/edtNumero"
+            android:inputType="numberDecimal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/numero" />
 
         <com.devspark.robototextview.widget.RobotoTextView
             android:layout_width="match_parent"
@@ -74,17 +80,17 @@
             android:layout_marginTop="@dimen/activity_horizontal_margin">
 
             <CheckBox
-                android:layout_marginRight="8dp"
-                android:layout_marginEnd="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
                 android:text="@string/ar_condicionado" />
 
             <CheckBox
-                android:layout_marginRight="8dp"
-                android:layout_marginEnd="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
                 android:text="@string/ventilador" />
         </LinearLayout>
 
@@ -96,41 +102,48 @@
             android:text="@string/adicionar_mais_algum" />
 
         <RadioGroup
+            android:id="@+id/idRadioGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_horizontal_margin"
             android:orientation="horizontal">
 
             <RadioButton
-                android:id="@+id/radioButton2"
+                android:id="@+id/rbOcupado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/ocupado" />
 
             <RadioButton
-                android:id="@+id/radioButton"
+                android:id="@+id/rbVago"
+                android:checked="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/vago" />
         </RadioGroup>
 
+
+        <LinearLayout
+            android:id="@+id/conteanerCadastroMorador"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:layout_height="wrap_content">
+
         <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/edtLocatario"
+            android:id="@+id/edtMorador"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/locatario"
-            />
+            android:hint="@string/morador" />
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/edtEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/email"
-            android:textColor="@color/colorAccent"
-            android:textSize="20sp"
-            app:robotoTypeface="roboto_condensed_bold_italic" />
+          />
 
 
         <com.rengwuxian.materialedittext.MaterialEditText
@@ -139,10 +152,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/telefone"
             android:inputType="phone"
-            android:maxLength="17"
-            android:textColor="@color/colorAccent"
-            android:textSize="20sp"
-            app:robotoTypeface="roboto_condensed_bold_italic" />
+           app:robotoTypeface="roboto_condensed_bold_italic" />
 
 
         <com.rengwuxian.materialedittext.MaterialEditText
@@ -151,29 +161,65 @@
             android:layout_height="wrap_content"
             android:hint="@string/whatsapp"
             android:inputType="phone"
-            android:maxLength="17"
-            android:textColor="@color/colorAccent"
-            android:textSize="20sp"
             app:robotoTypeface="roboto_condensed_bold_italic" />
+
+
+
+
+        <RelativeLayout
+            android:id="@+id/campoDataEntrada"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/dataEntrada"
+                android:editable="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/data_de_entrada" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_calendar" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/campoDataSaida"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/dataSaida"
+                android:editable="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/data_saida" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_calendar" />
+
+        </RelativeLayout>
+
+        </LinearLayout>
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/edtPreco"
+            android:inputType="numberDecimal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/valor_quarto" />
 
-
-        <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/dataEntrada"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/data_de_entrada" />
-
-        <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/dataSaida"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/data_saida" />
 
     </LinearLayout>
 

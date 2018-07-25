@@ -1,21 +1,24 @@
 package com.example.deyvi.gerenciamentoderepublica.activitys;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.CallSuper;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.widget.DatePicker;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.example.deyvi.gerenciamentoderepublica.R;
-import com.example.deyvi.gerenciamentoderepublica.Util.validacion.Calendar.DatePickerFragment;
-import com.rengwuxian.materialedittext.MaterialEditText;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.InstanceState;
+import org.androidannotations.annotations.UiThread;
 
 
 @SuppressLint("Registered")
@@ -28,7 +31,10 @@ public class BaseActivity extends AppCompatActivity {
     protected boolean progrableShowing;
     @InstanceState
     protected String messageProgress;
-
+    private View viewLoading;
+    private ProgressDialog mProgressDialog;
+    private ViewGroup viewContent;
+    private int mShortAnimationDuration;
     @AfterViews
     @CallSuper
     protected void onAfterViews() {
@@ -46,20 +52,71 @@ public class BaseActivity extends AppCompatActivity {
     }
 
 
-    public void setEditTextDatePicker(final MaterialEditText text) {
-        DatePickerFragment newFragment = new DatePickerFragment();
-        newFragment.setOnDateSelectedListener(new DatePickerFragment.OnDateSelectedListener() {
-            @Override
-            public void onDateSelected(DatePicker view, String formattedDate) {
-                text.setText(formattedDate);
-            }
-        });
-        newFragment.show(getSupportFragmentManager(), "date picker");
+
+    @UiThread
+    public void setLoading(boolean isLoading, final boolean modeInvisible) {
+
+
+
+        final View hideView = isLoading ? viewContent : viewLoading;
+        final View showView = isLoading ? viewLoading : viewContent;
+
+
+
+
+        showView.setVisibility(View.VISIBLE);
+
+        //if the show view is not the content view, we will display the loading view right now
+        if (showView.getId() == viewLoading.getId()) {
+            showView.setAlpha(1f);
+            hideView.setVisibility(View.GONE);
+        } else {
+            // Set the "show" view to 0% opacity but visible, so that it is visible
+            // (but fully transparent) during the anima
+            // tion.
+            showView.setAlpha(0f);
+
+            // Animate the "show" view to 100% opacity, and clear any animation listener set on
+            // the view. Remember that listeners are not limited to the specific animation
+            // describes in the chained method calls. Listeners are set on the
+            // ViewPropertyAnimator object for the view, which persists across several
+            // animations.
+            showView.animate()
+                    .alpha(1f)
+                    .setDuration(mShortAnimationDuration)
+                    .setListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            showView.setVisibility(View.VISIBLE);
+                            showView.setAlpha(1);
+                        }
+                    });
+
+            // Animate the "hide" view to 0% opacity. After the animation ends, set its visibility
+            // to GONE as an optimization step (it won't participate in layout passes, etc.)
+            hideView.animate()
+                    .alpha(0f)
+                    .setDuration(mShortAnimationDuration)
+                    .setListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            hideView.setVisibility(View.GONE);
+                            hideView.setVisibility((modeInvisible && hideView == viewContent) ? View.INVISIBLE : View.GONE);
+                        }
+                    });
+        }
     }
 
 
+    @UiThread
+    public void setLoading(boolean isLoading) {
+        setLoading(isLoading, false);
+    }
 
+    public boolean isLoading() {
 
+        return viewLoading != null && viewLoading.getVisibility() == View.VISIBLE;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
@@ -70,6 +127,21 @@ public class BaseActivity extends AppCompatActivity {
             getSupportActionBar().setHomeButtonEnabled(true);
         }
 
+    }
+
+
+    /**
+     * Retira o progress
+     */
+    public void dismissProgressDialog() {
+
+        if (mProgressDialog != null) {
+            mProgressDialog.dismiss();
+            mProgressDialog = null;
+            progrableShowing = false;
+            progressShowing = false;
+
+        }
     }
 
 

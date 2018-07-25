@@ -5,8 +5,8 @@ import com.activeandroid.annotation.Table;
 
 import java.util.Date;
 
-@Table(name = "LOCATARIO")
-public class Locatario extends BaseEntitys {
+@Table(name = "MORADOR")
+public class Morador extends BaseEntitys {
 
     @Column
     private String nome;
@@ -16,8 +16,9 @@ public class Locatario extends BaseEntitys {
     private String whats;
     @Column
     private String email;
-    @Column
-    private int quartoId;
+
+    @Column(onDelete = Column.ForeignKeyAction.CASCADE, onUpdate = Column.ForeignKeyAction.CASCADE)
+    private Long quartoId;
 
     @Column
     private ReferenciaLocatario referenciaLocatario;
@@ -26,9 +27,9 @@ public class Locatario extends BaseEntitys {
     @Column
     private String statusPagamento;
     @Column
-    private Date dataEntrada;
+    private String dataEntrada;
     @Column
-    private Date dataSaida;
+    private String dataSaida;
     //TIPO AINDA NÃO DEFINIDO
     @Column
     private String contrato;
@@ -77,11 +78,11 @@ public class Locatario extends BaseEntitys {
         this.email = email;
     }
 
-    public int getQuartoId() {
+    public Long getQuartoId() {
         return quartoId;
     }
 
-    public void setQuartoId(int quartoId) {
+    public void setQuartoId(Long quartoId) {
         this.quartoId = quartoId;
     }
 
@@ -110,19 +111,19 @@ public class Locatario extends BaseEntitys {
         this.statusPagamento = statusPagamento;
     }
 
-    public Date getDataEntrada() {
+    public String getDataEntrada() {
         return dataEntrada;
     }
 
-    public void setDataEntrada(Date dataEntrada) {
+    public void setDataEntrada(String dataEntrada) {
         this.dataEntrada = dataEntrada;
     }
 
-    public Date getDataSaida() {
+    public String getDataSaida() {
         return dataSaida;
     }
 
-    public void setDataSaida(Date dataSaida) {
+    public void setDataSaida(String dataSaida) {
         this.dataSaida = dataSaida;
     }
 
