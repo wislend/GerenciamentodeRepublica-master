@@ -22,9 +22,7 @@
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
             app:expandedTitleGravity="right"
-
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
-
             <include layout="@layout/layout_toolbar_drawer" />
 
         </android.support.design.widget.CollapsingToolbarLayout>

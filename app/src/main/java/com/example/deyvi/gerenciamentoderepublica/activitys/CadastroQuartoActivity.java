@@ -146,8 +146,8 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
         quarto.setNome(edtIdentificacaoQuarto.getText().toString());
         quarto.setPreco(100.00);
         quarto.setStatus(0);
-        quarto.setNumero(Integer.parseInt(edtNumero.getText().toString()));
-        quarto.setQuantidadeCamas(1);
+         quarto.setQuantidadeCamas(1);
+         quarto.setNumero(10);
         quarto.setDescricao("quarto grande.");
         if (quartoJaExiste(quarto.getNumero())){
             Toast.makeText(this, "O quarto " + quarto.getNome() + " já foi cadastrado." , Toast.LENGTH_SHORT).show();
@@ -173,6 +173,10 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
     }
 
     public boolean moradorExiste(String whats) {
+
+        if (whats.isEmpty()){
+            return false;
+        }
         try {
             return new Select().from(Morador.class).where("whats = ?", whats).exists();
         } catch (Exception e) {
@@ -181,7 +185,10 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
         return false;
     }
 
-    public boolean quartoJaExiste(int numero){
+    public boolean quartoJaExiste(Integer numero){
+        if (numero == null){
+            return false;
+        }
         try {
             return new Select().from(Quarto.class).where("nome = ?", numero).exists();
         } catch (Exception e) {
@@ -200,9 +207,17 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_salvar) {
-            salvarQuarto();
+           /* if (!moradorExiste(morador.getWhats() )  && !vago){
+                salvarQuarto();
+            }else{
+                Toast.makeText(this, "Morador ja cadastrado em outro quarto.", Toast.LENGTH_SHORT).show();
+            }*/
+            MainActivity_.intent(this).start();
+           // MainActivity_.intent(this).start();
             return true;
         }
+
+
         return super.onOptionsItemSelected(item);
     }
 
