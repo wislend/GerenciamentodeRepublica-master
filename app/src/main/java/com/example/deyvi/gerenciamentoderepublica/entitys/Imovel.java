@@ -5,13 +5,25 @@ import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 
 @Table(name ="IMOVEL")
-public class Imovel extends BaseEntitys{
+public class Imovel extends BaseEntitys {
 
+    public Long getEnderecoId() {
+        return enderecoId;
+    }
+
+    public void setEnderecoId(Long enderecoId) {
+        this.enderecoId = enderecoId;
+    }
+
+    @Column(onDelete = Column.ForeignKeyAction.CASCADE, onUpdate = Column.ForeignKeyAction.CASCADE)
+    private Long enderecoId;
 
     @Column
     private String nome;
+
     @Column
     private Endereco enderecoImovel;
+
     @Column
     private int quantQuartos;
     @Column

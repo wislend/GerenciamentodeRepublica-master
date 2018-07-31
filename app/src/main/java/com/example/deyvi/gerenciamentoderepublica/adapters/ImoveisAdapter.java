@@ -11,10 +11,12 @@ import com.example.deyvi.gerenciamentoderepublica.views.row.CardQuartosCadastrad
 
 import java.util.List;
 
-public class AdapterImovel extends BaseAdapterW<Imovel> {
+public class ImoveisAdapter extends BaseAdapterW<Imovel> {
 
-    public AdapterImovel(@NonNull Context context, List<Imovel> imoveis) {
+
+    public ImoveisAdapter(@NonNull Context context, List<Imovel> imoveis) {
         super(context, imoveis);
+
     }
 
     @Override
@@ -30,4 +32,12 @@ public class AdapterImovel extends BaseAdapterW<Imovel> {
 
         return cardQuartosCadastradosRowView;
     }
+
+
+    public void setImoveis(List<Imovel> imoveis) {
+        imoveis.addAll(imoveis);
+        notifyDataSetChanged();
+    }
+
+
 }

@@ -5,7 +5,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.deyvi.gerenciamentoderepublica.R;
-import com.example.deyvi.gerenciamentoderepublica.activitys.Base.RowView;
+import com.example.deyvi.gerenciamentoderepublica.activitys.base.RowView;
 import com.example.deyvi.gerenciamentoderepublica.entitys.Imovel;
 
 import org.androidannotations.annotations.EViewGroup;

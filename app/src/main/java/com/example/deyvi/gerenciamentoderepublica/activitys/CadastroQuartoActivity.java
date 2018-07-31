@@ -212,8 +212,8 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
             }else{
                 Toast.makeText(this, "Morador ja cadastrado em outro quarto.", Toast.LENGTH_SHORT).show();
             }*/
-            MainActivity_.intent(this).start();
-           // MainActivity_.intent(this).start();
+            Apresentacao_Activity_.intent(this).start();
+           // Apresentacao_Activity_.intent(this).start();
             return true;
         }
 

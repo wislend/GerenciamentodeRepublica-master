@@ -20,6 +20,9 @@ public class Morador extends BaseEntitys {
     @Column(onDelete = Column.ForeignKeyAction.CASCADE, onUpdate = Column.ForeignKeyAction.CASCADE)
     private Long quartoId;
 
+    @Column(onDelete = Column.ForeignKeyAction.CASCADE, onUpdate = Column.ForeignKeyAction.CASCADE)
+    private Long enderecoId;
+
     @Column
     private ReferenciaLocatario referenciaLocatario;
     @Column

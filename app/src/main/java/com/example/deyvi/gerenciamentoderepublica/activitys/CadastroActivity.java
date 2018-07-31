@@ -54,7 +54,7 @@ public class CadastroActivity extends BaseActivity implements StepperLayout.Step
 
     @Override
     public void onCompleted(View completeButton) {
-            MainActivity_.intent(this).start();
+            Apresentacao_Activity_.intent(this).start();
             finish();
     }
 

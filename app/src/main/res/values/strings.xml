@@ -52,7 +52,7 @@
     <string name="informe_cep">Informe o CEP primeiro</string>
     <string name="alugado">Alugado</string>
     <string name="propio">Própio</string>
-    <string name="valor">Valor: </string>
+    <string name="valor">Valor Aluguel</string>
     <string name="estado">Estado</string>
     <string name="nome_imovel">In the Material Design system, there are two light sources. One is a key light that sits above the top of the screen</string>
     <string name="numero_de_quartos">Quartos </string>

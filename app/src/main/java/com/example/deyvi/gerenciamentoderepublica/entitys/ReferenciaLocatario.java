@@ -6,8 +6,10 @@ import com.activeandroid.annotation.Table;
 @Table(name = "REF_LOCATARIO")
 public class ReferenciaLocatario extends BaseEntitys {
 
-    @Column
-    private String idLocatario;
+    @Column(onDelete = Column.ForeignKeyAction.CASCADE, onUpdate = Column.ForeignKeyAction.CASCADE)
+    private Long moradorId;
+
+
     @Column
     private String nome;
 
@@ -17,13 +19,7 @@ public class ReferenciaLocatario extends BaseEntitys {
     @Column
     private String email;
 
-    public String getIdLocatario() {
-        return idLocatario;
-    }
 
-    public void setIdLocatario(String idLocatario) {
-        this.idLocatario = idLocatario;
-    }
 
     public String getNome() {
         return nome;

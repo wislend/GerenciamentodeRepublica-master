@@ -8,6 +8,9 @@ import com.activeandroid.annotation.Table;
 @Table(name ="LOCADOR")
 public class Locador extends BaseEntitys{
 
+    @Column(onDelete = Column.ForeignKeyAction.CASCADE, onUpdate = Column.ForeignKeyAction.CASCADE)
+    private Long imovelId;
+
     @Column
     private String nome;
 

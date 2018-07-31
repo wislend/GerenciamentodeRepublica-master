@@ -43,6 +43,7 @@ public class CadastroLocatarioFragment extends BaseStepCadastroLocatarioFragment
 
     @AfterViews
     void initFragment() {
+        //test();
         inserirMask();
     }
 
@@ -96,14 +97,17 @@ public class CadastroLocatarioFragment extends BaseStepCadastroLocatarioFragment
         //Valida se o campo está vazio e regex informados no afterViews
         if (!validation()) {
             return new VerificationError("Corrija as pendências no formulário");
+        }else {
+            //DADOS CADASTRAIS VALIDADOS
+            getLocador().setNome(edtNome.getText().toString());
+            getLocador().setEmail(edtEmail.getText().toString());
+            getLocador().setSenha(edtSenha.getText().toString());
+            getLocador().setTelefone(edtTelefone.getText().toString());
+            getLocador();
+            salvaDonoImovel();
         }
 
-        //DADOS CADASTRAIS VALIDADOS
-        getLocador().setNome(edtNome.getText().toString());
-        getLocador().setEmail(edtEmail.getText().toString());
-        getLocador().setSenha(edtSenha.getText().toString());
-        getLocador().setTelefone(edtTelefone.getText().toString());
-        getLocador();
+
         return null;
     }
 
@@ -118,7 +122,7 @@ public class CadastroLocatarioFragment extends BaseStepCadastroLocatarioFragment
 
 
     @Background
-    void salvarLocatario(){
+    void salvaDonoImovel(){
         showProgressDialog();
        try {
            dismissProgressDialog();
@@ -129,7 +133,14 @@ public class CadastroLocatarioFragment extends BaseStepCadastroLocatarioFragment
 
     }
 
+     void test(){
+        edtNome.setText("Joao");
+        edtEmail.setText("joao@joao.com");
+        edtTelefone.setText("9999999999");
+        edtSenha.setText("123456");
+        edtConfirmacaoSenha.setText("123456");
 
+     }
 
     @Override
     public void onError(@NonNull VerificationError error) {

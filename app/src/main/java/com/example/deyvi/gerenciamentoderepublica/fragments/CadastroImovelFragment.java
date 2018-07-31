@@ -6,12 +6,15 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.Toast;
 
+import com.activeandroid.query.Select;
+import com.activeandroid.util.Log;
 import com.example.deyvi.gerenciamentoderepublica.R;
 import com.example.deyvi.gerenciamentoderepublica.Util.validacion.EnderecoUtil;
 import com.example.deyvi.gerenciamentoderepublica.Util.validacion.MaskEditUtil;
 import com.example.deyvi.gerenciamentoderepublica.activitys.CadastroActivity;
-import com.example.deyvi.gerenciamentoderepublica.entitys.Endereco;
+import com.example.deyvi.gerenciamentoderepublica.dal.Enderecos;
 import com.example.deyvi.gerenciamentoderepublica.entitys.Imovel;
 import com.example.deyvi.gerenciamentoderepublica.fragments.baseFragment.BaseStepCadastroLocatarioFragment;
 import com.stepstone.stepper.BlockingStep;
@@ -41,6 +44,10 @@ public class CadastroImovelFragment extends BaseStepCadastroLocatarioFragment im
     EditText edtNomeImovel;
     @ViewById
     EditText edtCep;
+
+    @ViewById
+    EditText edtNumeroDeQuartos;
+
     @ViewById
     EditText edtValorAluguel;
     @ViewById
@@ -64,6 +71,10 @@ public class CadastroImovelFragment extends BaseStepCadastroLocatarioFragment im
 
     //endregion
     List<String> estadosList = new ArrayList<>();
+
+    Enderecos endereco = new Enderecos();
+
+
 
 
     @AfterViews
@@ -151,19 +162,27 @@ public class CadastroImovelFragment extends BaseStepCadastroLocatarioFragment im
 
 
     @UiThread
-    void finishAddressUI(Endereco clienteEndereco) {
+    void finishAddressUI(com.example.deyvi.gerenciamentoderepublica.entitys.Endereco enderecoImovel) {
 
         //se o resultado for nulo ou o usuário não ter esperado e cancelado o diálogo
-        if (clienteEndereco == null || !isProgressDialogShowing()) {
+        if (enderecoImovel == null || !isProgressDialogShowing()) {
             dismissProgressDialog();
             return;
         }
         dismissProgressDialog();
-        edtRua.setText(clienteEndereco.getRua());
-        edtNumero.setText(clienteEndereco.getNumero() == 0 ? "" : String.valueOf(clienteEndereco.getNumero()));
-        edtBairro.setText(clienteEndereco.getBairro());
-        edtCidade.setText(clienteEndereco.getCidade());
-        //setSpinText(spinnerEstado,clienteEndereco.getEstado());
+
+        edtRua.setText(enderecoImovel.getRua());
+        edtNumero.setText(enderecoImovel.getNumero() == 0 ? "" : String.valueOf(enderecoImovel.getNumero()));
+        edtBairro.setText(enderecoImovel.getBairro());
+        edtCidade.setText(enderecoImovel.getCidade());
+        try {
+            enderecoImovel.save();
+        }catch (Exception e){
+            Log.d("BANCO","Não foi possivel salvar endereco do imovel" + e.getMessage());
+        }
+
+
+        //setSpinText(spinnerEstado,enderecoImovel.getEstado());
     }
 
     public void setSpinText(Spinner spin, String text) {
@@ -200,13 +219,36 @@ public class CadastroImovelFragment extends BaseStepCadastroLocatarioFragment im
     }
 
 
+    public boolean imovelExiste(String nome){
+
+        if (nome.isEmpty()) {
+            return false;
+        }
+
+        try{
+            return new Select().from(Imovel.class).where("nome = ?", nome).exists();
+        }catch (Exception e){
+            Log.d("BANCO","Não foi consultar se o quarto" + nome + "existe" + e.getMessage());
+        }
+
+        return false;
+    }
+
+
+
     @Background
     void salvarCadastroBackground() {
+
+        if (!imovelExiste(edtNomeImovel.getText().toString())){
         try {
             Imovel imovel = new Imovel();
+            com.example.deyvi.gerenciamentoderepublica.entitys.Endereco endereco = selectEndereco(edtCep.getText().toString());
+            if (endereco != null){
+                imovel.setEnderecoId(endereco.getId());
+            }
             imovel.setNome(edtNomeImovel.getText().toString());
             imovel.setAlugado(true);
-            imovel.setQuantQuartos(12);
+            imovel.setQuantQuartos(Integer.parseInt(edtNumeroDeQuartos.getText().toString()));
             imovel.setJurosDia(1200);
             imovel.setJurosMes(1200);
             imovel.save();
@@ -214,15 +256,32 @@ public class CadastroImovelFragment extends BaseStepCadastroLocatarioFragment im
         } catch (Exception ex) {
             salvarCadastroClienteFinished(null, ex);
         }
+
+        }else {
+            dismissProgressDialog();
+            Toast.makeText(getContext(), "Esse imovel já foi cadastrado!", Toast.LENGTH_SHORT).show();
+        }
+
     }
+
 
     @UiThread(delay = 3000)
     void salvarCadastroClienteFinished(Imovel imovel, Exception ex) {
         dismissProgressDialog();
         ((CadastroActivity) getActivity()).onCompleted(null);
-
     }
 
+    public static com.example.deyvi.gerenciamentoderepublica.entitys.Endereco selectEndereco(String cep){
+
+        com.example.deyvi.gerenciamentoderepublica.entitys.Endereco endereco = new com.example.deyvi.gerenciamentoderepublica.entitys.Endereco();
+        try{
+            endereco = new Select().from(com.example.deyvi.gerenciamentoderepublica.entitys.Endereco.class).where("cep = ?", cep).executeSingle();
+
+        }catch (Exception e){
+            Log.d("BANCO","Select para encontrar o id do endereco falhou"  + e.getMessage());
+        }
+        return endereco;
+    }
 
 
 }

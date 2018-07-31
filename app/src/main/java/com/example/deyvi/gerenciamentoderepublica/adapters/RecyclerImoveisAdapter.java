@@ -20,14 +20,14 @@ import java.util.List;
 
 import br.ciceromoura.loaderrecycler.BaseLoaderRecyclerViewAdapter;
 
-public class AdapterRecyclerImoveis extends BaseLoaderRecyclerViewAdapter<Imovel,
-        AdapterRecyclerImoveis.ViewHolder> {
+public class RecyclerImoveisAdapter extends BaseLoaderRecyclerViewAdapter<Imovel,
+        RecyclerImoveisAdapter.ViewHolder> {
 
 
     private List<Imovel> items;
 
 
-    public AdapterRecyclerImoveis(@NonNull Context context, @NonNull LoaderManager loaderManager,int loaderId) {
+    public RecyclerImoveisAdapter(@NonNull Context context, @NonNull LoaderManager loaderManager, int loaderId) {
         super(context, loaderManager, loaderId);
     }
 
@@ -43,11 +43,11 @@ public class AdapterRecyclerImoveis extends BaseLoaderRecyclerViewAdapter<Imovel
     protected List<Imovel> onLoadDataInBackground(@Nullable Bundle bundle) {
         List<Imovel> listImovel = new ArrayList<>();
         Imovel imovel1 = new Imovel();
-        imovel1.setNome("Imovel 1");
+        imovel1.setNome("ImovelBll 1");
         imovel1.setQuantQuartos(2);
         imovel1.setValor(150);
         Imovel imovel2 = new Imovel();
-        imovel1.setNome("Imovel 2");
+        imovel1.setNome("ImovelBll 2");
         imovel1.setQuantQuartos(2);
         imovel1.setValor(150);
         listImovel.add(imovel1);

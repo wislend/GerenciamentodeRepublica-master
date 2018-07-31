@@ -1,4 +1,4 @@
-package com.example.deyvi.gerenciamentoderepublica.activitys.Base;
+package com.example.deyvi.gerenciamentoderepublica.activitys.base;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
