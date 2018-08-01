@@ -31,7 +31,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activitys.Apresentacao_Activity_" />
+        <activity android:name=".activitys.ApresentacaoActivity_" />
         <activity android:name=".activitys.BaseActivity_" />
         <activity
             android:name=".activitys.CadastroActivity_"

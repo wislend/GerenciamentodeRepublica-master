@@ -4,10 +4,13 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
 
+import java.util.regex.Pattern;
+
 public class MaskEditUtil {
     private static final String MASK_TELEFONE = "(##)#####-####";
     private static final String MASK_CNPJ = "##.###.###/####-##";
     private static final String MASK_CEP = "#####-###";
+    public static final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
 
     public enum  MaskType {

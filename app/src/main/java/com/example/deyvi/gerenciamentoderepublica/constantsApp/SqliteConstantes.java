@@ -1,12 +1,17 @@
 package com.example.deyvi.gerenciamentoderepublica.constantsApp;
 
-public class SqliteConstantes {
+public interface SqliteConstantes {
 
-    public static final int DATA_BASE_VERSION = 1;
-    public static final String DATA_BASE_NAME = "convidados";
+     String LOG = "BANCO";
+     String ERRO_SELECT_ENDERECO = "NÃO FOI POSSIVEL ENCONTRAR O ENDERCO COM ID";
+     String ERRO_SELECT_IMOVEL = "NÃO FOI POSSIVEL ENCONTRAR O IMOVEL COM NOME";
+     String ERRO_SALVAR_LOCADOR = "NÃO FOI POSSIVEL SALVAR CLIENTE.";
+     String ERRO_SALVAR_MORADOR = "NAO FOI POSSIVEL SALVAR MORADOR";
+     String ERRO_ENDERECO_EXISTS = "NÃO FOI POSSIVEL ENCONTRAR O IMOVEL COM NOME";
+     String ERRO_QUARTO_EXISTS = "NAO FOI POSSIVEL VERIFICAR QUARTO POR NOME";
+     String ERRO_MORADOR_EXISTS = "NÃO FOI POSSIVEL ENCONTRAR O MORADOR COM TELEFONE";
+     String IMOVEL_JA_CADASTRADO = "Verificamos que você já possui um imovél cadastrado com esse nome";
+     String MORADOR_JA_CADASTRADO = "Morador já cadastrado em outro quarto.";
+     String QUARTO_SALVO_SUCESSO = "Quarto Salvo com sucesso!";
 
-
-    public static final String ID_CONVIDADO = "id";
-    public static final String NAME_CONVIDADE = "name";
-    public static final String PRESENCE = "presence";
 }

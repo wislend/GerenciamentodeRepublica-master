@@ -5,15 +5,11 @@ import android.content.Context;
 public class BaseRepository {
 
     public static BaseRepository INSTANCE;
-    private BaseDbHelper mBaseDbHelper;
 
-    private BaseRepository(Context context) {
-        mBaseDbHelper = new BaseDbHelper(context);
-    }
 
     public static synchronized BaseRepository getInstance(Context context){
         if (INSTANCE == null) {
-            INSTANCE = new BaseRepository(context);
+            INSTANCE = new BaseRepository();
         }
         return INSTANCE;
     }

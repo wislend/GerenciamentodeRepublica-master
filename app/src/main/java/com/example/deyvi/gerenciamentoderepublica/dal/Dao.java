@@ -5,25 +5,39 @@ import com.activeandroid.Model;
 public abstract class Dao<T extends Model>   {
 
 
-    public Long save(T objeto) {
-        return objeto.save();
-    }
+    public abstract Long save(T objeto);
 
 
     public abstract boolean update(T objeto);
 
 
-    public boolean delete(T objeto) {
-        return false;
-    }
+    public abstract boolean delete(T objeto);
 
 
     public T select(T objeto) {
         return null;
     }
 
+    public T select(Long id) {
+        return null;
+    }
+
+
 
     public boolean exists(T objeto) {
         return false;
     }
+
+    public boolean exists(String nome) {
+        return false;
+    }
+
+
+
+    public boolean exists(Integer numero) {
+        return false;
+    }
+
+
+
 }

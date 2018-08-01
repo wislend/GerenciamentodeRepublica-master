@@ -10,7 +10,7 @@ public class Quarto extends BaseEntitys {
     @Column
     private String nome;
     @Column
-    private int numero;
+    private Integer numero;
     @Column
     private Integer quantidadeCamas;
     @Column
@@ -70,7 +70,7 @@ public class Quarto extends BaseEntitys {
         this.preco = preco;
     }
 
-    public int getNumero() {
+    public Integer getNumero() {
         return numero;
     }
 

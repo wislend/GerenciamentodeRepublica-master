@@ -10,9 +10,11 @@ import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.activeandroid.query.Select;
 import com.example.deyvi.gerenciamentoderepublica.R;
 import com.example.deyvi.gerenciamentoderepublica.Util.validacion.Calendar.DatePickerFragment;
+import com.example.deyvi.gerenciamentoderepublica.bll.Moradores;
+import com.example.deyvi.gerenciamentoderepublica.bll.Quartos;
+import com.example.deyvi.gerenciamentoderepublica.constantsApp.SqliteConstantes;
 import com.example.deyvi.gerenciamentoderepublica.entitys.Morador;
 import com.example.deyvi.gerenciamentoderepublica.entitys.Quarto;
 import com.rengwuxian.materialedittext.MaterialEditText;
@@ -59,7 +61,7 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
     MaterialEditText edtIdentificacaoQuarto;
 
     @ViewById
-    RadioGroup idRadioGroup;
+    RadioGroup radioOcupadoVago;
 
     @ViewById
     LinearLayout conteanerCadastroMorador;
@@ -67,9 +69,13 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
     @ViewById
     MaterialEditText edtNumero;
 
-    private Morador morador;
+    private Quarto quarto;
 
-    private  Quarto quarto;
+    private Quartos quartos;
+
+    private Long idQuarto;
+
+    private Moradores moradores;
 
     private boolean vago = true;
 
@@ -79,7 +85,7 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
         //MaskEditUtil.insert(edtTelefone, MaskEditUtil.MaskType.TELEFONE);
         // MaskEditUtil.insert(edtWhats, MaskEditUtil.MaskType.TELEFONE);
         test();
-        idRadioGroup.setOnCheckedChangeListener(this);
+        radioOcupadoVago.setOnCheckedChangeListener(this);
     }
 
 
@@ -119,43 +125,40 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
 
 
     public void salvarMorador() {
-
-        morador = new Morador();
+        moradores = new Moradores();
+        Morador morador = new Morador();
         morador.setNome(edtMorador.getText().toString());
         morador.setDataEntrada(dataEntrada.getText().toString());
         morador.setEmail(edtEmail.getText().toString());
         morador.setTelefone(edtTelefone.getText().toString());
         morador.setWhats(edtWhats.getText().toString());
         morador.setDataSaida(dataSaida.getText().toString());
-        Quarto id =  new Select().from(Quarto.class).where("numero = ?", quarto.getNumero()).executeSingle();
-        morador.setQuartoId(id.getId());
-        if (moradorExiste(morador.getTelefone())) {
-            Toast.makeText(this, "Morador ja cadastrado em outro quarto.", Toast.LENGTH_SHORT).show();
+        morador.setQuartoId(idQuarto);
+        if (moradores.moradorExiste(morador.getTelefone())) {
+            Toast.makeText(this, SqliteConstantes.MORADOR_JA_CADASTRADO, Toast.LENGTH_SHORT).show();
         } else {
-            try {
-                morador.save();
-            } catch (Exception e) {
-                Toast.makeText(this, "NAO FOI POSSIVEL SALVAR MORADOR" + e.getMessage(), Toast.LENGTH_SHORT).show();
-            }
+         moradores.salvarMorador(morador);
         }
     }
 
     public void salvarQuarto() {
-
+        quartos = new Quartos();
         quarto = new Quarto();
         quarto.setNome(edtIdentificacaoQuarto.getText().toString());
         quarto.setPreco(100.00);
         quarto.setStatus(0);
-         quarto.setQuantidadeCamas(1);
-         quarto.setNumero(10);
+        quarto.setQuantidadeCamas(1);
+        quarto.setNumero(10);
         quarto.setDescricao("quarto grande.");
-        if (quartoJaExiste(quarto.getNumero())){
+
+        if (quartos.quartoExiste(quarto.getNumero())){
             Toast.makeText(this, "O quarto " + quarto.getNome() + " já foi cadastrado." , Toast.LENGTH_SHORT).show();
         }else
         {
-            quarto.save();
-            Toast.makeText(this, "Quarto Salvo com sucesso!", Toast.LENGTH_SHORT).show();
+            idQuarto = quartos.salvarQuarto(quarto);
+            Toast.makeText(this, SqliteConstantes.QUARTO_SALVO_SUCESSO, Toast.LENGTH_SHORT).show();
         }
+
 
         if (!vago){
             salvarMorador();
@@ -172,30 +175,6 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
         edtPreco.setText("500,00");
     }
 
-    public boolean moradorExiste(String whats) {
-
-        if (whats.isEmpty()){
-            return false;
-        }
-        try {
-            return new Select().from(Morador.class).where("whats = ?", whats).exists();
-        } catch (Exception e) {
-            Toast.makeText(this, "NAO FOI POSSIVEL VERIFICAR SE O MORADOR DO EMAIL" + e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
-        return false;
-    }
-
-    public boolean quartoJaExiste(Integer numero){
-        if (numero == null){
-            return false;
-        }
-        try {
-            return new Select().from(Quarto.class).where("nome = ?", numero).exists();
-        } catch (Exception e) {
-            Toast.makeText(this, "NAO FOI POSSIVEL VERIFICAR QUARTO POR NOME" + e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
-        return false;
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -207,17 +186,16 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_salvar) {
-           /* if (!moradorExiste(morador.getWhats() )  && !vago){
+           if (!moradores.moradorExiste(edtWhats.getText().toString())  && !vago){
                 salvarQuarto();
             }else{
-                Toast.makeText(this, "Morador ja cadastrado em outro quarto.", Toast.LENGTH_SHORT).show();
-            }*/
-            Apresentacao_Activity_.intent(this).start();
+                Toast.makeText(this, "Moradores ja cadastrado em outro quarto.", Toast.LENGTH_SHORT).show();
+                ApresentacaoActivity_.intent(this).start();
+            }
+
            // Apresentacao_Activity_.intent(this).start();
             return true;
         }
-
-
         return super.onOptionsItemSelected(item);
     }
 

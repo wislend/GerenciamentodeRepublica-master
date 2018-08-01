@@ -4,12 +4,12 @@ package com.example.deyvi.gerenciamentoderepublica.fragments;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
-import android.util.Log;
 import android.widget.EditText;
 
 import com.example.deyvi.gerenciamentoderepublica.R;
 import com.example.deyvi.gerenciamentoderepublica.Util.validacion.MaskEditUtil;
 import com.example.deyvi.gerenciamentoderepublica.activitys.BaseActivity;
+import com.example.deyvi.gerenciamentoderepublica.bll.Locadores;
 import com.example.deyvi.gerenciamentoderepublica.fragments.baseFragment.BaseStepCadastroLocatarioFragment;
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.VerificationError;
@@ -20,10 +20,9 @@ import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @EFragment(R.layout.cadastro_locatario_fragment)
-public class CadastroLocatarioFragment extends BaseStepCadastroLocatarioFragment implements Step {
+public class CadastroLocadorFragment extends BaseStepCadastroLocatarioFragment implements Step {
 
     @ViewById
     EditText edtNome;
@@ -37,10 +36,6 @@ public class CadastroLocatarioFragment extends BaseStepCadastroLocatarioFragment
     EditText edtConfirmacaoSenha;
 
 
-    public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
-            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
-
-
     @AfterViews
     void initFragment() {
         //test();
@@ -48,15 +43,14 @@ public class CadastroLocatarioFragment extends BaseStepCadastroLocatarioFragment
     }
 
     void inserirMask() {
-        edtTelefone.addTextChangedListener(MaskEditUtil.insert(edtTelefone, MaskEditUtil.MaskType
-                .TELEFONE));
+        edtTelefone.addTextChangedListener(MaskEditUtil.insert(edtTelefone, MaskEditUtil.MaskType.TELEFONE));
     }
 
 
     public boolean validation() {
 
         boolean valid = true;
-        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(edtEmail.getText().toString());
+        Matcher matcher = MaskEditUtil.VALID_EMAIL_ADDRESS_REGEX.matcher(edtEmail.getText().toString());
 
         if (TextUtils.isEmpty(edtNome.getText().toString())) {
             edtNome.setError(getString(R.string.campo_obrigatorio));
@@ -103,11 +97,8 @@ public class CadastroLocatarioFragment extends BaseStepCadastroLocatarioFragment
             getLocador().setEmail(edtEmail.getText().toString());
             getLocador().setSenha(edtSenha.getText().toString());
             getLocador().setTelefone(edtTelefone.getText().toString());
-            getLocador();
-            salvaDonoImovel();
+            salvarLocador();
         }
-
-
         return null;
     }
 
@@ -117,20 +108,19 @@ public class CadastroLocatarioFragment extends BaseStepCadastroLocatarioFragment
         if (baseActivity != null && baseActivity.getSupportActionBar() != null) {
             baseActivity.setTitle("");
         }
-
     }
 
 
     @Background
-    void salvaDonoImovel(){
+    void salvarLocador(){
+        //inicia bll locadores
+         Locadores locadores = new Locadores();
+        //Mortra prograsso
         showProgressDialog();
-       try {
-           dismissProgressDialog();
-           getLocador().save();
-       }catch (Exception ex){
-           Log.e("BANCO","NÃO FOI POSSIVEL SALVAR CLIENTE.");
-       }
-
+        //Salva locador
+        locadores.salvarLocador(getLocador());
+        //fecha progresso
+        dismissProgressDialog();
     }
 
      void test(){

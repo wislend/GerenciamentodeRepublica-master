@@ -1,15 +1,28 @@
 package com.example.deyvi.gerenciamentoderepublica.bll;
 
-import com.example.deyvi.gerenciamentoderepublica.dal.Dao;
 import com.example.deyvi.gerenciamentoderepublica.entitys.Endereco;
 
-public class Enderecos  extends Dao<Endereco> {
+public class Enderecos {
 
+    com.example.deyvi.gerenciamentoderepublica.dal.Enderecos oEnderecoDao;
 
-    @Override
-    public boolean update(Endereco objeto) {
-        return false;
+    public Enderecos() {
+        oEnderecoDao = new com.example.deyvi.gerenciamentoderepublica.dal.Enderecos();
     }
+
+
+    public Long salvarEndereco(Endereco endereco){
+        return oEnderecoDao.save(endereco);
+    }
+
+    public boolean enderecoExiste(String cep){
+        return oEnderecoDao.exists(cep);
+    }
+
+    public Endereco selectEndereco(Long id){
+        return oEnderecoDao.select(id);
+    }
+
 
 
 }
