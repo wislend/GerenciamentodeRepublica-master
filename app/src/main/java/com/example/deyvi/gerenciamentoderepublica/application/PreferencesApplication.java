@@ -7,7 +7,7 @@ import com.example.deyvi.gerenciamentoderepublica.application.basePreferences.Ba
 
 public class PreferencesApplication extends BasePreferences {
 
-    public static final String PREF_NAME_FILE = "Gerenciador_Aluguel";
+    private static final String PREF_NAME_FILE = "Gerenciador_Aluguel";
     private static final String THEME = "THEME";
 
 

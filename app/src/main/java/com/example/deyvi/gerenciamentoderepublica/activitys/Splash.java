@@ -15,8 +15,10 @@ import org.androidannotations.annotations.EActivity;
 @EActivity(R.layout.activity_splash)
 public class Splash extends AppCompatActivity {
 
+
     @AfterViews
     void initSplash(){
+
 
 
         new Handler().postDelayed(new Runnable() {

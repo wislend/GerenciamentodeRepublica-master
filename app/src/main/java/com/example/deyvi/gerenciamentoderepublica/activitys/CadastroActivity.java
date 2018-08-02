@@ -34,6 +34,8 @@ public class CadastroActivity extends BaseActivity implements StepperLayout.Step
     @InstanceState
     Imovel imovel;
 
+
+
     @AfterViews
     void initCadastroActitity() {
 
