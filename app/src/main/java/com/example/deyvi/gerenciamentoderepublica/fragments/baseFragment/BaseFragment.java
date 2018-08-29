@@ -9,7 +9,7 @@ import android.text.Html;
 import android.util.Log;
 
 import com.example.deyvi.gerenciamentoderepublica.R;
-import com.example.deyvi.gerenciamentoderepublica.activitys.BaseActivity;
+import com.example.deyvi.gerenciamentoderepublica.activitys.base.BaseActivity;
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.VerificationError;
 

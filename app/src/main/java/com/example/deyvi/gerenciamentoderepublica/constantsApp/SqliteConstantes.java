@@ -13,5 +13,7 @@ public interface SqliteConstantes {
      String IMOVEL_JA_CADASTRADO = "Verificamos que você já possui um imovél cadastrado com esse nome";
      String MORADOR_JA_CADASTRADO = "Morador já cadastrado em outro quarto.";
      String QUARTO_SALVO_SUCESSO = "Quarto Salvo com sucesso!";
+     String ERRO_LISTA_IMOVEIS = "erro ao tentar selecionar a lista de imoveis";
+
 
 }

@@ -3,15 +3,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/colorAccent"
+    android:background="@color/colorPrimary"
     android:layout_height="match_parent"
     tools:context=".activitys.Splash">
 
     <ImageView
         android:id="@+id/imgSplash"
         android:layout_centerInParent="true"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/ic_home_white_24dp"
         android:scaleType="fitCenter"/>
 
 

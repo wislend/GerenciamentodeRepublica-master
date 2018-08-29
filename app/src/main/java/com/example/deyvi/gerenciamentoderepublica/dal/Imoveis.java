@@ -5,12 +5,15 @@ import com.example.deyvi.gerenciamentoderepublica.application.DbLogs;
 import com.example.deyvi.gerenciamentoderepublica.constantsApp.SqliteConstantes;
 import com.example.deyvi.gerenciamentoderepublica.entitys.Imovel;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Imoveis extends Dao<Imovel> {
 
 
     @Override
     public Long save(Imovel imovel) {
-        return null;
+        return imovel.save();
     }
 
     @Override
@@ -35,6 +38,17 @@ public class Imoveis extends Dao<Imovel> {
         }catch (Exception e){
             DbLogs.Log(SqliteConstantes.ERRO_SELECT_IMOVEL,e,nome);
         }
+
         return false;
+    }
+
+    @Override
+    public List<Imovel> selectAll() {
+        try {
+            return new Select().all().from(Imovel.class).execute();
+        } catch (Exception e) {
+            DbLogs.Log(SqliteConstantes.ERRO_SELECT_IMOVEL, e, SqliteConstantes.ERRO_LISTA_IMOVEIS);
+        }
+        return  new ArrayList<>();
     }
 }

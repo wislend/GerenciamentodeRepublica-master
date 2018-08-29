@@ -19,7 +19,7 @@ public class ConfigFireBase  {
 
     public static FirebaseAuth getFirebaseAuth() {
         if (firebaseAuth == null){
-
+            firebaseAuth = FirebaseAuth.getInstance();
         }
         return firebaseAuth;
     }

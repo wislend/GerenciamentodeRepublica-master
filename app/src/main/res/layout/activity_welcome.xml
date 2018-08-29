@@ -15,7 +15,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white_alpha_60">
+        android:background="@color/white_alpha_40">
 
         <Button
             android:id="@+id/btnRegistrar"
@@ -23,7 +23,7 @@
             android:layout_height="60sp"
             android:layout_above="@+id/btnLogin"
             android:layout_centerInParent="true"
-            android:textColor="@color/grey_900_alpha"
+            android:textColor="@color/colorPrimary"
             android:background="@drawable/background_button"
             android:text="@string/resgistrar_se" />
 
@@ -33,7 +33,7 @@
             android:layout_height="60sp"
             android:layout_alignParentBottom="true"
             android:layout_centerInParent="true"
-            android:textColor="@color/grey_900_alpha"
+            android:textColor="@color/colorPrimary"
             android:layout_marginBottom="@dimen/android_space_medium"
             android:layout_marginTop="@dimen/android_space_large"
             android:background="@drawable/background_button"

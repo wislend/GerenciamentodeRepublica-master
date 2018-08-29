@@ -75,7 +75,7 @@ public class CadastroImovelFragment extends BaseStepCadastroLocatarioFragment im
     //endregion
     private List<String> estadosList = new ArrayList<>();
     private Enderecos enderecos;
-    private Imoveis imoveis = new Imoveis();
+    private com.example.deyvi.gerenciamentoderepublica.bll.Imoveis imoveis;
     private Long enderecoId;
 
     @AfterViews
@@ -223,10 +223,10 @@ public class CadastroImovelFragment extends BaseStepCadastroLocatarioFragment im
     @Background
     void salvarCadastroBackground() {
         //inicia bll de imovel
-        imoveis = new Imoveis();
+        imoveis = new com.example.deyvi.gerenciamentoderepublica.bll.Imoveis();
         boolean enderecoExiste = enderecos.enderecoExiste(edtCep.getText().toString());
 
-        if (!enderecoExiste){
+       // if (!enderecoExiste){
             Imovel imovel = new Imovel();
             imovel.setEnderecoId(enderecoId);
             imovel.setNome(edtNomeImovel.getText().toString());
@@ -234,15 +234,20 @@ public class CadastroImovelFragment extends BaseStepCadastroLocatarioFragment im
             imovel.setQuantQuartos(Integer.parseInt(edtNumeroDeQuartos.getText().toString()));
             imovel.setJurosDia(1200);
             imovel.setJurosMes(1200);
-            imoveis.save(imovel);
+            imoveis.salvarImovel(imovel);
             salvarCadastroClienteFinished(imovel, null);
-        }else {
-            dismissProgressDialog();
-            Toast.makeText(getContext(), SqliteConstantes.IMOVEL_JA_CADASTRADO, Toast.LENGTH_SHORT).show();
-        }
+      //  }else {
+      //      naoAutorizado();
+      //  }
 
     }
 
+
+    @UiThread
+    void naoAutorizado(){
+        dismissProgressDialog();
+        Toast.makeText(getContext(), SqliteConstantes.IMOVEL_JA_CADASTRADO, Toast.LENGTH_SHORT).show();
+    }
 
     @UiThread(delay = 3000)
     void salvarCadastroClienteFinished(Imovel imovel, Exception ex) {

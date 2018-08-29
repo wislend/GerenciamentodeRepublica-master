@@ -2,6 +2,8 @@ package com.example.deyvi.gerenciamentoderepublica.dal;
 
 import com.activeandroid.Model;
 
+import java.util.List;
+
 public abstract class Dao<T extends Model>   {
 
 
@@ -22,8 +24,6 @@ public abstract class Dao<T extends Model>   {
         return null;
     }
 
-
-
     public boolean exists(T objeto) {
         return false;
     }
@@ -32,12 +32,12 @@ public abstract class Dao<T extends Model>   {
         return false;
     }
 
-
-
     public boolean exists(Integer numero) {
         return false;
     }
 
-
+    public List<T> selectAll(){
+        return null;
+    }
 
 }

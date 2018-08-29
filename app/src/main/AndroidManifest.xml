@@ -8,9 +8,9 @@
     <application
         android:name=".application.GerenciadorAluguelApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/ic_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <meta-data
@@ -19,20 +19,19 @@
         <meta-data
             android:name="AA_DB_VERSION"
             android:value="1" />
-         <meta-data
-         android:name=" AA_MODELS "
-         android:value="com.example.deyvi.gerenciamentoderepublica.entitys" />
+        <meta-data
+            android:name=" AA_MODELS "
+            android:value="com.example.deyvi.gerenciamentoderepublica.entitys" />
 
         <activity
-            android:name=".activitys.Splash_"
-            android:label="@string/app_name">
+            android:name=".activitys.VisaoGeral_">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activitys.ApresentacaoActivity_" />
+        <activity android:name=".activitys.Splash_" />
         <activity android:name=".activitys.BaseActivity_" />
         <activity
             android:name=".activitys.CadastroActivity_"
@@ -40,8 +39,12 @@
         <activity
             android:name=".activitys.WelcomeActivity_"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activitys.CadastroQuartoActivity_" />
+        <activity android:name=".activitys.LoginActivity_" />
+        <activity android:name=".activitys.base.BaseActivity_" />
 
-        <activity android:name=".activitys.CadastroQuartoActivity_"></activity>
+
+
     </application>
 
 </manifest>

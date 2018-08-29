@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#37474F</color>
-    <color name="colorPrimaryDark">#263238</color>
-    <color name="colorAccent">#1B5E20</color>
+    <color name="colorPrimary">#37364b</color>
+    <color name="colorPrimaryDark">#1a1a1d</color>
+    <color name="colorAccent">#37364b</color>
 
-  <!--  <color name="primaryColor">?colorPrimary</color>
+    <!--  <color name="primaryColor">?colorPrimary</color>
     <color name="primaryColorDark">?colorPrimaryDark</color>
     <color name="accentColor">#4285F4</color>-->
 
@@ -109,7 +109,7 @@
     <color name="grey_800_alpha">#D93B3B3B</color>
     <color name="grey_100_alpha">#D9f5f5f5</color>
     <color name="grey_50_alpha">#D9FAFAFA</color>
-    <color name="transparent">#00000000 </color>
+    <color name="transparent">#00000000</color>
 
     <!-- cores padroes da aplicacao-->
     <color name="default_blue_dark_select">#9FE1FF</color>
@@ -138,9 +138,12 @@
     <color name="object_background_activated">#E2F1FC</color>
     <color name="object_background_default">#FCFCFD</color>
     <color name="object_background_blocked">#E8E8E8</color>
+    <color name="hint_edit_text">#E24C4C4C</color>
 
     <!-- Google colors -->
     <color name="google_red">#c00</color>
     <color name="google_red_light">#f44</color>
+
+    <color name="black_overlay">#66000000</color>
 
 </resources>

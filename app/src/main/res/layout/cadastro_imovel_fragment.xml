@@ -23,13 +23,13 @@
             android:layout_marginTop="8dp"
             android:gravity="center"
             android:text="@string/registre_imovel"
-            android:textColor="@color/black"
+            android:textColor="@color/colorPrimary"
             android:textSize="24sp"
-            app:robotoTypeface="roboto_italic" />
+            app:robotoTypeface="roboto_mono_bold_italic" />
 
         <RadioGroup
-            android:layout_width="match_parent"
             android:id="@+id/radioPropioAlugado"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:orientation="horizontal">
@@ -52,54 +52,42 @@
         </RadioGroup>
 
 
-
-
-        <com.rengwuxian.materialedittext.MaterialEditText
+        <EditText
             android:id="@+id/edtNomeImovel"
+            style="@style/styleEditText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/android_space_medium"
             android:hint="@string/nome_fantansia"
-            android:textColor="@color/colorAccent"
-            android:textSize="20sp"
-            app:robotoTypeface="roboto_condensed_bold_italic" />
+            android:textSize="20sp" />
 
-        <com.rengwuxian.materialedittext.MaterialEditText
+        <EditText
             android:id="@+id/edtValorAluguel"
+            style="@style/styleEditText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/android_space_medium"
             android:hint="@string/valor"
-            android:textSize="20sp"
-            app:robotoTypeface="roboto_condensed_bold_italic" />
+            android:textSize="20sp" />
 
-        <com.rengwuxian.materialedittext.MaterialEditText
+        <EditText
             android:id="@+id/edtNumeroDeQuartos"
+            style="@style/styleEditText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/android_space_medium"
+            android:inputType="number"
             android:hint="@string/numero_de_quartos"
-            android:textSize="20sp"
-            app:robotoTypeface="roboto_condensed_bold_italic" />
+            android:textSize="20sp" />
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <com.rengwuxian.materialedittext.MaterialEditText
+            <EditText
                 android:id="@+id/edtCep"
+                style="@style/styleEditText"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
                 android:layout_weight="1"
-
                 android:hint="@string/cep"
                 android:inputType="number"
-                android:textColor="@color/colorAccent"
-                android:textSize="20sp"
-                app:robotoTypeface="roboto_condensed_bold_italic" />
+                android:textSize="20sp" />
 
             <ImageButton
                 android:id="@+id/imageButtonSearchCEP"
@@ -107,86 +95,72 @@
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:src="@drawable/ic_action_search_cep"
-                android:tint="@color/black" />
+                android:tint="@color/colorPrimary" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/android_space_medium"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <com.rengwuxian.materialedittext.MaterialEditText
+            <EditText
                 android:id="@+id/edtRua"
+                style="@style/styleEditText"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-
-                android:layout_weight="3"
+                android:layout_weight="2.5"
                 android:hint="@string/rua"
-                android:textColor="@color/colorAccent"
-                android:textSize="20sp"
-                app:robotoTypeface="roboto_condensed_bold_italic" />
+                android:textSize="20sp" />
 
-            <com.rengwuxian.materialedittext.MaterialEditText
+            <EditText
                 android:id="@+id/edtNumero"
+                style="@style/styleEditText"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
                 android:layout_marginLeft="2dp"
                 android:layout_marginStart="2dp"
                 android:layout_weight="1"
-                android:inputType="number"
                 android:hint="@string/numero"
-                android:textColor="@color/colorAccent" />
+                android:inputType="number" />
 
         </LinearLayout>
 
 
-        <com.rengwuxian.materialedittext.MaterialEditText
+        <EditText
             android:id="@+id/edtPontoReferencia"
+            style="@style/styleEditText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:hint="@string/ponto_de_referencia"
-
-            android:textColor="@color/colorAccent"
-            android:textSize="20sp"
-            app:robotoTypeface="roboto_condensed_bold_italic" />
+            android:textSize="20sp" />
 
 
-        <com.rengwuxian.materialedittext.MaterialEditText
+        <EditText
             android:id="@+id/edtBairro"
+            style="@style/styleEditText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:hint="@string/bairro"
-            android:textColor="@color/colorAccent"
-            android:textSize="20sp"
-            app:robotoTypeface="roboto_condensed_bold_italic" />
+            android:textSize="20sp" />
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <com.rengwuxian.materialedittext.MaterialEditText
+            <EditText
                 android:id="@+id/edtCidade"
+                style="@style/styleEditText"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-
                 android:layout_weight="2"
                 android:hint="@string/cidade"
-                android:textColor="@color/colorAccent"
-                android:textSize="20sp"
-                app:robotoTypeface="roboto_condensed_bold_italic" />
+                android:textSize="20sp" />
 
             <Spinner
                 android:id="@+id/spinnerEstado"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:layout_weight="0.5"
-                android:textColor="@color/colorAccent" />
+                android:layout_height="42dp"
+                android:layout_weight="0.5" />
 
         </LinearLayout>
 
@@ -197,20 +171,18 @@
 
             <com.devspark.robototextview.widget.RobotoTextView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_weight="1"
                 android:text="@string/juros_do_dia"
                 android:textSize="20sp"
                 app:robotoTypeface="roboto_italic" />
 
-            <com.rengwuxian.materialedittext.MaterialEditText
+            <EditText
                 android:id="@+id/edtJurosDia"
+                style="@style/styleEditText"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textColor="@color/colorAccent"
-                android:textSize="20sp"
-                app:robotoTypeface="roboto_condensed_bold_italic" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -221,20 +193,18 @@
 
             <com.devspark.robototextview.widget.RobotoTextView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_weight="1"
                 android:text="@string/juros_do_mes"
                 android:textSize="20sp"
                 app:robotoTypeface="roboto_italic" />
 
-            <com.rengwuxian.materialedittext.MaterialEditText
+            <EditText
                 android:id="@+id/edtJurosMes"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textColor="@color/colorAccent"
-                android:textSize="20sp"
-                app:robotoTypeface="roboto_condensed_bold_italic" />
+                style="@style/styleEditText"
+                android:textSize="20sp" />
 
         </LinearLayout>
 

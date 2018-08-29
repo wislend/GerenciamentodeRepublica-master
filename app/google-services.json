@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "402079163941",
+    "firebase_url": "https://gerenciador-alugueis.firebaseio.com",
+    "project_id": "gerenciador-alugueis",
+    "storage_bucket": "gerenciador-alugueis.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:402079163941:android:5da5c7dd378c6cd9",
+        "android_client_info": {
+          "package_name": "com.example.deyvi.gerenciamentoderepublica"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "402079163941-37apo7th4fehq9oe31dudviq8uodf2um.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.deyvi.gerenciamentoderepublica",
+            "certificate_hash": "19ff339db1a0065a9f3b14db40f66f275ae2f635"
+          }
+        },
+        {
+          "client_id": "402079163941-lgooubeuuq97488b78fo7vha35djmbpt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKH3_FaQTlz6ASlDfrfUwz5PYAJFivfzs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "402079163941-lgooubeuuq97488b78fo7vha35djmbpt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

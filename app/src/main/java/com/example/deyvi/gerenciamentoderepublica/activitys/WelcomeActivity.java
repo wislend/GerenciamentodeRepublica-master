@@ -42,9 +42,15 @@ public class WelcomeActivity extends AppCompatActivity implements DialogInterfac
 
     @Click
     void btnRegistrar(){
-        startActivity(new Intent(getBaseContext(),CadastroActivity_.class));
+       //CadastroActivity_.intent(getBaseContext()).start();
+       startActivity(new Intent(getBaseContext(),CadastroActivity_.class));
     }
 
+    @Click
+    void btnLogin(){
+        //LoginActivity_.intent(getBaseContext()).start();
+        startActivity(new Intent(getBaseContext(),LoginActivity_.class));
+    }
 
 
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {

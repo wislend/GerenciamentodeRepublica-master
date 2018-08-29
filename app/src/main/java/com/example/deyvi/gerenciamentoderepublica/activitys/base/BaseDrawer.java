@@ -14,7 +14,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.deyvi.gerenciamentoderepublica.R;
-import com.example.deyvi.gerenciamentoderepublica.activitys.BaseActivity;
 
 import org.androidannotations.annotations.EActivity;
 
@@ -25,53 +24,22 @@ public abstract class BaseDrawer extends BaseActivity implements NavigationView.
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
-    private android.support.v7.widget.Toolbar mToolbar;
-   private TextView openDrawer;
-    // Primary toolbar and drawer toggle
-    private Toolbar mActionBarToolbar;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         super.setContentView(R.layout.drawer_base);
-        setupNavDrawer();
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        if (navigationView != null)
+            navigationView.setNavigationItemSelectedListener(this);
     }
-
-    private void setupNavDrawer() {
-        mDrawerLayout = findViewById(R.id.drawer_layout);
-        mDrawerToggle = new ActionBarDrawerToggle(
-                this, mDrawerLayout,
-                R.string.navigation_drawer_open,
-                R.string.navigation_drawer_close);
-        mDrawerLayout.addDrawerListener(mDrawerToggle);
-        mDrawerToggle.syncState();
-
-
-            mToolbar = findViewById(R.id.toolbarDrawer);
-           setSupportActionBar(mToolbar);
-
-
-             if (mActionBarToolbar != null) {
-            mActionBarToolbar.setNavigationIcon(R.drawable.ic_drawer);
-            mActionBarToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    mDrawerLayout.openDrawer(GravityCompat.START);
-                }
-            });
-        }
-
-            /* openDrawer = findViewById(R.id.openDrawer);
-             openDrawer.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mDrawerLayout.openDrawer(GravityCompat.START);
-                }
-            });*/
-
-
-    }
-
 
 
     @Override
@@ -92,30 +60,37 @@ public abstract class BaseDrawer extends BaseActivity implements NavigationView.
     }
 
     public void onDrawerClosed(String title) {
+
         if (mDrawerLayout.isDrawerOpen(GravityCompat.END)) {
             mDrawerLayout.closeDrawer(GravityCompat.END);
         } else {
             super.onBackPressed();
         }
-        getActionBar().setTitle(title);
+
+        if (getActionBar() != null) {
+            getActionBar().setTitle(title);
+        }
     }
 
-    /** Called when a drawer has settled in a completely open state. */
+    /**
+     * Called when a drawer has settled in a completely open state.
+     */
     public void onDrawerOpened(String title) {
         if (mDrawerLayout.isDrawerOpen(GravityCompat.END)) {
             mDrawerLayout.closeDrawer(GravityCompat.END);
         } else {
             super.onBackPressed();
         }
-        getActionBar().setTitle(title);
+        if (getActionBar() != null) {
+            getActionBar().setTitle(title);
+        }
     }
-
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.menu_scrolling, menu);
         return true;
     }
 

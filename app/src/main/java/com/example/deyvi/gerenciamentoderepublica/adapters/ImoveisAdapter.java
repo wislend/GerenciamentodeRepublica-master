@@ -14,9 +14,12 @@ import java.util.List;
 public class ImoveisAdapter extends BaseAdapterW<Imovel> {
 
 
+
+    CardQuartosCadastradosRowView.OnClickManipulacaoImoveis mOnClickManipulacaoImoveis;
+
+
     public ImoveisAdapter(@NonNull Context context, List<Imovel> imoveis) {
         super(context, imoveis);
-
     }
 
     @Override
@@ -28,6 +31,7 @@ public class ImoveisAdapter extends BaseAdapterW<Imovel> {
         } else {
             cardQuartosCadastradosRowView = CardQuartosCadastradosRowView.cast(view);
         }
+        cardQuartosCadastradosRowView.setOnClickManipulacaoImoveis(mOnClickManipulacaoImoveis);
         cardQuartosCadastradosRowView.bind(item, position);
 
         return cardQuartosCadastradosRowView;
@@ -35,9 +39,32 @@ public class ImoveisAdapter extends BaseAdapterW<Imovel> {
 
 
     public void setImoveis(List<Imovel> imoveis) {
-        imoveis.addAll(imoveis);
+        if (imoveis != null) {
+            imoveis.addAll(imoveis);
+        }
+
         notifyDataSetChanged();
     }
 
 
+
+
+    public CardQuartosCadastradosRowView.OnClickManipulacaoImoveis getOnClickManipulacaoImoveis() {
+        return mOnClickManipulacaoImoveis;
+    }
+
+    public void setOnClickManipulacaoImoveis(CardQuartosCadastradosRowView.OnClickManipulacaoImoveis onClickManipulacaoImoveis) {
+        this.mOnClickManipulacaoImoveis = onClickManipulacaoImoveis;
+    }
+
+
+    @Override
+    public void onItemClicked(View view, Imovel item, int position) {
+        if (mOnClickManipulacaoImoveis != null){
+        mOnClickManipulacaoImoveis.onClickEdite((CardQuartosCadastradosRowView)view,position,item);
+        mOnClickManipulacaoImoveis.onClickDelete(position);
+        }
+
+
+    }
 }

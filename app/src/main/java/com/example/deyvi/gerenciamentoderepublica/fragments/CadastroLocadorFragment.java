@@ -5,12 +5,19 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.deyvi.gerenciamentoderepublica.R;
 import com.example.deyvi.gerenciamentoderepublica.Util.validacion.MaskEditUtil;
-import com.example.deyvi.gerenciamentoderepublica.activitys.BaseActivity;
+import com.example.deyvi.gerenciamentoderepublica.activitys.base.BaseActivity;
 import com.example.deyvi.gerenciamentoderepublica.bll.Locadores;
+import com.example.deyvi.gerenciamentoderepublica.firebase.ConfigFireBase;
+import com.example.deyvi.gerenciamentoderepublica.firebase.FireBaseManager;
 import com.example.deyvi.gerenciamentoderepublica.fragments.baseFragment.BaseStepCadastroLocatarioFragment;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.VerificationError;
 
@@ -34,6 +41,8 @@ public class CadastroLocadorFragment extends BaseStepCadastroLocatarioFragment i
     EditText edtSenha;
     @ViewById
     EditText edtConfirmacaoSenha;
+
+    FirebaseAuth firebaseAuth;
 
 
     @AfterViews
@@ -113,10 +122,30 @@ public class CadastroLocadorFragment extends BaseStepCadastroLocatarioFragment i
 
     @Background
     void salvarLocador(){
+
+        if (getActivity() == null){
+            return;
+        }
+
+        firebaseAuth = ConfigFireBase.getFirebaseAuth();
+        firebaseAuth.createUserWithEmailAndPassword(
+                getLocador().getEmail(),
+                getLocador().getSenha()
+        ).addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()){
+                    FireBaseManager.getInstance().saveLocatario(getLocador(),task.getResult().getUser().getUid());
+                    Toast.makeText(getContext(), "Usuário cadastrado pelo FireBase", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(getContext(), "FireBase não salvou o usuário", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
         //inicia bll locadores
          Locadores locadores = new Locadores();
-        //Mortra prograsso
-        showProgressDialog();
+
         //Salva locador
         locadores.salvarLocador(getLocador());
         //fecha progresso

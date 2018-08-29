@@ -58,7 +58,7 @@ public class RecyclerImoveisAdapter extends BaseLoaderRecyclerViewAdapter<Imovel
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(getContext()).inflate(R.layout.row_imoveis, parent, false);
+        View v = LayoutInflater.from(getContext()).inflate(R.layout.row_card_imovel, parent, false);
         return new ViewHolder(v);
     }
 

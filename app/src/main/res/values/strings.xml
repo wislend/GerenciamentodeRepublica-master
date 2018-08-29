@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Gerenciador Aluguel</string>
+    <string name="app_name">Meus Imovéis</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -11,7 +11,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="resgistrar_se">INICIAR</string>
     <string name="realizar_login">LOGIN</string>
-    <string name="sou_cadastrado">Sou Cadastrado</string>
+    <string name="sou_cadastrado">SOU CADASTRADO</string>
     <string name="nome_administrador">Nome Administrador</string>
     <string name="telefone">Telefone</string>
     <string name="email">Email</string>
@@ -48,6 +48,13 @@
     <string name="tamanho_senha">A senha deve ter no mínimo 6 dígitos.</string>
     <string name="email_invalido">E-Mail inválido</string>
     <string name="senha_invalido">Senha inválida</string>
+    <string name="account_name">ACCOUNT NAME</string>
+    <string name="password">PASSWORD</string>
+    <string name="password_hint">**************</string>
+    <string name="forgot_your_login_info">FORGOT YOUR LOGIN INFO?</string>
+    <string name="sign_in">SIGN IN</string>
+    <string name="remember_my_password">REMEMBER MY PASSWORD</string>
+    <string name="username">Username</string>
     <string name="opcao_nenhum">[NENHUM]</string>
     <string name="informe_cep">Informe o CEP primeiro</string>
     <string name="alugado">Alugado</string>
@@ -190,4 +197,10 @@
     <string name="data_de_entrada">Data de entrada</string>
     <string name="morador">Morador</string>
     <string name="salvar">Salvar</string>
+
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="adicionar_quartos">Adicionar Quartos</string>
 </resources>

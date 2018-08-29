@@ -19,5 +19,15 @@ public abstract class BaseAdapterW<T> extends android.widget.ArrayAdapter<T> {
         return getView(position, convertView, parent, getItem(position));
     }
 
+    public void onItemClicked(View view, T item, int position) {
+
+        /**
+         * Se por acaso, este método estiver trazendo sempre a posição 0 para um item clicado,
+         * verificar se a extensão de RowView está setando a position no método bind.
+         * Basta chamar super.bind(item, position) para que a posição seja setada
+         */
+    }
+
+
     public abstract View getView(int position, View convertView, ViewGroup parent, T item);
 }

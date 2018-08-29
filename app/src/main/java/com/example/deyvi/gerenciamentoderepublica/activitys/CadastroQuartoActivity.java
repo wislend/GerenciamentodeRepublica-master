@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.deyvi.gerenciamentoderepublica.R;
 import com.example.deyvi.gerenciamentoderepublica.Util.validacion.Calendar.DatePickerFragment;
+import com.example.deyvi.gerenciamentoderepublica.activitys.base.BaseActivity;
 import com.example.deyvi.gerenciamentoderepublica.bll.Moradores;
 import com.example.deyvi.gerenciamentoderepublica.bll.Quartos;
 import com.example.deyvi.gerenciamentoderepublica.constantsApp.SqliteConstantes;
@@ -190,7 +191,7 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
                 salvarQuarto();
             }else{
                 Toast.makeText(this, "Moradores ja cadastrado em outro quarto.", Toast.LENGTH_SHORT).show();
-                ApresentacaoActivity_.intent(this).start();
+                VisaoGeral_.intent(this).start();
             }
 
            // Apresentacao_Activity_.intent(this).start();

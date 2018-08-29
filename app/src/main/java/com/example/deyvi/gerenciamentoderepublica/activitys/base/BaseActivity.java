@@ -1,4 +1,4 @@
-package com.example.deyvi.gerenciamentoderepublica.activitys;
+package com.example.deyvi.gerenciamentoderepublica.activitys.base;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

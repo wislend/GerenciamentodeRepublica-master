@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.example.deyvi.gerenciamentoderepublica.R;
+import com.example.deyvi.gerenciamentoderepublica.activitys.base.BaseActivity;
 import com.example.deyvi.gerenciamentoderepublica.adapters.CadastroStepAdapter;
 import com.example.deyvi.gerenciamentoderepublica.entitys.Endereco;
 import com.example.deyvi.gerenciamentoderepublica.entitys.Imovel;
@@ -56,7 +57,7 @@ public class CadastroActivity extends BaseActivity implements StepperLayout.Step
 
     @Override
     public void onCompleted(View completeButton) {
-            ApresentacaoActivity_.intent(this).start();
+            VisaoGeral_.intent(this).start();
             finish();
     }
 
