@@ -23,8 +23,7 @@
             android:name=" AA_MODELS "
             android:value="com.example.deyvi.gerenciamentoderepublica.entitys" />
 
-        <activity
-            android:name=".activitys.VisaoGeral_">
+        <activity android:name=".activitys.VisaoGeral_">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -42,9 +41,10 @@
         <activity android:name=".activitys.CadastroQuartoActivity_" />
         <activity android:name=".activitys.LoginActivity_" />
         <activity android:name=".activitys.base.BaseActivity_" />
-
-
-
+        <activity
+            android:name=".activitys.Teste"
+            android:label="@string/title_activity_teste"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

@@ -203,4 +203,5 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="adicionar_quartos">Adicionar Quartos</string>
+    <string name="title_activity_teste">Teste</string>
 </resources>

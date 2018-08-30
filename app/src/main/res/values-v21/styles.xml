@@ -5,4 +5,14 @@
         <item name="windowNoTitle">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
+
+
+    <style name="styleEditText">
+        <item name="android:background">@drawable/login_edittext_bg</item>
+        <item name="android:editTextColor">@color/black</item>
+        <item name="android:textColorHint">@color/black</item>
+        <item name="android:layout_marginTop">@dimen/android_space_medium</item>
+        <item name="android:textAlignment">center</item>
+
+    </style>
 </resources>

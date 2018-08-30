@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.example.deyvi.gerenciamentoderepublica.R;
 import com.example.deyvi.gerenciamentoderepublica.Util.validacion.Calendar.DatePickerFragment;
@@ -70,6 +71,9 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
     @ViewById
     MaterialEditText edtNumero;
 
+    @ViewById
+    android.support.v7.widget.Toolbar toolbar;
+
     private Quarto quarto;
 
     private Quartos quartos;
@@ -85,6 +89,7 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
 
         //MaskEditUtil.insert(edtTelefone, MaskEditUtil.MaskType.TELEFONE);
         // MaskEditUtil.insert(edtWhats, MaskEditUtil.MaskType.TELEFONE);
+        setSupportActionBar(toolbar);
         test();
         radioOcupadoVago.setOnCheckedChangeListener(this);
     }
