@@ -1,5 +1,7 @@
 package com.example.deyvi.gerenciamentoderepublica.dal;
 
+import android.util.Log;
+
 import com.activeandroid.query.Select;
 import com.example.deyvi.gerenciamentoderepublica.application.DbLogs;
 import com.example.deyvi.gerenciamentoderepublica.constantsApp.SqliteConstantes;
@@ -9,7 +11,14 @@ public class Enderecos extends Dao<Endereco> {
 
     @Override
     public Long save(Endereco endereco) {
-        return endereco.save();
+       try{
+           DbLogs.Log(SqliteConstantes.ENDERECO_SALVO);
+           return endereco.save();
+       }catch (Exception e){
+           DbLogs.Log(SqliteConstantes.ERRO_SALVAR_ENDERECO, e , "");
+       }
+        return null;
+
     }
 
     @Override

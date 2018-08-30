@@ -22,4 +22,8 @@ public class DbLogs {
                 + e.getMessage());
     }
 
+    public static void Log(String mensagem){
+        Log.i(SqliteConstantes.LOG, mensagem);
+    }
+
 }

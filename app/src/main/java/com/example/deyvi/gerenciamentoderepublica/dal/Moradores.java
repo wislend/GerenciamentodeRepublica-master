@@ -10,7 +10,13 @@ public class Moradores extends  Dao<Morador>{
 
     @Override
     public Long save(Morador morador) {
-        return morador.save();
+        try{
+            DbLogs.Log(SqliteConstantes.MORADOR_SALVO);
+            return morador.save();
+        }catch (Exception e){
+            DbLogs.Log(SqliteConstantes.ERRO_SALVAR_MORADOR, e , "");
+        }
+        return null;
     }
 
     @Override
@@ -26,6 +32,7 @@ public class Moradores extends  Dao<Morador>{
     @Override
     public boolean exists(String telefone) {
         try{
+
             return new Select().from(Morador.class).where("telefone = ?", telefone).exists();
         }catch (Exception e){
             DbLogs.Log(SqliteConstantes.ERRO_MORADOR_EXISTS,e,telefone);

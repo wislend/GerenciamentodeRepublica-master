@@ -52,12 +52,12 @@ public class CardQuartosCadastradosRowView extends RowView<Imovel> {
             @Override
             public void onClick(View v) {
                 if (getOnClickManipulacaoImoveis() != null) {
-                    getOnClickManipulacaoImoveis().onClickDelete(position);
+                    getOnClickManipulacaoImoveis().onClickDelete(item);
                 }
             }
         });
 
-        btnDelete.setOnClickListener(new OnClickListener() {
+        btnEdit.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (getOnClickManipulacaoImoveis() != null) {
@@ -67,14 +67,23 @@ public class CardQuartosCadastradosRowView extends RowView<Imovel> {
             }
         });
 
+        btnAdicionarQuarto.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (getOnClickManipulacaoImoveis() != null){
+                    getOnClickManipulacaoImoveis().onClickAddQuarto();
+                }
+            }
+        });
+
 
 
     }
 
     public interface OnClickManipulacaoImoveis {
-        void onClickDelete( int position);
-
+        void onClickDelete(Imovel imovel);
         void onClickEdite(CardQuartosCadastradosRowView cadastradosRowView, int position, Imovel imovel);
+        void onClickAddQuarto();
     }
 
     public OnClickManipulacaoImoveis getOnClickManipulacaoImoveis() {

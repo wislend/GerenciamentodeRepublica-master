@@ -9,17 +9,15 @@ import com.example.deyvi.gerenciamentoderepublica.entitys.Imovel;
 import com.example.deyvi.gerenciamentoderepublica.views.row.CardQuartosCadastradosRowView;
 import com.example.deyvi.gerenciamentoderepublica.views.row.CardQuartosCadastradosRowView_;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ImoveisAdapter extends BaseAdapterW<Imovel> {
 
+    private CardQuartosCadastradosRowView.OnClickManipulacaoImoveis mOnClickManipulacaoImoveis;
 
-
-    CardQuartosCadastradosRowView.OnClickManipulacaoImoveis mOnClickManipulacaoImoveis;
-
-
-    public ImoveisAdapter(@NonNull Context context, List<Imovel> imoveis) {
-        super(context, imoveis);
+    public ImoveisAdapter(@NonNull Context context,List<Imovel> listImoveis) {
+        super(context, listImoveis);
     }
 
     @Override
@@ -48,7 +46,6 @@ public class ImoveisAdapter extends BaseAdapterW<Imovel> {
 
 
 
-
     public CardQuartosCadastradosRowView.OnClickManipulacaoImoveis getOnClickManipulacaoImoveis() {
         return mOnClickManipulacaoImoveis;
     }
@@ -62,7 +59,8 @@ public class ImoveisAdapter extends BaseAdapterW<Imovel> {
     public void onItemClicked(View view, Imovel item, int position) {
         if (mOnClickManipulacaoImoveis != null){
         mOnClickManipulacaoImoveis.onClickEdite((CardQuartosCadastradosRowView)view,position,item);
-        mOnClickManipulacaoImoveis.onClickDelete(position);
+        mOnClickManipulacaoImoveis.onClickDelete(item);
+        mOnClickManipulacaoImoveis.onClickAddQuarto();
         }
 
 

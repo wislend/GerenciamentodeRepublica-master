@@ -16,6 +16,7 @@ import com.example.deyvi.gerenciamentoderepublica.R;
 import com.example.deyvi.gerenciamentoderepublica.activitys.base.BaseDrawer;
 import com.example.deyvi.gerenciamentoderepublica.activitys.base.LoadersAdapter;
 import com.example.deyvi.gerenciamentoderepublica.adapters.ImoveisAdapter;
+import com.example.deyvi.gerenciamentoderepublica.bll.Imoveis;
 import com.example.deyvi.gerenciamentoderepublica.entitys.Imovel;
 import com.example.deyvi.gerenciamentoderepublica.views.row.CardQuartosCadastradosRowView;
 
@@ -36,16 +37,17 @@ public class VisaoGeral extends BaseDrawer implements
 
     @ViewById(R.id.listView)
     ListView listView;
-    ImoveisAdapter mAdapter;
+    ImoveisAdapter mImoveisAdapter;
+    Imoveis imoveis;
 
 
     @AfterViews
     void init() {
 
         getSupportLoaderManager().initLoader(1, null, this);
-        mAdapter = new ImoveisAdapter(this, test());
-        listView.setAdapter(mAdapter);
-        mAdapter.setOnClickManipulacaoImoveis(this);
+        mImoveisAdapter = new ImoveisAdapter(this, test());
+        listView.setAdapter(mImoveisAdapter);
+        mImoveisAdapter.setOnClickManipulacaoImoveis(this);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -83,12 +85,12 @@ public class VisaoGeral extends BaseDrawer implements
 
     @Override
     public void onLoadFinished(@NonNull android.support.v4.content.Loader<List<Imovel>> loader, List<Imovel> data) {
-        mAdapter.setImoveis(data);
+        mImoveisAdapter.setImoveis(data);
     }
 
     @Override
     public void onLoaderReset(@NonNull android.support.v4.content.Loader<List<Imovel>> loader) {
-        mAdapter.setImoveis(null);
+        mImoveisAdapter.setImoveis(null);
     }
 
     @Override
@@ -99,7 +101,8 @@ public class VisaoGeral extends BaseDrawer implements
 
 
     @Override
-    public void onClickDelete(int position) {
+    public void onClickDelete(Imovel imovel) {
+        mImoveisAdapter.remove(imovel);
         Toast.makeText(this, "Delete", Toast.LENGTH_SHORT).show();
     }
 
@@ -107,5 +110,10 @@ public class VisaoGeral extends BaseDrawer implements
     public void onClickEdite(CardQuartosCadastradosRowView cadastradosRowView, int position, Imovel imovel) {
         Toast.makeText(this, "Editar", Toast.LENGTH_SHORT).show();
 
+    }
+
+    @Override
+    public void onClickAddQuarto() {
+        CadastroQuartoActivity_.intent(this).start();
     }
 }

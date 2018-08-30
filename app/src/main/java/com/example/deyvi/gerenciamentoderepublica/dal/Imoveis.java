@@ -13,7 +13,13 @@ public class Imoveis extends Dao<Imovel> {
 
     @Override
     public Long save(Imovel imovel) {
-        return imovel.save();
+        try{
+            DbLogs.Log(SqliteConstantes.ENDERECO_SALVO);
+            return imovel.save();
+        }catch (Exception e){
+            DbLogs.Log(SqliteConstantes.ERRO_SALVAR_IMOVEL, e , "");
+        }
+        return null;
     }
 
     @Override
@@ -34,6 +40,7 @@ public class Imoveis extends Dao<Imovel> {
     @Override
     public boolean exists(String nome) {
         try{
+            DbLogs.Log(SqliteConstantes.SUCESSFUL_SELECT_IMOVEL);
             return new Select().from(Imovel.class).where("nome = ?", nome).exists();
         }catch (Exception e){
             DbLogs.Log(SqliteConstantes.ERRO_SELECT_IMOVEL,e,nome);
@@ -45,6 +52,7 @@ public class Imoveis extends Dao<Imovel> {
     @Override
     public List<Imovel> selectAll() {
         try {
+            DbLogs.Log(SqliteConstantes.SUCESSFUL_SELECT_IMOVEL_ALL);
             return new Select().all().from(Imovel.class).execute();
         } catch (Exception e) {
             DbLogs.Log(SqliteConstantes.ERRO_SELECT_IMOVEL, e, SqliteConstantes.ERRO_LISTA_IMOVEIS);
