@@ -16,7 +16,6 @@ import com.example.deyvi.gerenciamentoderepublica.Util.validacion.MaskEditUtil;
 import com.example.deyvi.gerenciamentoderepublica.activitys.CadastroActivity;
 import com.example.deyvi.gerenciamentoderepublica.bll.Enderecos;
 import com.example.deyvi.gerenciamentoderepublica.constantsApp.SqliteConstantes;
-import com.example.deyvi.gerenciamentoderepublica.dal.Imoveis;
 import com.example.deyvi.gerenciamentoderepublica.entitys.Imovel;
 import com.example.deyvi.gerenciamentoderepublica.fragments.baseFragment.BaseStepCadastroLocatarioFragment;
 import com.stepstone.stepper.BlockingStep;

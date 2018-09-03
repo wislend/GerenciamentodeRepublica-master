@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginEnd="@dimen/nav_header_vertical_spacing"
     android:layout_marginLeft="@dimen/nav_header_vertical_spacing"
     android:layout_marginRight="@dimen/nav_header_vertical_spacing"
@@ -12,94 +13,51 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/android_space_medium_plus"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/android_space_medium_plus"
         android:orientation="vertical">
 
         <EditText
             android:id="@+id/edtIdentificacaoQuarto"
-            android:layout_width="match_parent"
             style="@style/styleEditText"
-            android:height="50dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:height="42dp"
             android:hint="@string/identificacao_quarto" />
 
         <EditText
             android:id="@+id/edtNumero"
-            android:layout_width="match_parent"
             style="@style/styleEditText"
-            android:height="50dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:height="42dp"
             android:hint="@string/numero" />
 
 
         <com.devspark.robototextview.widget.RobotoTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/android_space_medium"
             android:text="@string/moveis" />
 
-        <LinearLayout
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/viewContainerCheckBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_horizontal_margin">
+            android:layout_marginTop="12dp"
+            android:animateLayoutChanges="true"
+            app:alignContent="stretch"
+            app:alignItems="flex_start"
+            app:flexWrap="wrap">
 
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:text="@string/cama" />
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:text="@string/armario" />
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:text="@string/rack" />
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:text="@string/televisao" />
-
-        </LinearLayout>
-
-
-        <LinearLayout
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_horizontal_margin">
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:text="@string/ar_condicionado" />
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:text="@string/ventilador" />
-        </LinearLayout>
+        </com.google.android.flexbox.FlexboxLayout>
 
 
         <TextView
+            android:id="@+id/addCheckBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_horizontal_margin"
@@ -133,38 +91,38 @@
             android:id="@+id/conteanerCadastroMorador"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="gone">
+            android:visibility="gone"
+            android:orientation="vertical">
 
             <EditText
                 android:id="@+id/edtMorador"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 style="@style/styleEditText"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
                 android:hint="@string/morador" />
 
             <EditText
                 android:id="@+id/edtEmail"
-                android:layout_width="match_parent"
                 style="@style/styleEditText"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
                 android:hint="@string/email" />
 
 
             <EditText
                 android:id="@+id/edtTelefone"
-                android:layout_width="match_parent"
                 style="@style/styleEditText"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
                 android:hint="@string/telefone"
                 android:inputType="phone" />
 
 
             <EditText
                 android:id="@+id/edtWhats"
-                android:layout_width="match_parent"
                 style="@style/styleEditText"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
                 android:hint="@string/whatsapp"
                 android:inputType="phone" />
 
@@ -176,9 +134,10 @@
 
                 <EditText
                     android:id="@+id/dataEntrada"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     style="@style/styleEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+
                     android:editable="false"
                     android:hint="@string/data_de_entrada" />
 
@@ -200,9 +159,9 @@
 
                 <EditText
                     android:id="@+id/dataSaida"
-                    android:layout_width="match_parent"
                     style="@style/styleEditText"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
                     android:editable="false"
                     android:hint="@string/data_saida" />
 
@@ -217,16 +176,15 @@
             </RelativeLayout>
 
 
-
         </LinearLayout>
 
         <EditText
             android:id="@+id/edtPreco"
-            android:layout_width="match_parent"
             style="@style/styleEditText"
-            android:height="50dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/android_space_large"
+            android:height="42dp"
             android:hint="@string/valor_quarto" />
 
 
