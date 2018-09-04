@@ -16,6 +16,7 @@
     <color name="color_trans_download_F">#90a4ae</color>
     <color name="color_trans_download_G">#78909c</color>
 
+
     <color name="lancamento">#3B70A2</color>
     <color name="brinde">#95DBFA</color>
     <color name="politica_desconto">#FFC166</color>
@@ -27,6 +28,8 @@
     <color name="fora_linha">#E84E40</color>
     <color name="mixideal">#1B5E20</color>
     <color name="semvenda">#880E4F</color>
+    <color name="grey_50">#FAFAFA</color>
+
 
     <color name="circle_icon_beauty_color">#33616161</color>
     <color name="photo_scrim">#33000000</color>

@@ -8,40 +8,39 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.example.deyvi.gerenciamentoderepublica.R;
 import com.example.deyvi.gerenciamentoderepublica.Util.validacion.Calendar.DatePickerFragment;
 import com.example.deyvi.gerenciamentoderepublica.activitys.base.BaseActivity;
 import com.example.deyvi.gerenciamentoderepublica.bll.Moradores;
+import com.example.deyvi.gerenciamentoderepublica.bll.Moveis;
 import com.example.deyvi.gerenciamentoderepublica.bll.Quartos;
 import com.example.deyvi.gerenciamentoderepublica.constantsApp.SqliteConstantes;
-import com.example.deyvi.gerenciamentoderepublica.entitys.Imovel;
 import com.example.deyvi.gerenciamentoderepublica.entitys.Morador;
+import com.example.deyvi.gerenciamentoderepublica.entitys.Movel;
 import com.example.deyvi.gerenciamentoderepublica.entitys.Quarto;
 import com.google.android.flexbox.FlexboxLayout;
-import com.xeoh.android.checkboxgroup.CheckBoxGroup;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.InstanceState;
 import org.androidannotations.annotations.ViewById;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 
 @SuppressLint("Registered")
 @EActivity(R.layout.activity_cadastro_quarto)
-public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener{
-
-    int chId = 1000;
-
-    String[] names = {"Cama", "Armário", "Rack", "Televisão", "Ar condicionado", "Vendilador"};
-    CheckBox[] ch;
+public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener {
 
 
     @ViewById
@@ -68,7 +67,6 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
     @ViewById
     EditText edtEmail;
 
-
     @ViewById
     EditText edtPreco;
 
@@ -88,15 +86,27 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
     EditText edtNumero;
 
     @ViewById
+    EditText edtNomeChecked;
+
+    @ViewById
+    ImageButton imgAddChecked;
+
+    @ViewById
     android.support.v7.widget.Toolbar toolbar;
 
     @ViewById
     FlexboxLayout viewContainerCheckBox;
 
+    @ViewById
+    CheckBox checkBoxCama;
+
     private Quarto quarto;
 
     //bll 
     private Quartos quartos;
+
+    //bll
+    private Moveis moveis;
 
     private Long idQuarto;
 
@@ -104,22 +114,29 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
 
     private boolean vago = true;
 
-    HashMap<CheckBox, Imovel> checkBoxMap = new HashMap<>();
+    @SuppressLint("UseSparseArrays")
+    @InstanceState
+    HashMap<String, Boolean> checkBoxGroup = new HashMap<>();
+    //id dinamico para os checkeds
+    int chId = 1000;
 
-    CheckBoxGroup<Imovel> checkBoxGroup;
+    List<Movel> listMoveis = new ArrayList<>();
 
     @AfterViews
     public void afterViews() {
-
         //MaskEditUtil.insert(edtTelefone, MaskEditUtil.MaskType.TELEFONE);
         // MaskEditUtil.insert(edtWhats, MaskEditUtil.MaskType.TELEFONE);
+        moveis = new Moveis();
+        if (moveis.todosMoveis() != null) {
+            listMoveis.clear();
+            listMoveis.addAll(moveis.todosMoveis());
+        }
         setSupportActionBar(toolbar);
         test();
         radioOcupadoVago.setOnCheckedChangeListener(this);
-
-        testCheck();
-
-
+        if (listMoveis != null) {
+            configureCheckedBox();
+        }
     }
 
 
@@ -141,9 +158,67 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
         setEditTextDatePicker(dataSaida);
     }
 
+
     @Click
     void campoDataEntrada() {
         setEditTextDatePicker(dataEntrada);
+    }
+
+
+    void configureCheckedBox() {
+        CheckBox[] ch = new CheckBox[listMoveis.size()];
+        for (int i = 0; i < listMoveis.size(); i++) {
+            ch[i] = new CheckBox(this);
+            ch[i].setId(chId++);
+            ch[i].setText(listMoveis.get(i).getNome());
+            ch[i].setChecked(listMoveis.get(i).isChecked());
+            viewContainerCheckBox.addView(ch[i]);
+
+            if (checkBoxGroup.get(ch[i].getText().toString()) == null) {
+                checkBoxGroup.put(ch[i].getText().toString(), ch[i].isChecked());
+            }
+        }
+
+
+        for (int i = 0; i < listMoveis.size(); i++) {
+            ch[i].setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (checkBoxGroup.get(buttonView.getText().toString()) == null) {
+                        return;
+                    }
+                    checkBoxGroup.remove(buttonView.getText().toString());
+                    checkBoxGroup.put(buttonView.getText().toString(), isChecked);
+                    String stado = isChecked ? "checado" : "não checado";
+                    Toast.makeText(CadastroQuartoActivity.this, stado + " " + buttonView.getText(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
+    }
+
+
+    @Click
+    void imgAddChecked() {
+        String nomeChecked = edtNomeChecked.getText().toString();
+
+        if (nomeChecked.isEmpty()) {
+            return;
+        }
+
+        Movel movel = new Movel();
+        movel.setNome(edtNomeChecked.getText().toString());
+
+        if (listMoveis.contains(movel)) {
+            Toast.makeText(this, "Você já adicionou este movél", Toast.LENGTH_SHORT).show();
+        } else {
+            listMoveis.clear();
+            movel.setCheckad(true);
+            listMoveis.add(movel);
+            edtNomeChecked.setText("");
+            configureCheckedBox();
+        }
     }
 
     public void setEditTextDatePicker(final EditText text) {
@@ -171,7 +246,7 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
         if (moradores.moradorExiste(morador.getTelefone())) {
             Toast.makeText(this, SqliteConstantes.MORADOR_JA_CADASTRADO, Toast.LENGTH_SHORT).show();
         } else {
-         moradores.salvarMorador(morador);
+            moradores.salvarMorador(morador);
         }
     }
 
@@ -185,16 +260,15 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
         quarto.setNumero(10);
         quarto.setDescricao("quarto grande.");
 
-        if (quartos.quartoExiste(quarto.getNumero())){
-            Toast.makeText(this, "O quarto " + quarto.getNome() + " já foi cadastrado." , Toast.LENGTH_SHORT).show();
-        }else
-        {
+        if (quartos.quartoExiste(quarto.getNumero())) {
+            Toast.makeText(this, "O quarto " + quarto.getNome() + " já foi cadastrado.", Toast.LENGTH_SHORT).show();
+        } else {
             idQuarto = quartos.salvarQuarto(quarto);
             Toast.makeText(this, SqliteConstantes.QUARTO_SALVO_SUCESSO, Toast.LENGTH_SHORT).show();
         }
 
 
-        if (!vago){
+        if (!vago) {
             salvarMorador();
         }
 
@@ -220,14 +294,14 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_salvar) {
-           if (!moradores.moradorExiste(edtWhats.getText().toString())  && !vago){
+            if (!moradores.moradorExiste(edtWhats.getText().toString()) && !vago) {
                 salvarQuarto();
-            }else{
+            } else {
                 Toast.makeText(this, "Moradores ja cadastrado em outro quarto.", Toast.LENGTH_SHORT).show();
                 VisaoGeral_.intent(this).start();
             }
 
-           // Apresentacao_Activity_.intent(this).start();
+            // Apresentacao_Activity_.intent(this).start();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -245,32 +319,17 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
         }
     }
 
-
-
-   void testCheck(){
-
-       ch = new CheckBox[names.length];
-       for(int i=0; i<names.length; i++) {
-           ch[i] = new CheckBox(this);
-           ch[i].setId(chId++);
-           ch[i].setText(names[i]);
-           viewContainerCheckBox.addView(ch[i]);
-       }
-
-       for (int i = 0; i < names.length; i++) {
-           final int j = i;
-           ch[j].setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-               @Override
-               public void onCheckedChanged(CompoundButton buttonView,
-                                            boolean isChecked) {
-                   String stado = isChecked ? "checado" : "não checado";
-                   Toast.makeText(CadastroQuartoActivity.this, "chegck" + stado, Toast.LENGTH_SHORT).show();
-               }
-           });
-       }
-   }
-
-
+    @Override
+    protected void onDestroy() {
+        for (String checkedBox : checkBoxGroup.keySet()) {
+            boolean value = checkBoxGroup.get(checkedBox);
+            Movel movel = new Movel();
+            movel.setNome(checkedBox);
+            movel.setCheckad(value);
+            movel.save();
+        }
+        super.onDestroy();
+    }
 
 
 }

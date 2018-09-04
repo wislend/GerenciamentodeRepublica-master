@@ -204,4 +204,6 @@
     <string name="title_activity_main2">Main2Activity</string>
     <string name="adicionar_quartos">Adicionar Quartos</string>
     <string name="title_activity_teste">Teste</string>
+    <string name="nome_movel">Nome movél</string>
+    <string name="adicionar_check_informacao">Caso você queira adicionar mais imoveis digite abaixo.</string>
 </resources>
