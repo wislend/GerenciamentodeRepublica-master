@@ -23,8 +23,7 @@ public class Imoveis extends Dao<Imovel> {
     }
 
     @Override
-    public boolean update(Imovel imovel) {
-        return false;
+    public void update(Imovel imovel) {
     }
 
     @Override

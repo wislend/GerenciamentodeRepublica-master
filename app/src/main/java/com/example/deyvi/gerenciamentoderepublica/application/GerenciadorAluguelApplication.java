@@ -2,7 +2,9 @@ package com.example.deyvi.gerenciamentoderepublica.application;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
+import android.content.Context;
 import android.content.ContextWrapper;
+import android.support.multidex.MultiDex;
 
 import com.activeandroid.ActiveAndroid;
 import com.pixplicity.easyprefs.library.Prefs;
@@ -21,6 +23,13 @@ public class GerenciadorAluguelApplication extends Application {
                 .setUseDefaultSharedPreference(true)
                 .build();
         ActiveAndroid.initialize(this);
+    }
+
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 
     private static final String TAG = "GerenciadorAluguelApplication";

@@ -30,7 +30,6 @@ import com.google.android.flexbox.FlexboxLayout;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
-import org.androidannotations.annotations.InstanceState;
 import org.androidannotations.annotations.ViewById;
 
 import java.util.ArrayList;
@@ -115,7 +114,6 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
     private boolean vago = true;
 
     @SuppressLint("UseSparseArrays")
-    @InstanceState
     HashMap<String, Boolean> checkBoxGroup = new HashMap<>();
     //id dinamico para os checkeds
     int chId = 1000;
@@ -124,44 +122,19 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
 
     @AfterViews
     public void afterViews() {
+        setSupportActionBar(toolbar);
         //MaskEditUtil.insert(edtTelefone, MaskEditUtil.MaskType.TELEFONE);
         // MaskEditUtil.insert(edtWhats, MaskEditUtil.MaskType.TELEFONE);
         moveis = new Moveis();
         if (moveis.todosMoveis() != null) {
-            listMoveis.clear();
             listMoveis.addAll(moveis.todosMoveis());
         }
-        setSupportActionBar(toolbar);
+
         test();
         radioOcupadoVago.setOnCheckedChangeListener(this);
         if (listMoveis != null) {
             configureCheckedBox();
         }
-    }
-
-
-    @Click
-    void dataEntrada() {
-
-        setEditTextDatePicker(dataEntrada);
-    }
-
-
-    @Click
-    void dataSaida() {
-        setEditTextDatePicker(dataSaida);
-    }
-
-
-    @Click
-    void campoDataSaida() {
-        setEditTextDatePicker(dataSaida);
-    }
-
-
-    @Click
-    void campoDataEntrada() {
-        setEditTextDatePicker(dataEntrada);
     }
 
 
@@ -174,9 +147,13 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
             ch[i].setChecked(listMoveis.get(i).isChecked());
             viewContainerCheckBox.addView(ch[i]);
 
-            if (checkBoxGroup.get(ch[i].getText().toString()) == null) {
+            if (checkBoxGroup.get(ch[i].getText().toString()) != null) {
+                checkBoxGroup.remove(ch[i].getText().toString());
+                checkBoxGroup.put(ch[i].getText().toString(), ch[i].isChecked());
+            } else {
                 checkBoxGroup.put(ch[i].getText().toString(), ch[i].isChecked());
             }
+
         }
 
 
@@ -185,11 +162,13 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
 
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if (checkBoxGroup.get(buttonView.getText().toString()) == null) {
-                        return;
+                    if (checkBoxGroup.get(buttonView.getText().toString()) != null) {
+                        checkBoxGroup.remove(buttonView.getText().toString());
+                        checkBoxGroup.put(buttonView.getText().toString(), isChecked);
+                    } else {
+                        checkBoxGroup.put(buttonView.getText().toString(), isChecked);
                     }
-                    checkBoxGroup.remove(buttonView.getText().toString());
-                    checkBoxGroup.put(buttonView.getText().toString(), isChecked);
+
                     String stado = isChecked ? "checado" : "não checado";
                     Toast.makeText(CadastroQuartoActivity.this, stado + " " + buttonView.getText(), Toast.LENGTH_SHORT).show();
                 }
@@ -233,6 +212,29 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
     }
 
 
+    public void salvarQuarto() {
+        quartos = new Quartos();
+        quarto = new Quarto();
+        quarto.setNome(edtIdentificacaoQuarto.getText().toString());
+        quarto.setPreco(100.00);
+        quarto.setStatus(0);
+        quarto.setQuantidadeCamas(1);
+        quarto.setNumero(Integer.parseInt(String.valueOf(edtNumero.getText().toString().isEmpty() ? 0 : edtNumero.getText().toString())));
+        quarto.setDescricao("quarto grande.");
+
+        if (quartos.quartoExiste(quarto.getNumero())) {
+            Toast.makeText(this, "O quarto " + quarto.getNome() + " já foi cadastrado.", Toast.LENGTH_SHORT).show();
+        } else {
+            idQuarto = quartos.salvarQuarto(quarto);
+            Toast.makeText(this, SqliteConstantes.QUARTO_SALVO_SUCESSO, Toast.LENGTH_SHORT).show();
+            if (!vago) {
+                salvarMorador();
+            }
+        }
+
+    }
+
+
     public void salvarMorador() {
         moradores = new Moradores();
         Morador morador = new Morador();
@@ -246,33 +248,29 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
         if (moradores.moradorExiste(morador.getTelefone())) {
             Toast.makeText(this, SqliteConstantes.MORADOR_JA_CADASTRADO, Toast.LENGTH_SHORT).show();
         } else {
+            Toast.makeText(this, "Morador salvo com sucesso", Toast.LENGTH_SHORT).show();
             moradores.salvarMorador(morador);
         }
     }
 
-    public void salvarQuarto() {
-        quartos = new Quartos();
-        quarto = new Quarto();
-        quarto.setNome(edtIdentificacaoQuarto.getText().toString());
-        quarto.setPreco(100.00);
-        quarto.setStatus(0);
-        quarto.setQuantidadeCamas(1);
-        quarto.setNumero(10);
-        quarto.setDescricao("quarto grande.");
 
-        if (quartos.quartoExiste(quarto.getNumero())) {
-            Toast.makeText(this, "O quarto " + quarto.getNome() + " já foi cadastrado.", Toast.LENGTH_SHORT).show();
-        } else {
-            idQuarto = quartos.salvarQuarto(quarto);
-            Toast.makeText(this, SqliteConstantes.QUARTO_SALVO_SUCESSO, Toast.LENGTH_SHORT).show();
+    void salvarMovel() {
+        for (String checkedBox : checkBoxGroup.keySet()) {
+            boolean value = checkBoxGroup.get(checkedBox);
+            Movel movel = new Movel();
+            movel.setNome(checkedBox);
+            movel.setCheckad(value);
+            if (idQuarto != null) {
+                movel.setIdQuarto(idQuarto);
+            }
+            if (!moveis.movelExiste(movel.getNome())) {
+                moveis.salvarMovel(movel);
+                Toast.makeText(this, "Movel salvo", Toast.LENGTH_SHORT).show();
+            } else {
+                moveis.atualizarMovel(movel);
+                Toast.makeText(this, "Movel atualizado", Toast.LENGTH_SHORT).show();
+            }
         }
-
-
-        if (!vago) {
-            salvarMorador();
-        }
-
-
     }
 
     public void test() {
@@ -283,29 +281,6 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
         edtPreco.setText("500,00");
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.cadastrar_quarto_activity, menu);
-        return true;
-    }
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_salvar) {
-            if (!moradores.moradorExiste(edtWhats.getText().toString()) && !vago) {
-                salvarQuarto();
-            } else {
-                Toast.makeText(this, "Moradores ja cadastrado em outro quarto.", Toast.LENGTH_SHORT).show();
-                VisaoGeral_.intent(this).start();
-            }
-
-            // Apresentacao_Activity_.intent(this).start();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -321,14 +296,59 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
 
     @Override
     protected void onDestroy() {
-        for (String checkedBox : checkBoxGroup.keySet()) {
-            boolean value = checkBoxGroup.get(checkedBox);
-            Movel movel = new Movel();
-            movel.setNome(checkedBox);
-            movel.setCheckad(value);
-            movel.save();
-        }
+        salvarMovel();
         super.onDestroy();
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.cadastrar_quarto_activity, menu);
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_salvar) {
+            if (!vago) {
+                moradores = new Moradores();
+                if (!moradores.moradorExiste(edtWhats.getText().toString())) {
+                    salvarQuarto();
+                    salvarMovel();
+                    VisaoGeral_.intent(this).start();
+                } else {
+                    Toast.makeText(this, "Morador já cadastrado em outro quarto.", Toast.LENGTH_SHORT).show();
+                }
+            }else {
+                salvarQuarto();
+                salvarMovel();
+            }
+        }
+        return true;
+    }
+
+    @Click
+    void dataSaida() {
+        setEditTextDatePicker(dataSaida);
+    }
+
+
+    @Click
+    void campoDataSaida() {
+        setEditTextDatePicker(dataSaida);
+    }
+
+
+    @Click
+    void campoDataEntrada() {
+        setEditTextDatePicker(dataEntrada);
+    }
+
+    @Click
+    void dataEntrada() {
+
+        setEditTextDatePicker(dataEntrada);
     }
 
 

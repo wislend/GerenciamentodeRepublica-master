@@ -10,7 +10,13 @@ public abstract class Dao<T extends Model>   {
     public abstract Long save(T objeto);
 
 
-    public abstract boolean update(T objeto);
+    public void update(T objeto) {
+
+    }
+
+    public void update(String nome, boolean checado) {
+
+    }
 
 
     public abstract boolean delete(T objeto);

@@ -3,7 +3,7 @@ package com.example.deyvi.gerenciamentoderepublica.entitys;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 
-@Table(name ="MOVEL")
+@Table(name = "MOVEL")
 public class Movel extends BaseEntitys {
 
     public Movel() {
@@ -14,6 +14,17 @@ public class Movel extends BaseEntitys {
 
     @Column
     private Boolean checkad;
+
+    @Column(onDelete = Column.ForeignKeyAction.CASCADE, onUpdate = Column.ForeignKeyAction.CASCADE)
+    private Long idQuarto;
+
+    public Long getIdQuarto() {
+        return idQuarto;
+    }
+
+    public void setIdQuarto(Long idQuarto) {
+        this.idQuarto = idQuarto;
+    }
 
     public Boolean isChecked() {
         return checkad;

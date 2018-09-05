@@ -13,8 +13,8 @@ public class Quartos extends Dao<Quarto> {
     }
 
     @Override
-    public boolean update(Quarto quarto) {
-        return false;
+    public void update(Quarto quarto) {
+
     }
 
     @Override

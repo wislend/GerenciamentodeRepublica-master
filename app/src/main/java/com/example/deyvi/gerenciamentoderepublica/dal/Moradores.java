@@ -20,8 +20,8 @@ public class Moradores extends  Dao<Morador>{
     }
 
     @Override
-    public boolean update(Morador morador) {
-        return false;
+    public void update(Morador morador) {
+
     }
 
     @Override

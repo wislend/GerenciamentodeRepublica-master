@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.ciceromsjr:loaderrecyclerviewadapter-1.0">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/loaderrecyclerviewadapter-1.0.aar/fdd776f6a896a76d9808928c6a79d9a8/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/loaderrecyclerviewadapter-1.0.aar/fdd776f6a896a76d9808928c6a79d9a8/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/loaderrecyclerviewadapter-1.0.aar/9ecbe24908630391ddb752a5d19564bf/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/loaderrecyclerviewadapter-1.0.aar/9ecbe24908630391ddb752a5d19564bf/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

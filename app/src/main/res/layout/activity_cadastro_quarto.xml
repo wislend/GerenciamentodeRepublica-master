@@ -1,234 +1,33 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:scrollbars="none"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginEnd="@dimen/nav_header_vertical_spacing"
-    android:layout_marginLeft="@dimen/nav_header_vertical_spacing"
-    android:layout_marginRight="@dimen/nav_header_vertical_spacing"
-    android:layout_marginStart="@dimen/nav_header_vertical_spacing"
-    android:layout_marginTop="@dimen/activity_vertical_margin"
-    android:orientation="vertical"
-    tools:context=".fragments.CadastroQuartoFragment">
+    tools:context=".activitys.CadastroQuartoActivity">
 
-    <LinearLayout
+
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
+        android:id="@+id/container"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/android_space_xlarge"
-        android:layout_marginTop="@dimen/android_space_medium_plus"
-        android:orientation="vertical">
+        android:theme="@style/AppTheme.AppBarOverlay">
 
-        <EditText
-            android:id="@+id/edtIdentificacaoQuarto"
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            style="@style/styleEditText"
-            android:layout_height="45dp"
-            android:layout_marginTop="@dimen/activity_horizontal_margin"
-            android:hint="@string/identificacao_quarto" />
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-        <EditText
-            android:id="@+id/edtNumero"
-            android:layout_width="match_parent"
-            style="@style/styleEditText"
-            android:layout_height="45dp"
-            android:layout_marginTop="@dimen/android_space_medium"
-            android:hint="@string/numero" />
+    </android.support.design.widget.AppBarLayout>
 
 
-        <com.devspark.robototextview.widget.RobotoTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/android_space_medium"
-            android:text="@string/moveis" />
+    <include layout="@layout/content_cadastro_quarto"
+        android:layout_below="@+id/container"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent" />
 
 
-        <com.google.android.flexbox.FlexboxLayout
-            android:id="@+id/viewContainerCheckBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="@dimen/android_space_xlarge"
-            android:animateLayoutChanges="true"
-            app:alignContent="center"
-            app:alignItems="flex_start"
-            app:flexWrap="wrap"
-            android:layout_marginRight="@dimen/android_space_xlarge">
-
-            <CheckBox
-                android:id="@+id/checkBoxCama"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:text="@string/cama" />
-
-        </com.google.android.flexbox.FlexboxLayout>
-
-        <TextView
-            android:id="@+id/addCheckBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_horizontal_margin"
-            android:text="@string/adicionar_check_informacao" />
-
-        <LinearLayout
-            android:id="@+id/addCheck"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/styleEditText"
-            android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/edtNomeChecked"
-                android:layout_width="0dp"
-                android:backgroundTint="@color/white_alpha_60"
-                android:layout_marginStart="@dimen/android_space_small"
-                android:layout_weight="3"
-                android:layout_height="40dp"
-                android:hint="@string/nome_movel"
-                android:layout_marginLeft="@dimen/android_space_small" />
-
-            <ImageButton
-                android:id="@+id/imgAddChecked"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/circle_img_alert_visaogeral"
-                android:layout_marginEnd="@dimen/android_space_medium"
-                android:tint="@color/black"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_fab_add"
-                android:layout_marginRight="@dimen/android_space_medium" />
-
-        </LinearLayout>
-
-
-
-        <RadioGroup
-            android:id="@+id/radioOcupadoVago"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_horizontal_margin"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/rbOcupado"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/ocupado" />
-
-            <RadioButton
-                android:id="@+id/rbVago"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:checked="true"
-                android:text="@string/vago" />
-        </RadioGroup>
-
-
-        <LinearLayout
-            android:id="@+id/conteanerCadastroMorador"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:orientation="vertical">
-
-            <EditText
-                android:id="@+id/edtMorador"
-                style="@style/styleEditText"
-                android:layout_width="match_parent"
-                android:layout_height="42dp"
-                android:hint="@string/morador" />
-
-            <EditText
-                android:id="@+id/edtEmail"
-                style="@style/styleEditText"
-                android:layout_width="match_parent"
-                android:layout_height="42dp"
-                android:hint="@string/email" />
-
-
-            <EditText
-                android:id="@+id/edtTelefone"
-                style="@style/styleEditText"
-                android:layout_width="match_parent"
-                android:layout_height="42dp"
-                android:hint="@string/telefone"
-                android:inputType="phone" />
-
-
-            <EditText
-                android:id="@+id/edtWhats"
-                style="@style/styleEditText"
-                android:layout_width="match_parent"
-                android:layout_height="42dp"
-                android:hint="@string/whatsapp"
-                android:inputType="phone" />
-
-
-            <RelativeLayout
-                android:id="@+id/campoDataEntrada"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:id="@+id/dataEntrada"
-                    style="@style/styleEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="42dp"
-                    android:editable="false"
-                    android:hint="@string/data_de_entrada" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_calendar" />
-
-            </RelativeLayout>
-
-
-            <RelativeLayout
-                android:id="@+id/campoDataSaida"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:id="@+id/dataSaida"
-                    style="@style/styleEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="42dp"
-                    android:editable="false"
-                    android:hint="@string/data_saida" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_calendar" />
-
-            </RelativeLayout>
-
-
-        </LinearLayout>
-
-        <EditText
-            android:id="@+id/edtPreco"
-            android:layout_width="match_parent"
-            style="@style/styleEditText"
-            android:layout_height="45dp"
-            android:layout_marginTop="@dimen/android_space_large"
-            android:hint="@string/valor_quarto" />
-
-
-    </LinearLayout>
-
-
-</ScrollView>
-
+</RelativeLayout>

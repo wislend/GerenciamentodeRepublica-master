@@ -18,11 +18,14 @@ public interface SqliteConstantes {
      String ENDERECO_IMOVEL = "ENDERECO_IMOVEL";
      String ERRO_ENDERECO_EXISTS = "NÃO FOI POSSIVEL ENCONTRAR O IMOVEL COM NOME";
      String ERRO_QUARTO_EXISTS = "NAO FOI POSSIVEL VERIFICAR QUARTO POR NOME";
+     String ERRO_MOVEL_EXISTS = "NAO FOI POSSIVEL VERIFICAR MOVEL POR NOME";
      String ERRO_MORADOR_EXISTS = "NÃO FOI POSSIVEL ENCONTRAR O MORADOR COM TELEFONE";
      String IMOVEL_JA_CADASTRADO = "Verificamos que você já possui um imovél cadastrado com esse nome";
      String MORADOR_JA_CADASTRADO = "Morador já cadastrado em outro quarto.";
      String QUARTO_SALVO_SUCESSO = "Quarto Salvo com sucesso!";
      String ERRO_LISTA_IMOVEIS = "erro ao tentar selecionar a lista de imoveis";
 
-
+               //UPDATE
+     String ATUALIZACAO_MOVEL_SUCESSO = "atualizado com sucesso";
+     String ERRO_ATUALIZAR_MOVEL = "não foi possivel atualizar movel";
 }

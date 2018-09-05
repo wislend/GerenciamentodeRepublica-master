@@ -22,8 +22,7 @@ public class Enderecos extends Dao<Endereco> {
     }
 
     @Override
-    public boolean update(Endereco endereco) {
-        return false;
+    public void update(Endereco endereco) {
     }
 
     @Override

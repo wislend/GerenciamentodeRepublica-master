@@ -19,8 +19,7 @@ public class Locadores extends Dao<Locador> {
     }
 
     @Override
-    public boolean update(Locador locador) {
-        return false;
+    public void update(Locador locador) {
     }
 
     @Override

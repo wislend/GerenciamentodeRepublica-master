@@ -44,7 +44,7 @@
         <activity
             android:name=".activitys.Teste"
             android:label="@string/title_activity_teste"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>
