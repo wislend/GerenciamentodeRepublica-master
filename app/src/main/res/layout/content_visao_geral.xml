@@ -19,7 +19,6 @@
             android:divider="@color/white"
             android:scrollbars="vertical" />
 
-
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigationView"
         android:layout_width="match_parent"

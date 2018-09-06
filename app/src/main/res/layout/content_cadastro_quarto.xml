@@ -42,12 +42,6 @@
             app:alignItems="flex_start"
             app:flexWrap="wrap">
 
-            <CheckBox
-                android:id="@+id/checkBoxCama"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/cama" />
-
         </com.google.android.flexbox.FlexboxLayout>
 
         <TextView

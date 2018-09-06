@@ -22,6 +22,7 @@ import com.example.deyvi.gerenciamentoderepublica.views.row.CardQuartosCadastrad
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.ViewById;
 
 import java.util.ArrayList;
@@ -38,8 +39,11 @@ public class VisaoGeral extends BaseDrawer implements
     @ViewById(R.id.listView)
     ListView listView;
     ImoveisAdapter mImoveisAdapter;
-    Imoveis imoveis;
 
+
+
+    @ViewById
+    Toolbar toolbar;
 
     @AfterViews
     void init() {
@@ -48,7 +52,6 @@ public class VisaoGeral extends BaseDrawer implements
         mImoveisAdapter = new ImoveisAdapter(this, test());
         listView.setAdapter(mImoveisAdapter);
         mImoveisAdapter.setOnClickManipulacaoImoveis(this);
-        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
 
@@ -115,5 +118,11 @@ public class VisaoGeral extends BaseDrawer implements
     @Override
     public void onClickAddQuarto() {
         CadastroQuartoActivity_.intent(this).start();
+    }
+
+    @Override
+    public void onClickDetailsQuarto(Imovel imovel) {
+        Toast.makeText(this, "Detalhes", Toast.LENGTH_SHORT).show();
+        DetalhesQuartoActivity_.intent(this).start();
     }
 }

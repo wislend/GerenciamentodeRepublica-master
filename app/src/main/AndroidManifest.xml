@@ -18,9 +18,9 @@
             android:value="GERIR_ALUGEL.db" />
         <meta-data
             android:name="AA_DB_VERSION"
-            android:value="1" />
+            android:value="3" />
         <meta-data
-            android:name=" AA_MODELS "
+            android:name="AA_MODELS"
             android:value="com.example.deyvi.gerenciamentoderepublica.entitys" />
 
         <activity android:name=".activitys.VisaoGeral_">
@@ -31,7 +31,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activitys.Splash_" />
-        <activity android:name=".activitys.BaseActivity_" />
+        <activity android:name=".activitys.base.BaseActivity_" />
         <activity
             android:name=".activitys.CadastroActivity_"
             android:label="Cadastro" />
@@ -40,10 +40,14 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activitys.CadastroQuartoActivity_" />
         <activity android:name=".activitys.LoginActivity_" />
-        <activity android:name=".activitys.base.BaseActivity_" />
         <activity
             android:name=".activitys.Teste"
-            android:label="@string/title_activity_teste"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".activitys.DetalhesQuartoActivity_"
+            android:label="Mais Detalhes Quarto" />
+        <activity
+            android:name=".activitys.ExemploTableActivit"
+            android:label="@string/title_activity_exemplo_table"
             android:theme="@style/AppTheme" />
     </application>
 

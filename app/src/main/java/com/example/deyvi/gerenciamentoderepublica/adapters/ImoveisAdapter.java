@@ -5,11 +5,11 @@ import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.deyvi.gerenciamentoderepublica.adapters.bases.BaseAdapterW;
 import com.example.deyvi.gerenciamentoderepublica.entitys.Imovel;
 import com.example.deyvi.gerenciamentoderepublica.views.row.CardQuartosCadastradosRowView;
 import com.example.deyvi.gerenciamentoderepublica.views.row.CardQuartosCadastradosRowView_;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ImoveisAdapter extends BaseAdapterW<Imovel> {

@@ -41,8 +41,7 @@ public class BaseFragment extends Fragment  implements Step {
      * @return
      */
     public boolean isStateValid() {
-        return isAdded() && getActivity() != null && !getActivity().isFinishing() && (Build
-                .VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1 || !getActivity().isDestroyed());
+        return isAdded() && getActivity() != null && !getActivity().isFinishing() && !getActivity().isDestroyed();
     }
 
     @StringRes
@@ -59,7 +58,7 @@ public class BaseFragment extends Fragment  implements Step {
         throw new RuntimeException("A Activity atual não é uma especificação de BaseActivity");
     }
 
-    public final void dismissProgressDialog() {
+    public void dismissProgressDialog() {
 
         if (!isStateValid()) {
             return;
@@ -86,7 +85,7 @@ public class BaseFragment extends Fragment  implements Step {
 
 
 
-    public final void showProgressDialog() {
+    public void showProgressDialog() {
         showProgressDialog(null);
     }
 
@@ -95,7 +94,7 @@ public class BaseFragment extends Fragment  implements Step {
      *
      * @param message
      */
-    public final void showProgressDialog(String message) {
+    public void showProgressDialog(String message) {
 
         if (!isStateValid()) {
             return;

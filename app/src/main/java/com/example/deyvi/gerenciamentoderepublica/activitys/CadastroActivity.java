@@ -23,8 +23,6 @@ import org.androidannotations.annotations.InstanceState;
 @EActivity(R.layout.activity_cadastro)
 public class CadastroActivity extends BaseActivity implements StepperLayout.StepperListener{
 
-    private StepperLayout mStepperLayout;
-
     @InstanceState
     Locador locador;
 
@@ -49,7 +47,7 @@ public class CadastroActivity extends BaseActivity implements StepperLayout.Step
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-        mStepperLayout = findViewById(R.id.stepperLayout);
+        StepperLayout mStepperLayout = findViewById(R.id.stepperLayout);
         mStepperLayout.setListener(this);
         mStepperLayout.setAdapter(new CadastroStepAdapter(getSupportFragmentManager(), this));
     }

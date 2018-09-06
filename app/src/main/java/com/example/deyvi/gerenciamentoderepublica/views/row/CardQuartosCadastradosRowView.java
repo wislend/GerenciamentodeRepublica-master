@@ -76,6 +76,14 @@ public class CardQuartosCadastradosRowView extends RowView<Imovel> {
             }
         });
 
+        imgFoto.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (getOnClickManipulacaoImoveis() != null){
+                    getOnClickManipulacaoImoveis().onClickDetailsQuarto(item);
+                }
+            }
+        });
 
 
     }
@@ -84,6 +92,7 @@ public class CardQuartosCadastradosRowView extends RowView<Imovel> {
         void onClickDelete(Imovel imovel);
         void onClickEdite(CardQuartosCadastradosRowView cadastradosRowView, int position, Imovel imovel);
         void onClickAddQuarto();
+        void onClickDetailsQuarto(Imovel imovel);
     }
 
     public OnClickManipulacaoImoveis getOnClickManipulacaoImoveis() {

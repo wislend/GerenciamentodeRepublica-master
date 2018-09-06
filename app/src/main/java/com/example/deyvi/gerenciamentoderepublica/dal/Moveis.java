@@ -1,10 +1,13 @@
 package com.example.deyvi.gerenciamentoderepublica.dal;
 
+import com.activeandroid.query.From;
 import com.activeandroid.query.Select;
 import com.activeandroid.query.Update;
 import com.example.deyvi.gerenciamentoderepublica.application.DbLogs;
 import com.example.deyvi.gerenciamentoderepublica.constantsApp.SqliteConstantes;
+import com.example.deyvi.gerenciamentoderepublica.entitys.Imovel;
 import com.example.deyvi.gerenciamentoderepublica.entitys.Movel;
+import com.example.deyvi.gerenciamentoderepublica.entitys.Quarto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,4 +77,20 @@ public class Moveis extends Dao<Movel> {
         }
         return  null;
     }
+
+
+    public List<Movel> listMovel(Movel movel,Quarto quarto){
+        try{
+            return new Select()
+                    .from(Movel.class)
+                    .innerJoin(Quarto.class)
+                    .on(movel.getIdQuarto() + " = " + quarto.getId())
+                    .execute();
+        }catch (Exception e){
+            DbLogs.Log(SqliteConstantes.ERRO_INNER_JOIN, e, SqliteConstantes.ERRO_INNER_JOIN);
+
+        }
+        return null;
+    }
+
 }

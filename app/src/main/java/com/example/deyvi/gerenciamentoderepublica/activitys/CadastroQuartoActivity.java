@@ -28,6 +28,7 @@ import com.example.deyvi.gerenciamentoderepublica.entitys.Quarto;
 import com.google.android.flexbox.FlexboxLayout;
 
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
@@ -96,8 +97,6 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
     @ViewById
     FlexboxLayout viewContainerCheckBox;
 
-    @ViewById
-    CheckBox checkBoxCama;
 
     private Quarto quarto;
 
@@ -200,16 +199,6 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
         }
     }
 
-    public void setEditTextDatePicker(final EditText text) {
-        DatePickerFragment newFragment = new DatePickerFragment();
-        newFragment.setOnDateSelectedListener(new DatePickerFragment.OnDateSelectedListener() {
-            @Override
-            public void onDateSelected(DatePicker view, String formattedDate) {
-                text.setText(formattedDate);
-            }
-        });
-        newFragment.show(getSupportFragmentManager(), "date picker");
-    }
 
 
     public void salvarQuarto() {
@@ -224,6 +213,7 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
 
         if (quartos.quartoExiste(quarto.getNumero())) {
             Toast.makeText(this, "O quarto " + quarto.getNome() + " já foi cadastrado.", Toast.LENGTH_SHORT).show();
+            VisaoGeral_.intent(this).start();
         } else {
             idQuarto = quartos.salvarQuarto(quarto);
             Toast.makeText(this, SqliteConstantes.QUARTO_SALVO_SUCESSO, Toast.LENGTH_SHORT).show();
@@ -231,7 +221,6 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
                 salvarMorador();
             }
         }
-
     }
 
 
@@ -250,6 +239,8 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
         } else {
             Toast.makeText(this, "Morador salvo com sucesso", Toast.LENGTH_SHORT).show();
             moradores.salvarMorador(morador);
+            salvarMovel();
+            VisaoGeral_.intent(this).start();
         }
     }
 
@@ -311,12 +302,12 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_salvar) {
+            DetalhesQuartoActivity_.intent(this).start();
             if (!vago) {
                 moradores = new Moradores();
                 if (!moradores.moradorExiste(edtWhats.getText().toString())) {
                     salvarQuarto();
-                    salvarMovel();
-                    VisaoGeral_.intent(this).start();
+
                 } else {
                     Toast.makeText(this, "Morador já cadastrado em outro quarto.", Toast.LENGTH_SHORT).show();
                 }
@@ -326,6 +317,19 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
             }
         }
         return true;
+    }
+
+
+
+    public void setEditTextDatePicker(final EditText text) {
+        DatePickerFragment newFragment = new DatePickerFragment();
+        newFragment.setOnDateSelectedListener(new DatePickerFragment.OnDateSelectedListener() {
+            @Override
+            public void onDateSelected(DatePicker view, String formattedDate) {
+                text.setText(formattedDate);
+            }
+        });
+        newFragment.show(getSupportFragmentManager(), "date picker");
     }
 
     @Click

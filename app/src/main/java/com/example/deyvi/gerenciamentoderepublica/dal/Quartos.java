@@ -31,4 +31,8 @@ public class Quartos extends Dao<Quarto> {
         }
         return false;
     }
+
+
+
+
 }

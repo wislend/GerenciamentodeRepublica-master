@@ -64,6 +64,12 @@
     <string name="nome_imovel">In the Material Design system, there are two light sources. One is a key light that sits above the top of the screen</string>
     <string name="numero_de_quartos">Quartos </string>
 
+    <string-array name="detalhe_quarto_page_titles">
+        <item>Detalhes</item>
+        <item>Gastos</item>
+        <item>Melhorias</item>
+    </string-array>
+
 
     <string-array name="estados_brasileiros">
         <item>AC</item>
@@ -206,4 +212,6 @@
     <string name="title_activity_teste">Teste</string>
     <string name="nome_movel">Nome movél</string>
     <string name="adicionar_check_informacao">Caso você queira adicionar mais movéis digite abaixo.</string>
+    <string name="title_activity_exemplo_table">ExemploTableActivit</string>
+    <string name="section_format">Hello World from section: %1$d</string>
 </resources>

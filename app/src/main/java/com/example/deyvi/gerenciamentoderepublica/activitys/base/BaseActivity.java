@@ -4,11 +4,15 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.CallSuper;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -105,6 +109,58 @@ public class BaseActivity extends AppCompatActivity {
                         }
                     });
         }
+    }
+
+    /**
+     * Abre o dialog com mensagem padrão ou customizada
+     *
+     * @param message
+     */
+    public void showProgressDialog(String message) {
+
+        showProgressDialog(message, false);
+    }
+
+    /**
+     * Abre o dialog com mensagem padrão ou customizada
+     *
+     * @param message
+     */
+    public void showProgressDialog(String message, boolean cancelable) {
+
+        //não exibe nessas condições
+        if (isFinishing() || isDestroyed()) {
+            return;
+        }
+
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+            mProgressDialog.dismiss();
+        }
+
+        if (message != null && message.length() > 0) {
+            messageProgress = message;
+            mProgressDialog = ProgressDialog.show(this, "", Html.fromHtml(message), true, cancelable);
+        } else {
+            messageProgress = getString(getMessageTextProgressDialog());
+            mProgressDialog = ProgressDialog.show(this, "", Html.fromHtml(messageProgress), true, cancelable);
+        }
+
+
+        Log.d("PROGRESS_DIAOG_ACT", "showProgressDialog()");
+        progressShowing = true;
+    }
+
+
+    @StringRes
+    public int getMessageTextProgressDialog() {
+        return R.string.aguarde;
+    }
+
+    /**
+     * Abre o dialog com mensagem padrão ou customizada
+     */
+    public void showProgressDialog() {
+        showProgressDialog(null);
     }
 
 

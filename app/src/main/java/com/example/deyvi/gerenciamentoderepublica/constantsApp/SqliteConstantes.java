@@ -28,4 +28,8 @@ public interface SqliteConstantes {
                //UPDATE
      String ATUALIZACAO_MOVEL_SUCESSO = "atualizado com sucesso";
      String ERRO_ATUALIZAR_MOVEL = "não foi possivel atualizar movel";
+
+     //INNER JOIN
+     String ERRO_INNER_JOIN = "NÃO FOI POSSIVEL BUSCAR OS MOVEIS ATRAVES DO ID DO QUARTO";
+
 }

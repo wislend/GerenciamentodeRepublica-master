@@ -1,4 +1,4 @@
-package com.example.deyvi.gerenciamentoderepublica.adapters;
+package com.example.deyvi.gerenciamentoderepublica.adapters.bases;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

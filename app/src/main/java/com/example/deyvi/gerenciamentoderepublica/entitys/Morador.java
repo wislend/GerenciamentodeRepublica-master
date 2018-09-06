@@ -20,6 +20,8 @@ public class Morador extends BaseEntitys {
     @Column(onDelete = Column.ForeignKeyAction.CASCADE, onUpdate = Column.ForeignKeyAction.CASCADE)
     private Long quartoId;
 
+
+
     @Column(onDelete = Column.ForeignKeyAction.CASCADE, onUpdate = Column.ForeignKeyAction.CASCADE)
     private Long enderecoId;
 
@@ -51,6 +53,15 @@ public class Morador extends BaseEntitys {
 
     public String getNome() {
         return nome;
+    }
+
+
+    public Long getEnderecoId() {
+        return enderecoId;
+    }
+
+    public void setEnderecoId(Long enderecoId) {
+        this.enderecoId = enderecoId;
     }
 
     public void setNome(String nome) {

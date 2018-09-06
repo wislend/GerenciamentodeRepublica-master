@@ -21,10 +21,7 @@ public class Imovel extends BaseEntitys {
     @Column
     private String nome;
 
-    @Column
-    private Endereco enderecoImovel;
-
-    @Column
+      @Column
     private int quantQuartos;
     @Column
     private boolean alugado;
@@ -35,6 +32,8 @@ public class Imovel extends BaseEntitys {
     @Column
     private double jurosMes;
 
+    @Column
+    private Long idQuarto;
 
 
     public String getNome() {
@@ -43,14 +42,6 @@ public class Imovel extends BaseEntitys {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public Endereco getEnderecoImovel() {
-        return enderecoImovel;
-    }
-
-    public void setEnderecoImovel(Endereco enderecoImovel) {
-        this.enderecoImovel = enderecoImovel;
     }
 
     public int getQuantQuartos() {
