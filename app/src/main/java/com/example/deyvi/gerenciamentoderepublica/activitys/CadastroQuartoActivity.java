@@ -252,7 +252,7 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
             movel.setNome(checkedBox);
             movel.setCheckad(value);
             if (idQuarto != null) {
-                movel.setIdQuarto(idQuarto);
+                movel.setQuartoId(idQuarto);
             }
             if (!moveis.movelExiste(movel.getNome())) {
                 moveis.salvarMovel(movel);

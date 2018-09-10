@@ -22,6 +22,23 @@ public class Quarto extends BaseEntitys {
     @Column
     private Double preco;
 
+
+    @Column(onDelete = Column.ForeignKeyAction.CASCADE, onUpdate = Column.ForeignKeyAction.CASCADE)
+    private Long imovelId;
+
+
+    public void setNumero(Integer numero) {
+        this.numero = numero;
+    }
+
+    public Long getImovelId() {
+        return imovelId;
+    }
+
+    public void setImovelId(Long imovelId) {
+        this.imovelId = imovelId;
+    }
+
     public String getNome() {
         return nome;
     }

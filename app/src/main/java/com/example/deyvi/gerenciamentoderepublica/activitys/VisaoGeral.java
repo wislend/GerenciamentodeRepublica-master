@@ -1,12 +1,14 @@
 package com.example.deyvi.gerenciamentoderepublica.activitys;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.widget.ListView;
@@ -18,11 +20,10 @@ import com.example.deyvi.gerenciamentoderepublica.activitys.base.LoadersAdapter;
 import com.example.deyvi.gerenciamentoderepublica.adapters.ImoveisAdapter;
 import com.example.deyvi.gerenciamentoderepublica.bll.Imoveis;
 import com.example.deyvi.gerenciamentoderepublica.entitys.Imovel;
-import com.example.deyvi.gerenciamentoderepublica.views.row.CardQuartosCadastradosRowView;
+import com.example.deyvi.gerenciamentoderepublica.views.row.CardImoveisCadastradosRowView;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
-import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.ViewById;
 
 import java.util.ArrayList;
@@ -33,13 +34,13 @@ import java.util.List;
 @EActivity(R.layout.activity_visao_geral)
 public class VisaoGeral extends BaseDrawer implements
         LoaderManager.LoaderCallbacks<List<Imovel>>,
-        CardQuartosCadastradosRowView.OnClickManipulacaoImoveis {
+        CardImoveisCadastradosRowView.OnClickManipulacaoImoveis {
 
 
     @ViewById(R.id.listView)
     ListView listView;
     ImoveisAdapter mImoveisAdapter;
-
+    Imoveis imoveis;
 
 
     @ViewById
@@ -53,6 +54,7 @@ public class VisaoGeral extends BaseDrawer implements
         listView.setAdapter(mImoveisAdapter);
         mImoveisAdapter.setOnClickManipulacaoImoveis(this);
         setSupportActionBar(toolbar);
+        imoveis = new Imoveis();
 
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -64,14 +66,15 @@ public class VisaoGeral extends BaseDrawer implements
 
 
     List<Imovel> test() {
-        Imovel imovel = new Imovel();
+
         List<Imovel> list = new ArrayList<>();
         for (int i = 0; i < 15; i++) {
+            Imovel imovel = new Imovel();
             imovel.setNome("imovel" + i);
             imovel.setJurosDia(100);
             imovel.setJurosMes(120);
             imovel.setAlugado(true);
-            imovel.setQuantQuartos(15);
+            imovel.setQuantQuartos(i);
             imovel.setValor(155500);
             list.add(imovel);
         }
@@ -104,13 +107,25 @@ public class VisaoGeral extends BaseDrawer implements
 
 
     @Override
-    public void onClickDelete(Imovel imovel) {
-        mImoveisAdapter.remove(imovel);
-        Toast.makeText(this, "Delete", Toast.LENGTH_SHORT).show();
+    public void onClickDelete(final Imovel imovel) {
+        new AlertDialog.Builder(this)
+                .setTitle("Deletar Imovél?")
+                .setMessage("Você tem ceteza que deseja deletar " + imovel.getNome() )
+                .setPositiveButton("Deletar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        mImoveisAdapter.remove(imovel);
+                        imoveis.deleteImovel(imovel);
+                        Toast.makeText(getApplication(), "Deletado com sucesso", Toast.LENGTH_SHORT).show();
+                    }
+                }).setNegativeButton("Cancelar", null)
+                .show();
+
     }
 
     @Override
-    public void onClickEdite(CardQuartosCadastradosRowView cadastradosRowView, int position, Imovel imovel) {
+    public void onClickEdite(CardImoveisCadastradosRowView cadastradosRowView, int position, Imovel imovel) {
+
         Toast.makeText(this, "Editar", Toast.LENGTH_SHORT).show();
 
     }
@@ -123,6 +138,6 @@ public class VisaoGeral extends BaseDrawer implements
     @Override
     public void onClickDetailsQuarto(Imovel imovel) {
         Toast.makeText(this, "Detalhes", Toast.LENGTH_SHORT).show();
-        DetalhesQuartoActivity_.intent(this).start();
+        QuartosActivity_.intent(this).imovel(imovel).start();
     }
 }

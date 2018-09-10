@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:animateLayoutChanges="true"
-            android:layout_margin="@dimen/android_space_xlarge"
+            android:layout_marginBottom="@dimen/android_space_xlarge"
             app:alignContent="flex_start"
             app:alignItems="flex_start"
             app:flexWrap="wrap">

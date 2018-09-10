@@ -1,5 +1,6 @@
 package com.example.deyvi.gerenciamentoderepublica.dal;
 
+import com.activeandroid.query.Delete;
 import com.activeandroid.query.Select;
 import com.example.deyvi.gerenciamentoderepublica.application.DbLogs;
 import com.example.deyvi.gerenciamentoderepublica.constantsApp.SqliteConstantes;
@@ -28,7 +29,14 @@ public class Imoveis extends Dao<Imovel> {
 
     @Override
     public boolean delete(Imovel imovel) {
-        return false;
+        try {
+            new Delete().from(Imovel.class).where("Id = ?",imovel.getId()).execute();
+            DbLogs.Log(SqliteConstantes.IMOVEL_DELETADO_SUCESS);
+            return true;
+        }catch (Exception e){
+            DbLogs.Log(SqliteConstantes.IMOVEL_DELETADO_ERROR);
+            return false;
+        }
     }
 
     @Override

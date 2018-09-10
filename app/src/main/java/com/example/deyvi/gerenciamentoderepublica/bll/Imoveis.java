@@ -29,5 +29,7 @@ public class Imoveis {
         return oImoveisDao.save(imovel);
     }
 
-
+    public void deleteImovel(Imovel imovel){
+        oImoveisDao.delete(imovel);
+    }
 }

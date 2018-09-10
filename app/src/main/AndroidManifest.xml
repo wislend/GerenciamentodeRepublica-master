@@ -18,7 +18,7 @@
             android:value="GERIR_ALUGEL.db" />
         <meta-data
             android:name="AA_DB_VERSION"
-            android:value="3" />
+            android:value="4" />
         <meta-data
             android:name="AA_MODELS"
             android:value="com.example.deyvi.gerenciamentoderepublica.entitys" />
@@ -43,12 +43,14 @@
         <activity
             android:name=".activitys.Teste"
             android:theme="@style/AppTheme" />
-        <activity android:name=".activitys.DetalhesQuartoActivity_"
+        <activity
+            android:name=".activitys.DetalhesQuartoActivity_"
             android:label="Mais Detalhes Quarto" />
         <activity
             android:name=".activitys.ExemploTableActivit"
             android:label="@string/title_activity_exemplo_table"
             android:theme="@style/AppTheme" />
+        <activity android:name=".activitys.QuartosActivity_" />
     </application>
 
 </manifest>

@@ -16,14 +16,14 @@ public class Movel extends BaseEntitys {
     private Boolean checkad;
 
     @Column(onDelete = Column.ForeignKeyAction.CASCADE, onUpdate = Column.ForeignKeyAction.CASCADE)
-    private Long idQuarto;
+    private Long quartoId;
 
-    public Long getIdQuarto() {
-        return idQuarto;
+    public Long getQuartoId() {
+        return quartoId;
     }
 
-    public void setIdQuarto(Long idQuarto) {
-        this.idQuarto = idQuarto;
+    public void setQuartoId(Long quartoId) {
+        this.quartoId = quartoId;
     }
 
     public Boolean isChecked() {

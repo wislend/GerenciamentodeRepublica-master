@@ -25,15 +25,15 @@ public class BaseQuartoDetalhesPageFragment extends FragmentW {
 
     }
 
-/*
-    @Subscribe
+
+    /*@Subscribe
     public final void onEvent(ConsultaProntaEntregaActivity.FilialConsultaChangedEvent event) {
         codFilial = event.filial.getCodFilial();
         onFilialChanged(event.filial);
     }
-*/
 
-  /*  protected void onFilialChanged(Filial filial) {
+
+    protected void onFilialChanged(Filial filial) {
 
     }*/
 }

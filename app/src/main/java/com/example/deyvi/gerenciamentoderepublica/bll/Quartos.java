@@ -3,6 +3,8 @@ package com.example.deyvi.gerenciamentoderepublica.bll;
 
 import com.example.deyvi.gerenciamentoderepublica.entitys.Quarto;
 
+import java.util.List;
+
 public class Quartos {
 
     private com.example.deyvi.gerenciamentoderepublica.dal.Quartos quartos;
@@ -17,6 +19,10 @@ public class Quartos {
 
     public boolean quartoExiste(Integer numero){
         return quartos.exists(numero);
+    }
+
+    public List<Quarto> todosQuartos(){
+        return quartos.selectAll();
     }
 
 

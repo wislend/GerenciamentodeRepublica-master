@@ -3,7 +3,10 @@ package com.example.deyvi.gerenciamentoderepublica.dal;
 import com.activeandroid.query.Select;
 import com.example.deyvi.gerenciamentoderepublica.application.DbLogs;
 import com.example.deyvi.gerenciamentoderepublica.constantsApp.SqliteConstantes;
+import com.example.deyvi.gerenciamentoderepublica.entitys.Movel;
 import com.example.deyvi.gerenciamentoderepublica.entitys.Quarto;
+
+import java.util.List;
 
 public class Quartos extends Dao<Quarto> {
     
@@ -33,6 +36,15 @@ public class Quartos extends Dao<Quarto> {
     }
 
 
+        @Override
+        public List<Quarto> selectAll() {
+            try {
+                return new Select().all().from(Quarto.class).execute();
+            } catch (Exception e) {
+                DbLogs.Log(SqliteConstantes.ERRO_SELECT_QUARTOS_ALL, e, SqliteConstantes.ERRO_SELECT_QUARTOS_ALL);
+            }
+            return  null;
+        }
 
 
 }

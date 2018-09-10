@@ -22,10 +22,10 @@ public class Moveis extends Dao<Movel> {
     @Override
     public void update(Movel movel) {
         int intchecado = movel.isChecked() ? 1 : 0;
-        if (movel.getIdQuarto() != null) {
+        if (movel.getQuartoId() != null) {
             try {
                 new Update(Movel.class)
-                        .set("checkad = " + intchecado, "idQuarto = " + movel.getIdQuarto())
+                        .set("checkad = " + intchecado, "idQuarto = " + movel.getQuartoId())
                         .where("nome = ?", movel.getNome())
                         .execute();
 
@@ -84,7 +84,7 @@ public class Moveis extends Dao<Movel> {
             return new Select()
                     .from(Movel.class)
                     .innerJoin(Quarto.class)
-                    .on(movel.getIdQuarto() + " = " + quarto.getId())
+                    .on(movel.getQuartoId() + " = " + quarto.getId())
                     .execute();
         }catch (Exception e){
             DbLogs.Log(SqliteConstantes.ERRO_INNER_JOIN, e, SqliteConstantes.ERRO_INNER_JOIN);

@@ -32,9 +32,6 @@ public class Imovel extends BaseEntitys {
     @Column
     private double jurosMes;
 
-    @Column
-    private Long idQuarto;
-
 
     public String getNome() {
         return nome;
