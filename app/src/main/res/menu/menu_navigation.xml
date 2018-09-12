@@ -3,15 +3,15 @@
     <item
         android:id="@+id/navigation_songs"
         android:icon="@drawable/ic_home_black_24dp"
-        android:title="Songs"/>
+        android:title="@string/inicio"/>
 
     <item
         android:id="@+id/navigation_albums"
-        android:icon="@drawable/ic_menu_camera"
-        android:title="Albums"/>
+        android:icon="@drawable/round_monetization_on_white_18"
+        android:title="@string/gastos"/>
 
     <item
         android:id="@+id/navigation_artists"
-        android:icon="@drawable/ic_person_black_24dp"
-        android:title="Artists"/>
+        android:icon="@drawable/round_today_white_18"
+        android:title="@string/compromissos"/>
 </menu>

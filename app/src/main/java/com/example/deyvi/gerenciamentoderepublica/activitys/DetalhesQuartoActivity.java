@@ -5,12 +5,9 @@ import android.content.DialogInterface;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import com.astuetz.PagerSlidingTabStrip;
 import com.example.deyvi.gerenciamentoderepublica.R;
 import com.example.deyvi.gerenciamentoderepublica.activitys.base.BaseActivity;
 import com.example.deyvi.gerenciamentoderepublica.adapters.DetalhesQuartoPagerAdapter;
@@ -18,7 +15,6 @@ import com.example.deyvi.gerenciamentoderepublica.entitys.Imovel;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
-import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.ViewById;
 
 
@@ -75,5 +71,13 @@ public class DetalhesQuartoActivity extends BaseActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public class ImovelChangeEvent{
+      public final  Imovel imovel;
+
+        public ImovelChangeEvent(Imovel imovel) {
+            this.imovel = imovel;
+        }
     }
 }

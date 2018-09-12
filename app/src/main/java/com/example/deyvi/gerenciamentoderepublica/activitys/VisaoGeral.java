@@ -125,7 +125,7 @@ public class VisaoGeral extends BaseDrawer implements
 
     @Override
     public void onClickEdite(CardImoveisCadastradosRowView cadastradosRowView, int position, Imovel imovel) {
-
+        DetalhesQuartoActivity_.intent(this).start();
         Toast.makeText(this, "Editar", Toast.LENGTH_SHORT).show();
 
     }

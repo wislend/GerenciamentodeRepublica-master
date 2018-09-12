@@ -79,12 +79,11 @@ public class Moveis extends Dao<Movel> {
     }
 
 
-    public List<Movel> listMovel(Movel movel,Quarto quarto){
+    public List<Movel> listMovel(Long quartoId){
         try{
-            return new Select()
+            return new Select().all()
                     .from(Movel.class)
-                    .innerJoin(Quarto.class)
-                    .on(movel.getQuartoId() + " = " + quarto.getId())
+                     .where("quartoId = ?",quartoId)
                     .execute();
         }catch (Exception e){
             DbLogs.Log(SqliteConstantes.ERRO_INNER_JOIN, e, SqliteConstantes.ERRO_INNER_JOIN);

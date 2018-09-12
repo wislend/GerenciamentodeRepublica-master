@@ -23,7 +23,6 @@ import org.androidannotations.annotations.FragmentArg;
 @EFragment(R.layout.fragment_detalhes_quarto)
 public class DetalhesQuartoFragment extends BaseQuartoDetalhesPageFragment {
 
-    @FragmentArg
     Imovel imovel;
 
     Moveis moveis;
@@ -39,6 +38,9 @@ public class DetalhesQuartoFragment extends BaseQuartoDetalhesPageFragment {
         //moveis.listMoveis(,imovel);
     }
 
-
-
+    @Override
+    protected void onImovelChanged(Imovel imovel) {
+        super.onImovelChanged(imovel);
+        this.imovel = imovel;
+    }
 }

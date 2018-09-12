@@ -15,6 +15,8 @@ import com.example.deyvi.gerenciamentoderepublica.fragments.DetalhesQuartoFragme
 import com.example.deyvi.gerenciamentoderepublica.fragments.GastosQuartoFragment_;
 import com.example.deyvi.gerenciamentoderepublica.fragments.MelhoriasQuartoFragment_;
 
+import org.androidannotations.annotations.EFragment;
+
 
 public class DetalhesQuartoPagerAdapter extends BaseFragmentStatePagerAdapter {
 

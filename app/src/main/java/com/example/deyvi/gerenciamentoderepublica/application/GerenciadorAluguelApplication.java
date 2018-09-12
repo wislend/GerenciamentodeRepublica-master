@@ -7,6 +7,7 @@ import android.content.ContextWrapper;
 import android.support.multidex.MultiDex;
 
 import com.activeandroid.ActiveAndroid;
+import com.facebook.stetho.Stetho;
 import com.pixplicity.easyprefs.library.Prefs;
 
 
@@ -23,6 +24,7 @@ public class GerenciadorAluguelApplication extends Application {
                 .setUseDefaultSharedPreference(true)
                 .build();
         ActiveAndroid.initialize(this);
+        Stetho.initializeWithDefaults(this);
     }
 
 

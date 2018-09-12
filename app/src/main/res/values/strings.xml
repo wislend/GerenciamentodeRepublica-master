@@ -214,4 +214,7 @@
     <string name="adicionar_check_informacao">Caso você queira adicionar mais movéis digite abaixo.</string>
     <string name="title_activity_exemplo_table">ExemploTableActivit</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="gastos">Gastos</string>
+    <string name="compromissos">Compromissos</string>
+    <string name="inicio">Inicio</string>
 </resources>

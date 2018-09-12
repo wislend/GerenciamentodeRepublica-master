@@ -302,7 +302,7 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_salvar) {
-            DetalhesQuartoActivity_.intent(this).start();
+         //   DetalhesQuartoActivity_.intent(this).start();
             if (!vago) {
                 moradores = new Moradores();
                 if (!moradores.moradorExiste(edtWhats.getText().toString())) {

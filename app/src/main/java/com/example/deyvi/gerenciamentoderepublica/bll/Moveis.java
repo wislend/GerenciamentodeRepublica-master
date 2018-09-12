@@ -45,7 +45,7 @@ public class Moveis {
         moveis.update(movel);
     }
 
-    public List<Movel> listMoveis(Movel movel,Quarto quarto){
-         return moveis.listMovel(movel,quarto);
+    public List<Movel> listMoveis(Long quartoId){
+         return moveis.listMovel(quartoId);
     }
 }

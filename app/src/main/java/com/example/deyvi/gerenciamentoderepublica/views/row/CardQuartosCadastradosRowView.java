@@ -1,6 +1,10 @@
 package com.example.deyvi.gerenciamentoderepublica.views.row;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Typeface;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
@@ -45,7 +49,7 @@ public class CardQuartosCadastradosRowView extends RowView<Quarto> {
     @ViewById
     FlexboxLayout containerMoveis;
 
-    private List<Movel> listMoveis = new ArrayList<>();
+   private List<Movel> listMoveis;
 
     private Context context;
 
@@ -65,10 +69,10 @@ public class CardQuartosCadastradosRowView extends RowView<Quarto> {
     public void bind(final Quarto item, final int position) {
         super.bind(item, position);
         imgFoto.setImageResource(R.drawable.foto_indisponivel);
-        txtNomeQuarto.setText(item.getNome());
+        txtNomeQuarto.setText("Quarto com suite");
         moveis = new Moveis();
-        listMoveis = moveis.todosMoveis();
-        configureCheckedBox();
+        listMoveis = moveis.listMoveis(item.getId());
+        configureCheckedBox(listMoveis);
 
         //txtValorMovel.setText(String.valueOf(item.getValor()));
 
@@ -115,14 +119,16 @@ public class CardQuartosCadastradosRowView extends RowView<Quarto> {
 
 
 
-    void configureCheckedBox() {
-        CheckBox[] ch = new CheckBox[listMoveis.size()];
-        for (int i = 0; i < listMoveis.size(); i++) {
-            ch[i] = new CheckBox(context);
-            ch[i].setId(chId++);
-            ch[i].setText(listMoveis.get(i).getNome());
-            ch[i].setChecked(listMoveis.get(i).isChecked());
-            containerMoveis.addView(ch[i]);
+    @SuppressLint("SetTextI18n")
+    void configureCheckedBox(List<Movel> movel) {
+        TextView[] tx = new TextView[movel.size()];
+        for (int i = 0; i < movel.size(); i++) {
+            tx[i] = new TextView(context);
+            tx[i].setId(chId++);
+            tx[i].setAllCaps(true);
+            tx[i].setTypeface(tx[i].getTypeface(), Typeface.BOLD);
+            tx[i].setText("#" + movel.get(i).getNome() + "  ");
+            containerMoveis.addView(tx[i]);
         }
     }
 
