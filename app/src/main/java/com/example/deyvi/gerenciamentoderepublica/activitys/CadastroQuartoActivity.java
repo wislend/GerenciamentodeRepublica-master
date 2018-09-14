@@ -28,7 +28,6 @@ import com.example.deyvi.gerenciamentoderepublica.entitys.Quarto;
 import com.google.android.flexbox.FlexboxLayout;
 
 import org.androidannotations.annotations.AfterViews;
-import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
@@ -303,18 +302,18 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_salvar) {
          //   DetalhesQuartoActivity_.intent(this).start();
-            if (!vago) {
-                moradores = new Moradores();
-                if (!moradores.moradorExiste(edtWhats.getText().toString())) {
-                    salvarQuarto();
-
-                } else {
-                    Toast.makeText(this, "Morador já cadastrado em outro quarto.", Toast.LENGTH_SHORT).show();
-                }
-            }else {
-                salvarQuarto();
-                salvarMovel();
-            }
+//            if (!vago) {
+//                moradores = new Moradores();
+//                if (!moradores.moradorExiste(edtWhats.getText().toString())) {
+//                    salvarQuarto();
+//
+//                } else {
+//                    Toast.makeText(this, "Morador já cadastrado em outro quarto.", Toast.LENGTH_SHORT).show();
+//                }
+//            }else {
+//                salvarQuarto();
+//                salvarMovel();
+//            }
         }
         return true;
     }

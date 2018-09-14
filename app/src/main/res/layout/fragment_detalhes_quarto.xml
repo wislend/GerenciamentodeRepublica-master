@@ -1,12 +1,203 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.DetalhesQuartoFragment">
+    android:layout_marginEnd="@dimen/nav_header_vertical_spacing"
+    android:layout_marginLeft="@dimen/nav_header_vertical_spacing"
+    android:layout_marginRight="@dimen/nav_header_vertical_spacing"
+    android:layout_marginStart="@dimen/nav_header_vertical_spacing"
+    android:layout_marginTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    android:scrollbars="none"
+    tools:context=".fragments.CadastroQuartoFragment">
 
-    <include layout="@layout/content_cadastro_quarto"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/android_space_xlarge"
+        android:layout_marginEnd="@dimen/nav_header_vertical_spacing"
+        android:layout_marginLeft="@dimen/nav_header_vertical_spacing"
+        android:layout_marginRight="@dimen/nav_header_vertical_spacing"
+        android:layout_marginStart="@dimen/nav_header_vertical_spacing"
+        android:layout_marginTop="@dimen/android_space_medium_plus"
+        android:orientation="vertical">
 
-</FrameLayout>
+        <com.devspark.robototextview.widget.RobotoTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/android_space_medium"
+            android:text="@string/moveis" />
+
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/viewContainerCheckBox"
+            style="@style/styleEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:animateLayoutChanges="true"
+            android:layout_margin="@dimen/android_space_xlarge"
+            app:alignContent="flex_start"
+            app:alignItems="flex_start"
+            app:flexWrap="wrap">
+
+        </com.google.android.flexbox.FlexboxLayout>
+
+
+        <EditText
+            android:id="@+id/edtIdentificacaoQuarto"
+            style="@style/styleEditText"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:hint="@string/identificacao_quarto" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/edtNumero"
+                style="@style/styleEditText"
+                android:layout_width="0dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:hint="@string/numero"
+                android:inputType="number" />
+
+
+            <EditText
+                android:id="@+id/edtPreco"
+                style="@style/styleEditText"
+                android:layout_width="0dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="@dimen/android_space_medium"
+                android:layout_weight="1"
+                android:hint="@string/valor_quarto" />
+
+        </LinearLayout>
+
+
+        <RadioGroup
+            android:id="@+id/radioOcupadoVago"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/android_space_medium"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rbOcupado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/ocupado" />
+
+            <RadioButton
+                android:id="@+id/rbVago"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="@string/vago" />
+        </RadioGroup>
+
+
+        <LinearLayout
+            android:id="@+id/conteanerCadastroMorador"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/edtMorador"
+                style="@style/styleEditText"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:hint="@string/morador" />
+
+            <EditText
+                android:id="@+id/edtEmail"
+                style="@style/styleEditText"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:hint="@string/email" />
+
+
+            <EditText
+                android:id="@+id/edtTelefone"
+                style="@style/styleEditText"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:hint="@string/telefone"
+                android:inputType="phone" />
+
+
+            <EditText
+                android:id="@+id/edtWhats"
+                style="@style/styleEditText"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:hint="@string/whatsapp"
+                android:inputType="phone" />
+
+
+            <RelativeLayout
+                android:id="@+id/campoDataEntrada"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/dataEntrada"
+                    style="@style/styleEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:editable="false"
+                    android:hint="@string/data_de_entrada" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_calendar" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/campoDataSaida"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/dataSaida"
+                    style="@style/styleEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:editable="false"
+                    android:hint="@string/data_saida" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_calendar" />
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</ScrollView>
+

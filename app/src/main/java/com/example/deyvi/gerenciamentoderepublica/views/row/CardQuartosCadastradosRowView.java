@@ -72,7 +72,9 @@ public class CardQuartosCadastradosRowView extends RowView<Quarto> {
         txtNomeQuarto.setText("Quarto com suite");
         moveis = new Moveis();
         listMoveis = moveis.listMoveis(item.getId());
-        configureCheckedBox(listMoveis);
+        if(listMoveis!= null) {
+            configureCheckedBox(listMoveis);
+        }
 
         //txtValorMovel.setText(String.valueOf(item.getValor()));
 

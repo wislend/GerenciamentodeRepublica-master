@@ -33,4 +33,7 @@
         android:divider="@color/white"
         android:scrollbars="vertical" />
 
+    <include layout="@layout/layout_button_navigation"/>
+
+
 </LinearLayout>

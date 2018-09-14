@@ -5,33 +5,43 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:id="@+id/actionInicio"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="Inicio" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:id="@+id/actionMoradores"
+            android:icon="@drawable/twotone_account_circle_black_48"
+            android:title="Moradores" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:id="@+id/actionGastos"
+            android:icon="@drawable/round_monetization_on_white_18"
+            android:title="Gastos" />
+
         <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:id="@+id/actionConsultas"
+            android:icon="@drawable/ic_fab_search"
+            android:title="Consultas" />
+
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="Informações">
         <menu>
+
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:id="@+id/actionTelefonesUteis"
+                android:icon="@drawable/ic_pref_dispositivos"
+                android:title="Telefones Úteis" />
+
             <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:id="@+id/actionConfiguracoes"
+                android:icon="@drawable/ic_menu_manage"
+                android:title="Configurações" />
+
+            <item
+                android:id="@+id/actionSobre"
+                android:icon="@drawable/ic_fab_information"
+                android:title="Sobre" />
+
         </menu>
     </item>
 

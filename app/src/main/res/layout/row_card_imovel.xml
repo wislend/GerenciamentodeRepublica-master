@@ -10,8 +10,7 @@
     app:cardCornerRadius="16dp"
     app:cardElevation="2dp">
 
-    <android.support.constraint.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -19,30 +18,43 @@
 
         <TextView
             android:id="@+id/txtDescricao"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="8dp"
-            android:textSize="12sp"
+            android:layout_width="184dp"
+            android:layout_height="38dp"
+            android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
             android:text="@string/nome_imovel"
+            android:textSize="12sp"
             app:layout_constraintBottom_toTopOf="@+id/barrier3"
             app:layout_constraintEnd_toEndOf="@+id/barrier2"
-            app:layout_constraintHorizontal_bias="0.444"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/txtValorImovel"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtQuantQuarto"
             tools:ignore="MissingConstraints" />
 
         <TextView
             android:id="@+id/txtValorImovel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
             android:text="1000.000 R$"
             android:textSize="12sp"
-            app:layout_constraintEnd_toStartOf="@+id/txtQuantQuarto"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintBottom_toBottomOf="@+id/labelValorImovel"
+            app:layout_constraintEnd_toEndOf="@+id/barrier2"
+            app:layout_constraintStart_toEndOf="@+id/labelValorImovel"
+            app:layout_constraintTop_toTopOf="@+id/labelValorImovel"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/labelValorImovel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="Valor: "
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtNomeImovel" />
 
         <TextView
@@ -51,28 +63,42 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
-            android:textSize="16sp"
             android:layout_marginTop="16dp"
             android:text="Imovél Tal"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             android:textColor="@color/colorPrimary"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="@+id/barrier2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/txtQuantQuarto"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:textSize="12sp"
+            android:layout_marginStart="8dp"
 
             android:text="5 Quartos"
-            app:layout_constraintBottom_toBottomOf="@+id/txtValorImovel"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/labelQuantQuarto"
             app:layout_constraintEnd_toEndOf="@+id/barrier2"
-            app:layout_constraintStart_toEndOf="@+id/txtValorImovel"
-            app:layout_constraintTop_toTopOf="@+id/txtValorImovel" />
+            app:layout_constraintStart_toEndOf="@+id/labelQuantQuarto"
+            app:layout_constraintTop_toTopOf="@+id/labelQuantQuarto"
+            app:layout_constraintVertical_bias="1.0"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/labelQuantQuarto"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+
+            android:layout_marginTop="8dp"
+            android:text="Quantidade: "
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/labelValorImovel"
+            tools:ignore="MissingConstraints" />
 
         <ImageView
             android:id="@+id/imgFoto"
@@ -89,44 +115,32 @@
         <TextView
             android:id="@+id/btnAdicionarQuarto"
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="wrap_content"
-            android:layout_height="36dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
             android:minWidth="0dp"
+
             android:paddingEnd="8dp"
             android:paddingStart="8dp"
             android:text="@string/adicionar_quartos"
             android:textColor="@color/colorPrimary"
             android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="@+id/action_button_2"
+            app:layout_constraintBottom_toBottomOf="@+id/btnEdit"
             app:layout_constraintHorizontal_chainStyle="spread_inside"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="@+id/action_button_2"
-            app:layout_constraintVertical_bias="0.8" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/barrier3"
+            app:layout_constraintVertical_bias="1.0"
+            tools:ignore="MissingConstraints" />
 
-        <TextView
-            android:id="@+id/action_button_2"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:minWidth="0dp"
-            android:paddingEnd="8dp"
-            android:paddingStart="8dp"
-            android:text=""
-            android:textColor="#DE000000"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/barrier2"
-            app:layout_constraintStart_toEndOf="@+id/btnAdicionarQuarto"
-            app:layout_constraintTop_toTopOf="@+id/btnDelete" />
 
         <ImageButton
             android:id="@+id/btnEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
+            android:layout_marginBottom="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:tint="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
@@ -141,6 +155,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
+            android:tint="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="@+id/btnEdit"
             app:layout_constraintEnd_toStartOf="@+id/btnEdit"
             app:layout_constraintHorizontal_bias="1.0"
@@ -148,16 +163,9 @@
             app:layout_constraintStart_toEndOf="@+id/barrier2"
             app:layout_constraintTop_toTopOf="@+id/btnEdit"
             app:layout_constraintVertical_bias="0.0"
-            android:tint="@color/colorPrimary"
             app:srcCompat="@drawable/ic_stat_action_delete"
             tools:ignore="MissingConstraints" />
 
-        <android.support.constraint.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="16dp" />
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline2"

@@ -34,6 +34,12 @@ public class LoadersAdapter extends AsyncTaskLoader<List<Imovel>> {
 
 
     @Override
+    protected void onStartLoading() {
+        forceLoad();
+        super.onStartLoading();
+    }
+
+    @Override
     public void deliverResult(@Nullable List<Imovel> data) {
         super.deliverResult(data);
     }

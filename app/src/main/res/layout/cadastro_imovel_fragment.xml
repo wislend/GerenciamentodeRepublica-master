@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/propio"
-                android:textSize="20sp" />
+                 />
 
             <RadioButton
                 android:id="@+id/rdAlugado"
@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/alugado"
-                android:textSize="20sp" />
+                 />
         </RadioGroup>
 
 
@@ -57,14 +57,14 @@
             style="@style/styleEditText"
             android:layout_width="match_parent"
             android:hint="@string/nome_fantansia"
-            android:textSize="20sp" />
+             />
 
         <EditText
             android:id="@+id/edtValorAluguel"
             style="@style/styleEditText"
             android:layout_width="match_parent"
             android:hint="@string/valor"
-            android:textSize="20sp" />
+             />
 
         <EditText
             android:id="@+id/edtNumeroDeQuartos"
@@ -72,7 +72,7 @@
             android:layout_width="match_parent"
             android:inputType="number"
             android:hint="@string/numero_de_quartos"
-            android:textSize="20sp" />
+             />
 
 
         <LinearLayout
@@ -86,8 +86,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:hint="@string/cep"
-                android:inputType="number"
-                android:textSize="20sp" />
+                android:inputType="number" />
 
             <ImageButton
                 android:id="@+id/imageButtonSearchCEP"
@@ -111,7 +110,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="2.5"
                 android:hint="@string/rua"
-                android:textSize="20sp" />
+                 />
 
             <EditText
                 android:id="@+id/edtNumero"
@@ -131,7 +130,7 @@
             style="@style/styleEditText"
             android:layout_width="match_parent"
             android:hint="@string/ponto_de_referencia"
-            android:textSize="20sp" />
+             />
 
 
         <EditText
@@ -139,7 +138,7 @@
             style="@style/styleEditText"
             android:layout_width="match_parent"
             android:hint="@string/bairro"
-            android:textSize="20sp" />
+             />
 
 
         <LinearLayout
@@ -154,7 +153,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="2"
                 android:hint="@string/cidade"
-                android:textSize="20sp" />
+                 />
 
             <Spinner
                 android:id="@+id/spinnerEstado"
@@ -174,7 +173,7 @@
                 android:layout_height="50dp"
                 android:layout_weight="1"
                 android:text="@string/juros_do_dia"
-                android:textSize="20sp"
+                
                 app:robotoTypeface="roboto_italic" />
 
             <EditText
@@ -182,7 +181,7 @@
                 style="@style/styleEditText"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:textSize="20sp" />
+                 />
 
         </LinearLayout>
 
@@ -196,7 +195,7 @@
                 android:layout_height="50dp"
                 android:layout_weight="1"
                 android:text="@string/juros_do_mes"
-                android:textSize="20sp"
+                
                 app:robotoTypeface="roboto_italic" />
 
             <EditText
@@ -204,7 +203,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 style="@style/styleEditText"
-                android:textSize="20sp" />
+                 />
 
         </LinearLayout>
 

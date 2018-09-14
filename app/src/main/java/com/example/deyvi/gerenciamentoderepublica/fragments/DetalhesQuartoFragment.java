@@ -12,6 +12,7 @@ import com.example.deyvi.gerenciamentoderepublica.adapters.bases.BaseQuartoDetal
 import com.example.deyvi.gerenciamentoderepublica.bll.Imoveis;
 import com.example.deyvi.gerenciamentoderepublica.bll.Moveis;
 import com.example.deyvi.gerenciamentoderepublica.entitys.Imovel;
+import com.example.deyvi.gerenciamentoderepublica.entitys.Movel;
 import com.example.deyvi.gerenciamentoderepublica.entitys.Quarto;
 
 import org.androidannotations.annotations.AfterViews;
@@ -26,6 +27,7 @@ public class DetalhesQuartoFragment extends BaseQuartoDetalhesPageFragment {
     Imovel imovel;
 
     Moveis moveis;
+    Movel movel;
 
     Quarto quarto;
 
@@ -35,7 +37,8 @@ public class DetalhesQuartoFragment extends BaseQuartoDetalhesPageFragment {
     @AfterViews
     void afterViews(){
         moveis = new Moveis();
-        //moveis.listMoveis(,imovel);
+        quarto = new Quarto();
+      //  moveis.listMoveis(movel,quarto);
     }
 
     @Override
