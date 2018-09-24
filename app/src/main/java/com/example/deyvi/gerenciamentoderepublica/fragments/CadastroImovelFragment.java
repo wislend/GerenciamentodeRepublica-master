@@ -15,7 +15,9 @@ import com.example.deyvi.gerenciamentoderepublica.Util.validacion.EnderecoUtil;
 import com.example.deyvi.gerenciamentoderepublica.Util.validacion.MaskEditUtil;
 import com.example.deyvi.gerenciamentoderepublica.activitys.CadastroActivity;
 import com.example.deyvi.gerenciamentoderepublica.bll.Enderecos;
+import com.example.deyvi.gerenciamentoderepublica.bll.Imoveis;
 import com.example.deyvi.gerenciamentoderepublica.constantsApp.SqliteConstantes;
+import com.example.deyvi.gerenciamentoderepublica.entitys.Endereco;
 import com.example.deyvi.gerenciamentoderepublica.entitys.Imovel;
 import com.example.deyvi.gerenciamentoderepublica.fragments.baseFragment.BaseStepCadastroLocatarioFragment;
 import com.stepstone.stepper.BlockingStep;
@@ -34,7 +36,7 @@ import java.util.List;
 
 @EFragment(R.layout.cadastro_imovel_fragment)
 public class CadastroImovelFragment extends BaseStepCadastroLocatarioFragment implements BlockingStep,
-        RadioGroup.OnCheckedChangeListener{
+        RadioGroup.OnCheckedChangeListener {
 
 
     //region ById
@@ -73,8 +75,7 @@ public class CadastroImovelFragment extends BaseStepCadastroLocatarioFragment im
 
     //endregion
     private List<String> estadosList = new ArrayList<>();
-    private Enderecos enderecos;
-    private com.example.deyvi.gerenciamentoderepublica.bll.Imoveis imoveis;
+
     private Long enderecoId;
 
     @AfterViews
@@ -163,24 +164,35 @@ public class CadastroImovelFragment extends BaseStepCadastroLocatarioFragment im
 
 
     @UiThread
-    void finishAddressUI(com.example.deyvi.gerenciamentoderepublica.entitys.Endereco enderecoImovel) {
+    void finishAddressUI(Endereco enderecoImovel) {
 
         //se o resultado for nulo ou o usuário não ter esperado e cancelado o diálogo
         if (enderecoImovel == null || !isProgressDialogShowing()) {
-            dismissProgressDialog();
             return;
         }
-        dismissProgressDialog();
-        //inicia bll de endereço
-        enderecos = new Enderecos();
         edtRua.setText(enderecoImovel.getRua());
         edtNumero.setText(enderecoImovel.getNumero() == 0 ? "" : String.valueOf(enderecoImovel.getNumero()));
         edtBairro.setText(enderecoImovel.getBairro());
         edtCidade.setText(enderecoImovel.getCidade());
-        //Salva endereco
-        enderecoId = enderecos.salvarEndereco(enderecoImovel);
-
+        if (enderecoImovel.getCep() != null) {
+            salvarEndereco(enderecoImovel);
+        }
     }
+
+    @Background
+    void salvarEndereco(Endereco endereco) {
+        Enderecos enderecos = new Enderecos();
+        //Salva endereco
+        enderecoId = enderecos.salvarEndereco(endereco);
+        responseEndereco();
+    }
+
+    @UiThread
+    void responseEndereco() {
+        dismissProgressDialog();
+        Toast.makeText(getContext(), "Endereço Salvo", Toast.LENGTH_SHORT).show();
+    }
+
 
     public void setSpinText(Spinner spin, String text) {
         if (spinnerEstado == null) {
@@ -196,19 +208,22 @@ public class CadastroImovelFragment extends BaseStepCadastroLocatarioFragment im
 
     @Override
     public void onNextClicked(StepperLayout.OnNextClickedCallback callback) {
-        showProgressDialog("Validando informações...");
-        salvarCadastroBackground();
-    }
 
+    }
 
 
     @Override
     @UiThread
     public void onCompleteClicked(final StepperLayout.OnCompleteClickedCallback callback) {
-        showProgressDialog("Salvando seu cadastro...");
-        salvarCadastroBackground();
+        Imovel imovel = new Imovel();
+        imovel.setValor(Double.parseDouble(edtValorAluguel.getText().toString()));
+        imovel.setEnderecoId(enderecoId);
+        imovel.setNome(edtNomeImovel.getText().toString());
+        imovel.setQuantQuartos(Integer.parseInt(edtNumeroDeQuartos.getText().toString()));
+        imovel.setAlugado(rdAlugado.isChecked());
+        salvarCadastroBackground(imovel);
+        showProgressDialog("Salvando seus dados...");
     }
-
 
 
     @Override
@@ -216,34 +231,21 @@ public class CadastroImovelFragment extends BaseStepCadastroLocatarioFragment im
     }
 
 
-
-
-
     @Background
-    void salvarCadastroBackground() {
-        //inicia bll de imovel
-        imoveis = new com.example.deyvi.gerenciamentoderepublica.bll.Imoveis();
-        boolean enderecoExiste = enderecos.enderecoExiste(edtCep.getText().toString());
-
-       // if (!enderecoExiste){
-            Imovel imovel = new Imovel();
-            imovel.setEnderecoId(enderecoId);
-            imovel.setNome(edtNomeImovel.getText().toString());
-            imovel.setAlugado(true);
-            imovel.setQuantQuartos(Integer.parseInt(edtNumeroDeQuartos.getText().toString()));
-            imovel.setJurosDia(1200);
-            imovel.setJurosMes(1200);
+    void salvarCadastroBackground(Imovel imovel) {
+        Imoveis imoveis = new com.example.deyvi.gerenciamentoderepublica.bll.Imoveis();
+        if (imoveis.imovelExiste(imovel.getNome())){
+            naoAutorizado();
+        }else {
             imoveis.salvarImovel(imovel);
             salvarCadastroClienteFinished(imovel, null);
-      //  }else {
-      //      naoAutorizado();
-      //  }
+        }
 
     }
 
 
     @UiThread
-    void naoAutorizado(){
+    void naoAutorizado() {
         dismissProgressDialog();
         Toast.makeText(getContext(), SqliteConstantes.IMOVEL_JA_CADASTRADO, Toast.LENGTH_SHORT).show();
     }
@@ -258,10 +260,10 @@ public class CadastroImovelFragment extends BaseStepCadastroLocatarioFragment im
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         //check se o campo de valor do aluguel do imovel aparecerá
-            if (checkedId == R.id.rdPropio){
-                edtValorAluguel.setVisibility(View.GONE);
-            }else{
-                edtValorAluguel.setVisibility(View.VISIBLE);
-            }
+        if (checkedId == R.id.rdPropio) {
+            edtValorAluguel.setVisibility(View.GONE);
+        } else {
+            edtValorAluguel.setVisibility(View.VISIBLE);
+        }
     }
 }

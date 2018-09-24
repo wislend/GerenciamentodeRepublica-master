@@ -69,7 +69,7 @@
 
     <color name="status_pedido_enviado">#52C5CF</color>
     <color name="status_pedido_liberado">#CCD91A</color>
-    <color name="status_pedido_bloqueio_envio">#F6BD1A</color>
+    <color name="yeloo">#F6BD1A</color>
     <color name="status_pedido_pendente">#EC834E</color>
     <color name="gray">#989898</color>
     <color name="grey_light">#F2F2F2</color>

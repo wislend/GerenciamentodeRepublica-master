@@ -217,4 +217,6 @@
     <string name="gastos">Gastos</string>
     <string name="compromissos">Compromissos</string>
     <string name="inicio">Inicio</string>
+    <string name="palma_imoveis">Seus imóveis na palma da mão.</string>
+    <string name="meus_imoveis">Meus Imóveis</string>
 </resources>

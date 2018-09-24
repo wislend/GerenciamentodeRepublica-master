@@ -92,4 +92,18 @@ public class Moveis extends Dao<Movel> {
         return null;
     }
 
+
+    @Override
+    public boolean exists(String nome) {
+        try{
+            return new Select().all()
+                    .from(Movel.class)
+                    .where("nome = ?",nome)
+                    .exists();
+        }catch (Exception e){
+            DbLogs.Log(SqliteConstantes.ERRO_SELECT_MOVEL, e, SqliteConstantes.ERRO_SELECT_MOVEL);
+        }
+
+        return false;
+    }
 }

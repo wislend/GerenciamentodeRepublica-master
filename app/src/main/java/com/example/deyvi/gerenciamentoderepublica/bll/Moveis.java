@@ -29,12 +29,7 @@ public class Moveis {
     }
 
     public boolean movelExiste(String nome){
-        try{
-            return new Select().from(Movel.class).where("nome = ?", nome).exists();
-        }catch (Exception e){
-            DbLogs.Log(SqliteConstantes.ERRO_MOVEL_EXISTS,e,nome);
-        }
-        return false;
+      return  moveis.exists(nome);
     }
 
     public void atualizarMovel(String nome, boolean checado){

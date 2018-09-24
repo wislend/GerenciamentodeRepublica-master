@@ -1,5 +1,6 @@
 package com.example.deyvi.gerenciamentoderepublica.bll;
 
+import com.activeandroid.ActiveAndroid;
 import com.example.deyvi.gerenciamentoderepublica.application.DbLogs;
 import com.example.deyvi.gerenciamentoderepublica.constantsApp.SqliteConstantes;
 import com.example.deyvi.gerenciamentoderepublica.entitys.Morador;
@@ -13,12 +14,7 @@ public class Moradores {
     }
 
     public Long salvarMorador(Morador morador){
-        try {
-            return morador.save();
-        }catch (Exception e){
-            DbLogs.Log(SqliteConstantes.ERRO_SALVAR_MORADOR,e,morador.getNome());
-        }
-        return null;
+        return moradores.save(morador);
     }
 
     public boolean moradorExiste(String telefone){

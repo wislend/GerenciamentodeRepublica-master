@@ -47,7 +47,7 @@ public class CadastroLocadorFragment extends BaseStepCadastroLocatarioFragment i
 
     @AfterViews
     void initFragment() {
-        //test();
+        test();
         inserirMask();
     }
 

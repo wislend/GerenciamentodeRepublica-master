@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginEnd="@dimen/nav_header_vertical_spacing"
     android:layout_marginLeft="@dimen/nav_header_vertical_spacing"
     android:layout_marginRight="@dimen/nav_header_vertical_spacing"
@@ -13,14 +13,13 @@
     tools:context=".fragments.CadastroQuartoFragment">
 
 
-
-    <com.rengwuxian.materialedittext.MaterialEditText
+    <EditText
         android:id="@+id/edtIdentificacaoQuarto"
+        style="@style/styleEditText"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:hint="@string/identificacao_quarto"
-        />
+        android:hint="@string/identificacao_quarto" />
 
     <com.devspark.robototextview.widget.RobotoTextView
         android:layout_width="match_parent"
@@ -71,17 +70,17 @@
         android:layout_marginTop="@dimen/activity_horizontal_margin">
 
         <CheckBox
-            android:layout_marginRight="8dp"
-            android:layout_marginEnd="8dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:text="@string/ar_condicionado" />
 
         <CheckBox
-            android:layout_marginRight="8dp"
-            android:layout_marginEnd="8dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:text="@string/ventilador" />
     </LinearLayout>
 
@@ -113,52 +112,52 @@
             android:text="@string/vago" />
     </RadioGroup>
 
-    <com.rengwuxian.materialedittext.MaterialEditText
+    <EditText
         android:id="@+id/edtLocatario"
+        style="@style/styleEditText"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/locatario"
-        />
+        android:layout_height="45dp"
+        android:hint="@string/locatario" />
 
-    <com.rengwuxian.materialedittext.MaterialEditText
+    <EditText
         android:id="@+id/edtEmail"
+        style="@style/styleEditText"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:hint="@string/email"
         android:textColor="@color/colorAccent"
-        android:textSize="20sp"
-        app:robotoTypeface="roboto_condensed_bold_italic" />
+        android:textSize="20sp" />
 
 
-    <com.rengwuxian.materialedittext.MaterialEditText
+    <EditText
         android:id="@+id/edtTelefone"
+        style="@style/styleEditText"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:hint="@string/telefone"
         android:inputType="phone"
         android:maxLength="17"
         android:textColor="@color/colorAccent"
-        android:textSize="20sp"
-        app:robotoTypeface="roboto_condensed_bold_italic" />
+        android:textSize="20sp" />
 
 
-    <com.rengwuxian.materialedittext.MaterialEditText
+    <EditText
         android:id="@+id/edtWhats"
+        style="@style/styleEditText"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:hint="@string/whatsapp"
         android:inputType="phone"
         android:maxLength="17"
         android:textColor="@color/colorAccent"
-        android:textSize="20sp"
-        app:robotoTypeface="roboto_condensed_bold_italic" />
+        android:textSize="20sp" />
 
-    <com.rengwuxian.materialedittext.MaterialEditText
+    <EditText
         android:id="@+id/edtPreco"
+        style="@style/styleEditText"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:hint="@string/valor_quarto" />
-
 
 
 </LinearLayout>

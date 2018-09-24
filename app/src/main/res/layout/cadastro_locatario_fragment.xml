@@ -32,6 +32,8 @@
             android:id="@+id/edtNome"
             android:layout_width="match_parent"
             style="@style/styleEditText"
+            android:textColorHint="@color/gray"
+            android:layout_height="45dp"
             android:layout_marginTop="@dimen/android_space_large"
             android:hint="@string/nome_administrador"
             android:textSize="20sp"
@@ -41,13 +43,12 @@
             android:id="@+id/edtTelefone"
             android:layout_width="match_parent"
             android:hint="@string/telefone"
+            android:layout_height="45dp"
             android:layout_marginTop="@dimen/android_space_medium"
             android:inputType="phone"
             style="@style/styleEditText"
             android:maxLength="17"
-          
-            android:textSize="20sp"
-            />
+            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/edtEmail"
@@ -55,31 +56,30 @@
             android:layout_marginTop="@dimen/android_space_medium"
             android:hint="@string/email"
             style="@style/styleEditText"
-          
-            android:textSize="20sp"
-            />
+            android:layout_height="45dp"
+            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/edtSenha"
             android:layout_width="match_parent"
             android:hint="@string/senha"
+
             android:layout_marginTop="@dimen/android_space_medium"
+            android:layout_height="45dp"
 
             style="@style/styleEditText"
             android:inputType="textPassword"
-          
-            android:textSize="20sp"
-            />
+            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/edtConfirmacaoSenha"
             android:layout_width="match_parent"
+            android:layout_height="45dp"
             style="@style/styleEditText"
             android:layout_marginTop="@dimen/android_space_medium"
             android:hint="@string/confirme_sua_senha"
             android:inputType="textPassword"
-            android:textSize="20sp"
-            />
+            android:textSize="20sp" />
 
     </LinearLayout>
 

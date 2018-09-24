@@ -53,9 +53,6 @@ public class CardQuartosCadastradosRowView extends RowView<Quarto> {
 
     private Context context;
 
-    //bll
-    private Moveis moveis;
-
     int chId = 1000;
 
     OnClickManipulacaoImoveis onClickManipulacaoImoveis;
@@ -70,7 +67,7 @@ public class CardQuartosCadastradosRowView extends RowView<Quarto> {
         super.bind(item, position);
         imgFoto.setImageResource(R.drawable.foto_indisponivel);
         txtNomeQuarto.setText("Quarto com suite");
-        moveis = new Moveis();
+        Moveis moveis = new Moveis();
         listMoveis = moveis.listMoveis(item.getId());
         if(listMoveis!= null) {
             configureCheckedBox(listMoveis);

@@ -3,19 +3,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
     tools:context=".activitys.WelcomeActivity">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/welcome"
-        tools:ignore="ContentDescription" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white_alpha_40">
+
+        <com.devspark.robototextview.widget.RobotoTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/btnRegistrar"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="150dp"
+            android:textSize="30sp"
+            app:robotoTypeface="roboto_mono_bold_italic"
+            android:text="Vamos lá!"
+            android:gravity="center"
+            tools:ignore="UnknownId" />
 
         <Button
             android:id="@+id/btnRegistrar"
@@ -34,12 +39,11 @@
             android:layout_alignParentBottom="true"
             android:layout_centerInParent="true"
             android:textColor="@color/colorPrimary"
-            android:layout_marginBottom="@dimen/android_space_medium"
+            android:layout_marginBottom="@dimen/android_space_xlarge"
             android:layout_marginTop="@dimen/android_space_large"
             android:background="@drawable/background_button"
             android:text="@string/sou_cadastrado"
              />
 
-    </RelativeLayout>
 
 </RelativeLayout>
