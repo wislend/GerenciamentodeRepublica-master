@@ -14,8 +14,13 @@ public class Locadores {
         return locadores.save(locador);
     }
 
-    public boolean moradorExiste(String telefone){
-        return locadores.exists(telefone);
+    public boolean locadorExists(String email) throws Exception {
+        return locadores.exists(email);
     }
+
+    public Locador senhaValida(String email,String senha) throws Exception {
+        return locadores.senhaValida(email,senha);
+    }
+
 
 }

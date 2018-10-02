@@ -7,35 +7,35 @@
     <LinearLayout xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
         android:gravity="center"
         android:orientation="vertical"
-        tools:context="br.com.fake.steam.LoginActivity"
-        android:layout_alignParentLeft="true">
+        tools:context="br.com.fake.steam.LoginActivity">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@drawable/ic_launcher" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="@string/account_name"
+            android:text="@string/meus_imoveis"
             android:textColor="@color/black" />
 
         <EditText
+            android:id="@+id/edtEmail"
+            style="@style/styleEditText"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:layout_marginTop="15dp"
-            style="@style/styleEditText"
-            android:hint="@string/username"
-           />
+            android:hint="@string/email" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -46,6 +46,7 @@
             android:textColor="@color/black" />
 
         <EditText
+            android:id="@+id/edtSenha"
             style="@style/styleEditText"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -56,7 +57,7 @@
             android:inputType="textPassword" />
 
         <CheckBox
-            android:id="@+id/checkBox"
+            android:id="@+id/checkLembrarSenha"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -66,6 +67,7 @@
             android:textSize="6pt" />
 
         <Button
+            android:id="@+id/btnEntrar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="70dp"
@@ -76,6 +78,7 @@
             android:textColor="@color/black" />
 
         <TextView
+            android:id="@+id/txtEsqueceuSenha"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"

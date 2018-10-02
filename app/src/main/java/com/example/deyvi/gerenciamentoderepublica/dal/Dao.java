@@ -34,7 +34,7 @@ public abstract class Dao<T extends Model>   {
         return false;
     }
 
-    public boolean exists(String nome) {
+    public boolean exists(String nome)  {
         return false;
     }
 

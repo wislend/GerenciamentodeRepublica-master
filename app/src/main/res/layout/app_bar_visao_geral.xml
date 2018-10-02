@@ -21,15 +21,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include
-        android:id="@+id/viewLoading"
-        layout="@layout/view_loading"
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/toolbar" />
-
-    <include layout="@layout/content_visao_geral" />
+     <include layout="@layout/content_visao_geral" />
 
 
 </android.support.design.widget.CoordinatorLayout>

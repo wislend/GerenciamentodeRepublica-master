@@ -1,5 +1,6 @@
 package com.example.deyvi.gerenciamentoderepublica.dal;
 
+import com.activeandroid.query.Select;
 import com.example.deyvi.gerenciamentoderepublica.application.DbLogs;
 import com.example.deyvi.gerenciamentoderepublica.constantsApp.SqliteConstantes;
 import com.example.deyvi.gerenciamentoderepublica.entitys.Locador;
@@ -27,4 +28,13 @@ public class Locadores extends Dao<Locador> {
         return false;
     }
 
+
+
+    public boolean exists(String email){
+      return new Select().from(Locador.class).where("email = ?",email).exists();
+    }
+
+    public Locador senhaValida(String senha,String email){
+        return new Select().from(Locador.class).where("senha = ?",senha).executeSingle();
+    }
 }

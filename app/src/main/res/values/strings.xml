@@ -14,7 +14,7 @@
     <string name="sou_cadastrado">SOU CADASTRADO</string>
     <string name="nome_administrador">Nome Administrador</string>
     <string name="telefone">Telefone</string>
-    <string name="email">Email</string>
+
     <string name="confirme_sua_senha">Confirme sua senha</string>
     <string name="senha">Senha</string>
     <string name="nome_fantansia">Nome Fantasia</string>
@@ -49,12 +49,12 @@
     <string name="email_invalido">E-Mail inválido</string>
     <string name="senha_invalido">Senha inválida</string>
     <string name="account_name">ACCOUNT NAME</string>
-    <string name="password">PASSWORD</string>
+    <string name="password">SENHA</string>
     <string name="password_hint">**************</string>
-    <string name="forgot_your_login_info">FORGOT YOUR LOGIN INFO?</string>
-    <string name="sign_in">SIGN IN</string>
-    <string name="remember_my_password">REMEMBER MY PASSWORD</string>
-    <string name="username">Username</string>
+    <string name="forgot_your_login_info">Esqueceu a senha?</string>
+    <string name="sign_in">Entrar</string>
+    <string name="remember_my_password">Lebrar minha senha</string>
+    <string name="email">Email</string>
     <string name="opcao_nenhum">[NENHUM]</string>
     <string name="informe_cep">Informe o CEP primeiro</string>
     <string name="alugado">Alugado</string>

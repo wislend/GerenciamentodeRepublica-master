@@ -71,7 +71,7 @@ public abstract class FragmentW extends BaseFragment {
          *    , mas se não for informado e o dev chamar o setLoading, uma exceção em tempo de execução
          *    será propagada.
          */
-        initLoadingResource(view);
+       /* initLoadingResource(view);*/
     }
 
     @CallSuper
@@ -97,11 +97,11 @@ public abstract class FragmentW extends BaseFragment {
                 .commit();
     }
 
-    /**
+   /* *//**
      * Tenta iniciar o recurso de loading de acordo com a View informada; que deve ser uma instância de ViewGroup
      *
      * @param view
-     */
+     *//*
     @SuppressLint("InflateParams")
     private void initLoadingResource(@NonNull View view) {
 
@@ -138,7 +138,7 @@ public abstract class FragmentW extends BaseFragment {
                 viewLoading.setVisibility(View.GONE);
             }
         }
-    }
+    }*/
 
     /**
      * Esta função alterna o estado de Loading mediante ao parâmetro informado.
@@ -149,7 +149,7 @@ public abstract class FragmentW extends BaseFragment {
      * @param modeInvisible
      */
 
-    public final void setLoading(boolean isLoading, boolean modeInvisible) {
+/*    public final void setLoading(boolean isLoading, boolean modeInvisible) {
 
         //ainda tenta carregar a loading view, caso esteja nulo
         if (viewContent == null) {
@@ -169,16 +169,16 @@ public abstract class FragmentW extends BaseFragment {
             viewShow.setVisibility(View.VISIBLE);
         } else {
         }
-    }
+    }*/
 
-    /**
+  /*  *//**
      * Se o loading em modo padrão
      *
      * @param isLoading
-     */
+     *//*
     public final void setLoading(boolean isLoading) {
         setLoading(isLoading, false);
-    }
+    }*/
 
 
     /**
@@ -222,12 +222,12 @@ public abstract class FragmentW extends BaseFragment {
     }
 
 
-    public final void setViewContent(ViewGroup viewContent) {
+   /* public final void setViewContent(ViewGroup viewContent) {
         this.viewContent = viewContent;
 
         initLoadingResource(getView());
     }
-
+*/
 
     /**
      * Insere elevação padrão em uma View
