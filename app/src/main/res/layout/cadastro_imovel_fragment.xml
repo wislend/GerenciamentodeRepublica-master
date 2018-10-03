@@ -152,24 +152,25 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            style="@style/styleEditText"
             android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/edtCidade"
                 android:layout_width="wrap_content"
                 android:layout_gravity="center"
-                android:layout_height="wrap_content"
                 android:layout_weight="2"
+                android:layout_height="45dp"
+                style="@style/styleEditText"
                 android:backgroundTint="@color/white"
                 android:hint="@string/cidade" />
 
-            <Spinner
-                android:id="@+id/spinnerEstado"
+            <EditText
+                android:id="@+id/edtEstado"
+                style="@style/styleEditText"
+                android:hint="Estado"
                 android:layout_width="wrap_content"
-              android:layout_gravity="center"
-                android:layout_height="30dp"
-                android:layout_weight="0.5" />
+                android:layout_height="45dp"
+                android:layout_weight="0.8" />
 
         </LinearLayout>
 

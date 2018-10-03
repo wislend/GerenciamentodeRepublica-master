@@ -44,6 +44,7 @@ public class WelcomeActivity extends AppCompatActivity implements DialogInterfac
     void btnRegistrar(){
        //CadastroActivity_.intent(getBaseContext()).start();
        startActivity(new Intent(getBaseContext(),CadastroActivity_.class));
+       finish();
     }
 
     @Click

@@ -7,7 +7,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.deyvi.gerenciamentoderepublica.R;
@@ -67,7 +66,7 @@ public class CadastroImovelFragment extends BaseStepCadastroLocatarioFragment im
     @ViewById
     EditText edtCidade;
     @ViewById
-    Spinner spinnerEstado;
+    EditText edtEstado;
     @ViewById
     EditText edtJurosDia;
     @ViewById
@@ -82,7 +81,6 @@ public class CadastroImovelFragment extends BaseStepCadastroLocatarioFragment im
     void initCadastroImovelFrag() {
         inserirMask();
         setJurosPadrao();
-        setCidadesSpinner();
         radioPropioAlugado.setOnCheckedChangeListener(this);
 
     }
@@ -136,13 +134,13 @@ public class CadastroImovelFragment extends BaseStepCadastroLocatarioFragment im
     }
 
     void setCidadesSpinner() {
-        //setSpinText(spinnerEstado,getString(R.string.opcao_nenhum));
+       // setSpinText(edtEstado,getString(R.string.opcao_nenhum));
         String[] estados = getResources().getStringArray(R.array.estados_brasileiros);
         estadosList.addAll(Arrays.asList(estados));
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getBaseActivity(),
                 R.array.estados_brasileiros, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerEstado.setAdapter(adapter);
+       // edtEstado.setAdapter(adapter);
     }
 
 
@@ -170,10 +168,18 @@ public class CadastroImovelFragment extends BaseStepCadastroLocatarioFragment im
         if (enderecoImovel == null || !isProgressDialogShowing()) {
             return;
         }
+        edtRua.setText("");
+        edtNumero.setText("");
+        edtBairro.setText("");
+        edtCidade.setText("");
+        edtEstado.setText("");
+
         edtRua.setText(enderecoImovel.getRua());
         edtNumero.setText(enderecoImovel.getNumero() == 0 ? "" : String.valueOf(enderecoImovel.getNumero()));
         edtBairro.setText(enderecoImovel.getBairro());
         edtCidade.setText(enderecoImovel.getCidade());
+        edtEstado.setText(enderecoImovel.getEstado());
+
         if (enderecoImovel.getCep() != null) {
             salvarEndereco(enderecoImovel);
         }
@@ -194,17 +200,6 @@ public class CadastroImovelFragment extends BaseStepCadastroLocatarioFragment im
     }
 
 
-    public void setSpinText(Spinner spin, String text) {
-        if (spinnerEstado == null) {
-
-        }
-        for (int i = 0; i < spin.getAdapter().getCount(); i++) {
-            if (spin.getAdapter().getItem(i).toString().contains(text)) {
-                spin.setSelection(i);
-            }
-        }
-    }
-
 
     @Override
     public void onNextClicked(StepperLayout.OnNextClickedCallback callback) {
@@ -215,6 +210,7 @@ public class CadastroImovelFragment extends BaseStepCadastroLocatarioFragment im
     @Override
     @UiThread
     public void onCompleteClicked(final StepperLayout.OnCompleteClickedCallback callback) {
+        if (validation()){
         Imovel imovel = new Imovel();
         imovel.setValor(Double.parseDouble(edtValorAluguel.getText().toString()));
         imovel.setEnderecoId(enderecoId);
@@ -222,7 +218,7 @@ public class CadastroImovelFragment extends BaseStepCadastroLocatarioFragment im
         imovel.setQuantQuartos(Integer.parseInt(edtNumeroDeQuartos.getText().toString()));
         imovel.setAlugado(rdAlugado.isChecked());
         salvarCadastroBackground(imovel);
-        showProgressDialog("Salvando seus dados...");
+        showProgressDialog("Salvando seus dados...");}
     }
 
 
