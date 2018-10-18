@@ -35,12 +35,11 @@
             style="@style/styleEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:animateLayoutChanges="true"
-            android:layout_marginBottom="@dimen/android_space_xlarge"
             app:alignContent="flex_start"
             app:alignItems="flex_start"
             app:flexWrap="wrap">
+
 
         </com.google.android.flexbox.FlexboxLayout>
 
@@ -48,7 +47,7 @@
             android:id="@+id/addCheckBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/android_space_medium_plus"
             android:text="@string/adicionar_check_informacao" />
 
         <LinearLayout
@@ -87,8 +86,8 @@
             android:id="@+id/edtIdentificacaoQuarto"
             style="@style/styleEditText"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:layout_height="40dp"
+            android:layout_marginTop="@dimen/android_space_large"
             android:hint="@string/identificacao_quarto" />
 
 
@@ -101,7 +100,7 @@
                 android:id="@+id/edtNumero"
                 style="@style/styleEditText"
                 android:layout_width="0dp"
-                android:layout_height="45dp"
+                android:layout_height="40dp"
                 android:layout_weight="1"
                 android:hint="@string/numero"
                 android:inputType="number" />
@@ -111,7 +110,7 @@
                 android:id="@+id/edtPreco"
                 style="@style/styleEditText"
                 android:layout_width="0dp"
-                android:layout_height="45dp"
+                android:layout_height="40dp"
                 android:layout_marginLeft="@dimen/android_space_medium"
                 android:layout_weight="1"
                 android:hint="@string/valor_quarto" />
@@ -147,8 +146,9 @@
             android:id="@+id/conteanerCadastroMorador"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:orientation="vertical"
-            android:visibility="gone">
+            >
 
             <EditText
                 android:id="@+id/edtMorador"
@@ -193,16 +193,16 @@
                     style="@style/styleEditText"
                     android:layout_width="match_parent"
                     android:layout_height="42dp"
-                    android:editable="false"
+                    android:enabled="false"
                     android:hint="@string/data_de_entrada" />
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/ic_calendar" />
+                    android:src="@drawable/ic_calendar"
+                    tools:ignore="RtlHardcoded" />
 
             </RelativeLayout>
 
@@ -217,14 +217,13 @@
                     style="@style/styleEditText"
                     android:layout_width="match_parent"
                     android:layout_height="42dp"
-                    android:editable="false"
+                    android:enabled="false"
                     android:hint="@string/data_saida" />
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
                     android:src="@drawable/ic_calendar" />
 

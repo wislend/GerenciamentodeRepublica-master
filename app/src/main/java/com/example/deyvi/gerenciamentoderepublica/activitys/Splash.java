@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.deyvi.gerenciamentoderepublica.R;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
@@ -19,7 +20,16 @@ public class Splash extends AppCompatActivity {
     @AfterViews
     void initSplash(){
 
+        if (Prefs.getBoolean("LOGADO",false)){
+            VisaoGeral_.intent(this).start();
+        }else {
+            goWelcome();
+        }
 
+    }
+
+
+    void goWelcome(){
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -34,7 +44,6 @@ public class Splash extends AppCompatActivity {
         }catch (Exception e){
 
         }
-
     }
 
 }

@@ -10,6 +10,8 @@ import com.activeandroid.ActiveAndroid;
 import com.facebook.stetho.Stetho;
 import com.pixplicity.easyprefs.library.Prefs;
 
+import net.danlew.android.joda.JodaTimeAndroid;
+
 
 @SuppressLint("Registered")
 public class GerenciadorAluguelApplication extends Application {
@@ -25,6 +27,7 @@ public class GerenciadorAluguelApplication extends Application {
                 .build();
         ActiveAndroid.initialize(this);
         Stetho.initializeWithDefaults(this);
+        JodaTimeAndroid.init(this);
     }
 
 

@@ -1,6 +1,9 @@
 package com.example.deyvi.gerenciamentoderepublica.activitys;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,13 +14,13 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.deyvi.gerenciamentoderepublica.R;
 import com.example.deyvi.gerenciamentoderepublica.Util.validacion.Calendar.DatePickerFragment;
 import com.example.deyvi.gerenciamentoderepublica.activitys.base.BaseActivity;
+import com.example.deyvi.gerenciamentoderepublica.application.DbLogs;
 import com.example.deyvi.gerenciamentoderepublica.bll.Moradores;
 import com.example.deyvi.gerenciamentoderepublica.bll.Moveis;
 import com.example.deyvi.gerenciamentoderepublica.bll.Quartos;
@@ -49,12 +52,6 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
 
     @ViewById
     EditText dataSaida;
-
-    @ViewById
-    RelativeLayout campoDataEntrada;
-
-    @ViewById
-    RelativeLayout campoDataSaida;
 
     @ViewById
     EditText edtTelefone;
@@ -112,6 +109,20 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
     @AfterViews
     public void afterViews() {
         setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         //MaskEditUtil.insert(edtTelefone, MaskEditUtil.MaskType.TELEFONE);
         // MaskEditUtil.insert(edtWhats, MaskEditUtil.MaskType.TELEFONE);
         test();
@@ -170,6 +181,16 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
 
     }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return super.onSupportNavigateUp();
+    }
+
+    @Override
+    public void onBackPressed() {
+        CadastroQuartoActivity.super.onBackPressed();
+    }
 
     @Click
     void imgAddChecked() {
@@ -192,9 +213,6 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
             configureCheckedBox();
         }
     }
-
-
-
 
 
     @Background
@@ -283,6 +301,40 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
         Toast.makeText(this, callback, Toast.LENGTH_SHORT).show();
     }
 
+    @Background
+    void validarMorador() {
+        Moradores moradores = new Moradores();
+        try {
+            boolean existe = moradores.moradorExiste(edtWhats.getText().toString());
+            validarMoradorRespostaUiThread(null, existe);
+        } catch (Exception e) {
+            validarMoradorRespostaUiThread(e, false);
+        }
+
+    }
+
+    @UiThread
+    void validarMoradorRespostaUiThread(Exception e, boolean existe) {
+        if (e != null) {
+            DbLogs.Log(SqliteConstantes.ERRO_VERIFICAR_EXISTENCIA_MORADOR, e, "");
+            return;
+        }
+
+        if (!vago) {
+            if (!existe) {
+                salvarQuarto();
+            } else {
+                Toast.makeText(this, "Morador já cadastrado em outro quarto.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        } else {
+            salvarQuarto();
+            salvarMovel();
+        }
+        DetalhesQuartoActivity_.intent(this).start();
+    }
+
+
     public void test() {
         edtMorador.setText("João da Silva");
         edtEmail.setText("wislen.souza@aedu.com");
@@ -314,19 +366,26 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_salvar) {
-            //   DetalhesQuartoActivity_.intent(this).start();
-//            if (!vago) {
-//                moradores = new Moradores();
-//                if (!moradores.moradorExiste(edtWhats.getText().toString())) {
-//                    salvarQuarto();
-//
-//                } else {
-//                    Toast.makeText(this, "Morador já cadastrado em outro quarto.", Toast.LENGTH_SHORT).show();
-//                }
-//            }else {
-//                salvarQuarto();
-//                salvarMovel();
-//            }
+            if (validation()) {
+                if (listMoveis.size() == 0) {
+                    new AlertDialog.Builder(this)
+                            .setTitle("Você não adicionou nenhum móvel no quarto.")
+                            .setMessage("Tem certeza que deseja continuar?")
+                            .setPositiveButton("Continuar", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    validarMorador();
+                                }
+                            }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    }).show();
+                } else {
+                    validarMorador();
+                }
+            }
         }
         return true;
     }
@@ -334,13 +393,13 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
 
     public void setEditTextDatePicker(final EditText text) {
         DatePickerFragment newFragment = new DatePickerFragment();
+        newFragment.show(getSupportFragmentManager(), "date picker");
         newFragment.setOnDateSelectedListener(new DatePickerFragment.OnDateSelectedListener() {
             @Override
             public void onDateSelected(DatePicker view, String formattedDate) {
                 text.setText(formattedDate);
             }
         });
-        newFragment.show(getSupportFragmentManager(), "date picker");
     }
 
     @Click
@@ -348,23 +407,66 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
         setEditTextDatePicker(dataSaida);
     }
 
-
-    @Click
-    void campoDataSaida() {
-        setEditTextDatePicker(dataSaida);
-    }
-
-
-    @Click
-    void campoDataEntrada() {
-        setEditTextDatePicker(dataEntrada);
-    }
-
     @Click
     void dataEntrada() {
-
         setEditTextDatePicker(dataEntrada);
     }
 
+    public boolean validation() {
 
+        boolean valid = true;
+
+        if (!vago) {
+
+            if (TextUtils.isEmpty(dataEntrada.getText())) {
+                dataEntrada.setError(getString(R.string.campo_obrigatorio));
+                valid = false;
+            }
+
+            if (TextUtils.isEmpty(dataSaida.getText())) {
+                dataSaida.setError(getString(R.string.campo_obrigatorio));
+                valid = false;
+            }
+
+
+            if (TextUtils.isEmpty(edtTelefone.getText())) {
+                edtTelefone.setError(getString(R.string.campo_obrigatorio));
+                valid = false;
+            }
+
+            if (TextUtils.isEmpty(edtWhats.getText())) {
+                edtWhats.setError(getString(R.string.campo_obrigatorio));
+                valid = false;
+            }
+
+            if (TextUtils.isEmpty(edtIdentificacaoQuarto.getText())) {
+                edtIdentificacaoQuarto.setError(getString(R.string.campo_obrigatorio));
+                valid = false;
+            }
+
+            if (TextUtils.isEmpty(edtNumero.getText())) {
+                edtNumero.setError(getString(R.string.campo_obrigatorio));
+                valid = false;
+            }
+        }
+
+
+        if (TextUtils.isEmpty(edtIdentificacaoQuarto.getText())) {
+            edtIdentificacaoQuarto.setError(getString(R.string.campo_obrigatorio));
+            valid = false;
+        }
+
+        if (TextUtils.isEmpty(edtNumero.getText())) {
+            edtNumero.setError(getString(R.string.campo_obrigatorio));
+            valid = false;
+        }
+
+        if (TextUtils.isEmpty(edtPreco.getText())) {
+            edtPreco.setError(getString(R.string.campo_obrigatorio));
+            valid = false;
+        }
+
+
+        return valid;
+    }
 }

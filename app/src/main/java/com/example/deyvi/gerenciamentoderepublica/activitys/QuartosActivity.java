@@ -1,10 +1,7 @@
 package com.example.deyvi.gerenciamentoderepublica.activitys;
 
 import android.annotation.SuppressLint;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.widget.ListView;
-import android.widget.Toolbar;
 
 import com.example.deyvi.gerenciamentoderepublica.R;
 import com.example.deyvi.gerenciamentoderepublica.activitys.base.BaseActivity;
@@ -12,7 +9,6 @@ import com.example.deyvi.gerenciamentoderepublica.adapters.QuartoAdapter;
 import com.example.deyvi.gerenciamentoderepublica.bll.Quartos;
 import com.example.deyvi.gerenciamentoderepublica.entitys.Imovel;
 import com.example.deyvi.gerenciamentoderepublica.entitys.Quarto;
-import com.google.android.gms.flags.IFlagProvider;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
@@ -45,6 +41,11 @@ public class QuartosActivity extends BaseActivity {
     @AfterViews
     void afterView(){
         setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowTitleEnabled(true);
+        }
         quartos = new Quartos();
         listQuartos = quartos.todosQuartos();
 

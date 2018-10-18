@@ -7,23 +7,22 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.widget.DatePicker;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
-public class DatePickerFragment extends DialogFragment{
+public class DatePickerFragment extends DialogFragment {
 
     private OnDateSelectedListener mOnDateSelectedListener;
 
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-
-        final Calendar c = Calendar.getInstance();
-        int year = c.get(Calendar.YEAR);
-        int month = c.get(Calendar.MONTH);
-        int day = c.get(Calendar.DAY_OF_MONTH);
-
+        DateTime dateTime = new DateTime();
+        int year = dateTime.getYear();
+        int month = dateTime.getMonthOfYear();
+        int day = dateTime.getDayOfMonth();
+        assert getActivity() != null;
         return new DatePickerDialog(getActivity(), dateSetListener, year, month, day);
     }
 
@@ -31,14 +30,10 @@ public class DatePickerFragment extends DialogFragment{
             new DatePickerDialog.OnDateSetListener() {
                 @SuppressLint("SetTextI18n")
                 public void onDateSet(DatePicker view, int year, int month, int day) {
-
-                    Date date = new Date(year, month, day);
-                    @SuppressLint("SimpleDateFormat")
-                    String dateFormatted = new SimpleDateFormat("dd/MM/yyyy").format(date);
-
-
+                    DateTime dateTime = new DateTime(year, month, day, 0, 0, 0);
+                    DateTimeFormatter fmt = DateTimeFormat.forPattern("dd-MM-YYYY");
                     if (mOnDateSelectedListener != null) {
-                        mOnDateSelectedListener.onDateSelected(view, dateFormatted);
+                        mOnDateSelectedListener.onDateSelected(view, fmt.print(dateTime));
                     }
                 }
             };
@@ -55,7 +50,6 @@ public class DatePickerFragment extends DialogFragment{
     public interface OnDateSelectedListener {
         void onDateSelected(DatePicker view, String formattedDate);
     }
-
 
 
 }

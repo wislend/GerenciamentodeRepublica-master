@@ -12,6 +12,7 @@ import com.example.deyvi.gerenciamentoderepublica.adapters.CadastroStepAdapter;
 import com.example.deyvi.gerenciamentoderepublica.entitys.Endereco;
 import com.example.deyvi.gerenciamentoderepublica.entitys.Imovel;
 import com.example.deyvi.gerenciamentoderepublica.entitys.Locador;
+import com.pixplicity.easyprefs.library.Prefs;
 import com.stepstone.stepper.StepperLayout;
 import com.stepstone.stepper.VerificationError;
 
@@ -55,6 +56,7 @@ public class CadastroActivity extends BaseActivity implements StepperLayout.Step
 
     @Override
     public void onCompleted(View completeButton) {
+            Prefs.putBoolean("LOGADO",true);
             VisaoGeral_.intent(this).start();
             finish();
     }

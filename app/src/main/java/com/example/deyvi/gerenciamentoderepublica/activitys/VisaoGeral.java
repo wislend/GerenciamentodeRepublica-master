@@ -11,6 +11,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -21,6 +22,7 @@ import com.example.deyvi.gerenciamentoderepublica.adapters.ImoveisAdapter;
 import com.example.deyvi.gerenciamentoderepublica.bll.Imoveis;
 import com.example.deyvi.gerenciamentoderepublica.entitys.Imovel;
 import com.example.deyvi.gerenciamentoderepublica.views.row.CardImoveisCadastradosRowView;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
@@ -49,11 +51,15 @@ public class VisaoGeral extends BaseDrawer implements
     @AfterViews
     void init() {
 
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
         getSupportLoaderManager().initLoader(1, null, this);
         mImoveisAdapter = new ImoveisAdapter(this, test());
         listView.setAdapter(mImoveisAdapter);
         mImoveisAdapter.setOnClickManipulacaoImoveis(this);
-        setSupportActionBar(toolbar);
         imoveis = new Imoveis();
 
 
@@ -107,6 +113,16 @@ public class VisaoGeral extends BaseDrawer implements
 
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.actionSair){
+            Prefs.putBoolean("LOGADO",false);
+            finish();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public void onClickDelete(final Imovel imovel) {
         new AlertDialog.Builder(this)
                 .setTitle("Deletar Imovél?")
@@ -129,6 +145,9 @@ public class VisaoGeral extends BaseDrawer implements
         Toast.makeText(this, "Editar", Toast.LENGTH_SHORT).show();
 
     }
+
+
+
 
     @Override
     public void onClickAddQuarto() {

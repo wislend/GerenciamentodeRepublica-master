@@ -34,7 +34,7 @@ public class Locadores extends Dao<Locador> {
       return new Select().from(Locador.class).where("email = ?",email).exists();
     }
 
-    public Locador senhaValida(String senha,String email){
-        return new Select().from(Locador.class).where("senha = ?",senha).executeSingle();
+    public boolean senhaValida(String email,String senha){
+        return new Select().from(Locador.class).where("email = ? and senha = ?",email,senha).exists();
     }
 }

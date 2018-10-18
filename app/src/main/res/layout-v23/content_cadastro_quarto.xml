@@ -145,9 +145,10 @@
         <LinearLayout
             android:id="@+id/conteanerCadastroMorador"
             android:layout_width="match_parent"
+            android:visibility="gone"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:visibility="gone">
+            >
 
             <EditText
                 android:id="@+id/edtMorador"
@@ -201,7 +202,8 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/ic_calendar" />
+                    android:src="@drawable/ic_calendar"
+                    tools:ignore="RtlHardcoded" />
 
             </RelativeLayout>
 

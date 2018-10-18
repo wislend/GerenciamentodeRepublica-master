@@ -12,7 +12,7 @@ import com.example.deyvi.gerenciamentoderepublica.activitys.base.BaseActivity;
 import com.example.deyvi.gerenciamentoderepublica.application.DbLogs;
 import com.example.deyvi.gerenciamentoderepublica.bll.Locadores;
 import com.example.deyvi.gerenciamentoderepublica.constantsApp.SqliteConstantes;
-import com.example.deyvi.gerenciamentoderepublica.entitys.Locador;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
@@ -52,25 +52,24 @@ public class LoginActivity extends BaseActivity {
     @Background
     public void validarUsuario(String email, String senha) {
         Locadores locadores = new Locadores();
-        Locador locador = new Locador();
         try {
-            locador = locadores.senhaValida(email, senha);
-            validarClienteFinish(locador, null);
+            validarClienteFinish(locadores.senhaValida(email, senha), null);
         } catch (Exception e) {
-            validarClienteFinish(locador, e);
+            validarClienteFinish(false, e);
         }
 
     }
 
     @UiThread
-    public void validarClienteFinish(Locador locador, Exception ex) {
+    public void validarClienteFinish(boolean exists, Exception ex) {
         dismissProgressDialog();
         if (ex != null) {
-            DbLogs.Log(SqliteConstantes.ERRO_VERIFICAR_EXISTENCIA_LOCADOR, ex, locador.getEmail());
+            DbLogs.Log(SqliteConstantes.ERRO_VERIFICAR_EXISTENCIA_LOCADOR, ex, "");
             return;
         }
 
-        if (locador != null) {
+        if (exists) {
+            Prefs.putBoolean("LOGADO",true);
             VisaoGeral_.intent(this).start();
         } else {
             Toast.makeText(this, "Não encontramos Email ou senha semelhantes ao digitado.", Toast.LENGTH_SHORT).show();

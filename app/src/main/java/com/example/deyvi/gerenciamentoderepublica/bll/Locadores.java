@@ -18,7 +18,7 @@ public class Locadores {
         return locadores.exists(email);
     }
 
-    public Locador senhaValida(String email,String senha) throws Exception {
+    public boolean senhaValida(String email,String senha) throws Exception {
         return locadores.senhaValida(email,senha);
     }
 

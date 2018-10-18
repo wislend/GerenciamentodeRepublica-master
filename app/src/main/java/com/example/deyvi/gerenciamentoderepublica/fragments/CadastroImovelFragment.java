@@ -83,6 +83,7 @@ public class CadastroImovelFragment extends BaseStepCadastroLocatarioFragment im
         setJurosPadrao();
         radioPropioAlugado.setOnCheckedChangeListener(this);
 
+
     }
 
 
@@ -212,7 +213,11 @@ public class CadastroImovelFragment extends BaseStepCadastroLocatarioFragment im
     public void onCompleteClicked(final StepperLayout.OnCompleteClickedCallback callback) {
         if (validation()){
         Imovel imovel = new Imovel();
-        imovel.setValor(Double.parseDouble(edtValorAluguel.getText().toString()));
+
+        if(!edtValorAluguel.getText().toString().isEmpty()){
+            imovel.setValor(Double.parseDouble(edtValorAluguel.getText().toString()));
+        }
+
         imovel.setEnderecoId(enderecoId);
         imovel.setNome(edtNomeImovel.getText().toString());
         imovel.setQuantQuartos(Integer.parseInt(edtNumeroDeQuartos.getText().toString()));
