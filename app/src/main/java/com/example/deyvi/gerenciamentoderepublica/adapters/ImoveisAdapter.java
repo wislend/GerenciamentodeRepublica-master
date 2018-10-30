@@ -67,7 +67,7 @@ public class ImoveisAdapter extends BaseAdapterW<Imovel> {
         if (mOnClickManipulacaoImoveis != null){
         mOnClickManipulacaoImoveis.onClickEdite((CardImoveisCadastradosRowView)view,position,item);
         mOnClickManipulacaoImoveis.onClickDelete(item);
-        mOnClickManipulacaoImoveis.onClickAddQuarto();
+        mOnClickManipulacaoImoveis.onClickAddQuarto(item);
         }
     }
 }

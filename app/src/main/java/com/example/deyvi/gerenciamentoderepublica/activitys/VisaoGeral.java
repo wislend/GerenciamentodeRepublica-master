@@ -150,8 +150,8 @@ public class VisaoGeral extends BaseDrawer implements
 
 
     @Override
-    public void onClickAddQuarto() {
-        CadastroQuartoActivity_.intent(this).start();
+    public void onClickAddQuarto(final Imovel imovel) {
+        CadastroQuartoActivity_.intent(this).imovelId(imovel.getId()).start();
     }
 
     @Override

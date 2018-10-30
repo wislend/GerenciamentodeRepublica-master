@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.deyvi.gerenciamentoderepublica.R;
 import com.example.deyvi.gerenciamentoderepublica.Util.validacion.Calendar.DatePickerFragment;
+import com.example.deyvi.gerenciamentoderepublica.Util.validacion.MaskEditUtil;
 import com.example.deyvi.gerenciamentoderepublica.activitys.base.BaseActivity;
 import com.example.deyvi.gerenciamentoderepublica.application.DbLogs;
 import com.example.deyvi.gerenciamentoderepublica.bll.Moradores;
@@ -34,6 +35,7 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 
@@ -61,6 +63,9 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
 
     @ViewById
     EditText edtMorador;
+
+    @Extra
+    Long imovelId;
 
     @ViewById
     EditText edtEmail;
@@ -123,23 +128,11 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
             }
         });
 
-        //MaskEditUtil.insert(edtTelefone, MaskEditUtil.MaskType.TELEFONE);
-        // MaskEditUtil.insert(edtWhats, MaskEditUtil.MaskType.TELEFONE);
-        test();
+        edtTelefone.addTextChangedListener(MaskEditUtil.insert(edtTelefone, MaskEditUtil.MaskType.TELEFONE));
+        edtWhats.addTextChangedListener(MaskEditUtil.insert(edtWhats,MaskEditUtil.MaskType.TELEFONE));
         radioOcupadoVago.setOnCheckedChangeListener(this);
-       /* if (carregarTodosMoveis() != null) {
-            configureCheckedBox();
-        }*/
-    }
 
-/*
-
-    @Background
-   public List<Movel> carregarTodosMoveis() {
-        Moveis moveis = new Moveis();
-        return moveis.todosMoveis();
     }
-*/
 
 
     void configureCheckedBox() {
@@ -203,15 +196,19 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
         Movel movel = new Movel();
         movel.setNome(edtNomeChecked.getText().toString());
 
-        if (listMoveis.contains(movel)) {
-            Toast.makeText(this, "Você já adicionou este movél", Toast.LENGTH_SHORT).show();
-        } else {
-            listMoveis.clear();
-            movel.setCheckad(true);
-            listMoveis.add(movel);
-            edtNomeChecked.setText("");
-            configureCheckedBox();
+        for (Movel movelList : listMoveis) {
+            if (movelList.getNome().equals(movel.getNome())) {
+                Toast.makeText(this, "Você já adicionou este movél", Toast.LENGTH_SHORT).show();
+                return;
+            }
         }
+
+        listMoveis.clear();
+        movel.setCheckad(true);
+        listMoveis.add(movel);
+        edtNomeChecked.setText("");
+        configureCheckedBox();
+
     }
 
 
@@ -219,57 +216,94 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
     public void salvarQuarto() {
         Quartos quartos = new Quartos();
         Quarto quarto = new Quarto();
-        quarto.setNome(edtIdentificacaoQuarto.getText().toString());
-        quarto.setPreco(100.00);
-        quarto.setStatus(0);
-        quarto.setQuantidadeCamas(1);
-        quarto.setNumero(Integer.parseInt(String.valueOf(edtNumero.getText().toString().isEmpty() ? 0 : edtNumero.getText().toString())));
-        quarto.setDescricao("quarto grande.");
-
-        if (quartos.quartoExiste(quarto.getNumero())) {
-            responseSalvarQuarto("O quarto já foi cadastrado.");
-            VisaoGeral_.intent(this).start();
-        } else {
-            idQuarto = quartos.salvarQuarto(quarto);
-            responseSalvarQuarto(SqliteConstantes.QUARTO_SALVO_SUCESSO);
-            if (!vago) {
-                showProgressDialog("salvando...");
-                salvarMorador();
-            }
+        try {
+            quarto.setNome(edtIdentificacaoQuarto.getText().toString());
+            quarto.setPreco(Double.parseDouble(edtPreco.getText().toString()));
+            quarto.setImovelId(imovelId);
+            quarto.setQuantidadeCamas(1);
+            quarto.setNumero(Integer.parseInt(String.valueOf(edtNumero.getText().toString().isEmpty() ? 0 : edtNumero.getText().toString())));
+            quarto.setDescricao(edtIdentificacaoQuarto.getText().toString());
+        } catch (Exception e) {
+            Toast.makeText(this, "O erro ocorreu: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
+
+
+        try {
+            if (quartos.quartoExiste(quarto.getNumero())) {
+                responseSalvarQuarto("O quarto já foi cadastrado.", null);
+            } else {
+
+                if (!vago) {
+                    quarto.setStatus(1);
+                    salvarMorador(quarto);
+                } else {
+                    quarto.setStatus(0);
+                    idQuarto = quartos.salvarQuarto(quarto);
+                    responseSalvarQuarto(SqliteConstantes.QUARTO_SALVO_SUCESSO, null);
+                    salvarMovel();
+                    VisaoGeral_.intent(this).start();
+                }
+
+            }
+        } catch (Exception e) {
+            responseSalvarQuarto("Erro ao verificar existencia do quarto.", e);
+        }
+
+
     }
 
     @UiThread
-    void responseSalvarQuarto(String callback) {
-        dismissProgressDialog();
+    void responseSalvarQuarto(String callback, Exception e) {
+        if (e != null) {
+            DbLogs.Log(SqliteConstantes.ERRO_SALVAR_QUARTO, e, "");
+            return;
+        }
         Toast.makeText(this, callback, Toast.LENGTH_SHORT).show();
     }
 
 
     @Background
-    public void salvarMorador() {
+    public void salvarMorador(Quarto quarto) {
         Moradores moradores = new Moradores();
+        Quartos quartos = new Quartos();
         Morador morador = new Morador();
-        morador.setNome(edtMorador.getText().toString());
-        morador.setDataEntrada(dataEntrada.getText().toString());
-        morador.setEmail(edtEmail.getText().toString());
-        morador.setTelefone(edtTelefone.getText().toString());
-        morador.setWhats(edtWhats.getText().toString());
-        morador.setDataSaida(dataSaida.getText().toString());
-        morador.setQuartoId(idQuarto);
-        if (moradores.moradorExiste(morador.getTelefone())) {
-            responseMoradorUiThread(SqliteConstantes.MORADOR_JA_CADASTRADO);
-        } else {
-            responseMoradorUiThread("Morador salvo com sucesso");
-            moradores.salvarMorador(morador);
-            showProgressDialog("Salvando...");
-            salvarMovel();
-            VisaoGeral_.intent(this).start();
+        try {
+            morador.setNome(edtMorador.getText().toString());
+            morador.setDataEntrada(dataEntrada.getText().toString());
+            morador.setEmail(edtEmail.getText().toString());
+            morador.setTelefone(edtTelefone.getText().toString());
+            morador.setWhats(edtWhats.getText().toString());
+            morador.setDataSaida(dataSaida.getText().toString());
+        } catch (Exception e) {
+            Toast.makeText(this, "um erro ocorreu: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
+
+
+        try {
+            if (moradores.moradorExiste(morador.getTelefone())) {
+                responseMoradorUiThread(SqliteConstantes.MORADOR_JA_CADASTRADO, null);
+            } else {
+                idQuarto = quartos.salvarQuarto(quarto);
+                morador.setQuartoId(idQuarto);
+                responseSalvarQuarto(SqliteConstantes.QUARTO_SALVO_SUCESSO, null);
+                responseMoradorUiThread("Morador salvo com sucesso", null);
+                moradores.salvarMorador(morador);
+                salvarMovel();
+                VisaoGeral_.intent(this).start();
+            }
+        } catch (Exception e) {
+            responseMoradorUiThread("Erro: ", e);
+
+        }
+
     }
 
     @UiThread
-    void responseMoradorUiThread(String callback) {
+    void responseMoradorUiThread(String callback, Exception e) {
+        if (e != null) {
+            DbLogs.Log(SqliteConstantes.ERRO_VERIFICAR_EXISTENCIA_MORADOR, e, "");
+
+        }
         dismissProgressDialog();
         Toast.makeText(this, callback, Toast.LENGTH_SHORT).show();
     }
@@ -285,20 +319,31 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
             if (idQuarto != null) {
                 movel.setQuartoId(idQuarto);
             }
-            if (!moveis.movelExiste(movel.getNome())) {
-                moveis.salvarMovel(movel);
-                responseMovelUiThread("Movel salvo");
-            } else {
-                moveis.atualizarMovel(movel);
-                responseMovelUiThread("Movel atualizado");
+
+            try {
+                if (!moveis.movelExiste(movel.getNome())) {
+                    moveis.salvarMovel(movel);
+                    responseMovelUiThread("Movel salvo", null);
+                } else {
+                    moveis.atualizarMovel(movel);
+                    responseMovelUiThread("Movel atualizado", null);
+                }
+            } catch (Exception e) {
+                responseMovelUiThread("Erro ao verificar existencia do movel", e);
             }
+
         }
     }
 
-
-    void responseMovelUiThread(String callback) {
+    @UiThread
+    void responseMovelUiThread(String callback, Exception e) {
         dismissProgressDialog();
+        if (e != null) {
+            DbLogs.Log(SqliteConstantes.ERRO_VERIFICAR_EXISTENCIA_MOVEL, e, "");
+            return;
+        }
         Toast.makeText(this, callback, Toast.LENGTH_SHORT).show();
+
     }
 
     @Background
@@ -320,27 +365,11 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
             return;
         }
 
-        if (!vago) {
-            if (!existe) {
-                salvarQuarto();
-            } else {
-                Toast.makeText(this, "Morador já cadastrado em outro quarto.", Toast.LENGTH_SHORT).show();
-                return;
-            }
-        } else {
+        if (!existe) {
             salvarQuarto();
-            salvarMovel();
+        } else {
+            Toast.makeText(this, "Morador já cadastrado em outro quarto.", Toast.LENGTH_SHORT).show();
         }
-        DetalhesQuartoActivity_.intent(this).start();
-    }
-
-
-    public void test() {
-        edtMorador.setText("João da Silva");
-        edtEmail.setText("wislen.souza@aedu.com");
-        edtTelefone.setText("988252650");
-        edtWhats.setText("988252650");
-        edtPreco.setText("500,00");
     }
 
 
@@ -374,7 +403,10 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
                             .setPositiveButton("Continuar", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
-                                    validarMorador();
+                                    if (validation()) {
+                                        salvarQuarto();
+                                    }
+
                                 }
                             }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
                         @Override
@@ -383,7 +415,9 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
                         }
                     }).show();
                 } else {
-                    validarMorador();
+                    if (validation()) {
+                        salvarQuarto();
+                    }
                 }
             }
         }

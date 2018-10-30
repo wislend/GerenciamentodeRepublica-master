@@ -71,7 +71,7 @@ public class CardImoveisCadastradosRowView extends RowView<Imovel> {
             @Override
             public void onClick(View v) {
                 if (getOnClickManipulacaoImoveis() != null){
-                    getOnClickManipulacaoImoveis().onClickAddQuarto();
+                    getOnClickManipulacaoImoveis().onClickAddQuarto(item);
                 }
             }
         });
@@ -91,7 +91,7 @@ public class CardImoveisCadastradosRowView extends RowView<Imovel> {
     public interface OnClickManipulacaoImoveis {
         void onClickDelete(Imovel imovel);
         void onClickEdite(CardImoveisCadastradosRowView cadastradosRowView, int position, Imovel imovel);
-        void onClickAddQuarto();
+        void onClickAddQuarto(Imovel imovel);
         void onClickDetailsQuarto(Imovel imovel);
     }
 

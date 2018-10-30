@@ -20,7 +20,8 @@
             android:value="GERIR_ALUGEL.db" />
         <meta-data
             android:name="AA_DB_VERSION"
-            android:value="6" />
+            android:value="8" />
+
         <meta-data
             android:name="AA_MODELS"
             android:value="com.example.deyvi.gerenciamentoderepublica.entitys" />

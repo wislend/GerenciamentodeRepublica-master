@@ -193,7 +193,6 @@
                     style="@style/styleEditText"
                     android:layout_width="match_parent"
                     android:layout_height="42dp"
-                    android:editable="false"
                     android:hint="@string/data_de_entrada" />
 
                 <ImageView
@@ -218,7 +217,6 @@
                     style="@style/styleEditText"
                     android:layout_width="match_parent"
                     android:layout_height="42dp"
-                    android:editable="false"
                     android:hint="@string/data_saida" />
 
                 <ImageView

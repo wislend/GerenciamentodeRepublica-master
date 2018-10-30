@@ -23,25 +23,19 @@ public class Moveis extends Dao<Movel> {
     public void update(Movel movel) {
         int intchecado = movel.isChecked() ? 1 : 0;
         if (movel.getQuartoId() != null) {
-            try {
+
                 new Update(Movel.class)
                         .set("checkad = " + intchecado, "idQuarto = " + movel.getQuartoId())
                         .where("nome = ?", movel.getNome())
                         .execute();
 
-            } catch (Exception e) {
-                DbLogs.Log(SqliteConstantes.ERRO_ATUALIZAR_MOVEL, e, SqliteConstantes.ERRO_ATUALIZAR_MOVEL);
-            }
         }else {
-            try {
+
                 new Update(Movel.class)
                         .set("checkad = " + intchecado)
                         .where("nome = ?", movel.getNome())
                         .execute();
 
-            } catch (Exception e) {
-                DbLogs.Log(SqliteConstantes.ERRO_ATUALIZAR_MOVEL, e, SqliteConstantes.ERRO_ATUALIZAR_MOVEL);
-            }
         }
 
     }
@@ -95,15 +89,9 @@ public class Moveis extends Dao<Movel> {
 
     @Override
     public boolean exists(String nome) {
-        try{
             return new Select().all()
                     .from(Movel.class)
-                    .where("nome = ?",nome)
-                    .exists();
-        }catch (Exception e){
-            DbLogs.Log(SqliteConstantes.ERRO_SELECT_MOVEL, e, SqliteConstantes.ERRO_SELECT_MOVEL);
-        }
+                    .where("nome = ?",nome).exists();
 
-        return false;
     }
 }

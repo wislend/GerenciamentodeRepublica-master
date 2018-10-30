@@ -53,6 +53,7 @@ public class CadastroLocadorFragment extends BaseStepCadastroLocatarioFragment i
 
     void inserirMask() {
         edtTelefone.addTextChangedListener(MaskEditUtil.insert(edtTelefone, MaskEditUtil.MaskType.TELEFONE));
+
     }
 
 

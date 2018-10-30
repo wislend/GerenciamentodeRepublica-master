@@ -9,8 +9,6 @@ import com.google.firebase.database.Exclude;
 @Table(name ="LOCADOR")
 public class Locador extends BaseEntitys{
 
-    public Locador() {
-    }
 
     @Column(onDelete = Column.ForeignKeyAction.CASCADE, onUpdate = Column.ForeignKeyAction.CASCADE)
     private Long imovelId;
@@ -19,11 +17,9 @@ public class Locador extends BaseEntitys{
     private String nome;
 
     @Column
-    @Exclude
     private String email;
 
     @Column
-    @Exclude
     private String senha;
 
     @Column
