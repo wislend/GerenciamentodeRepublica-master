@@ -271,8 +271,8 @@ public class CadastroQuartoActivity extends BaseActivity implements RadioGroup.O
             morador.setNome(edtMorador.getText().toString());
             morador.setDataEntrada(dataEntrada.getText().toString());
             morador.setEmail(edtEmail.getText().toString());
-            morador.setTelefone(edtTelefone.getText().toString());
-            morador.setWhats(edtWhats.getText().toString());
+            morador.setTelefone(MaskEditUtil.unmask(edtTelefone.getText().toString()));
+            morador.setWhats(MaskEditUtil.unmask(edtWhats.getText().toString()));
             morador.setDataSaida(dataSaida.getText().toString());
         } catch (Exception e) {
             Toast.makeText(this, "um erro ocorreu: " + e.getMessage(), Toast.LENGTH_SHORT).show();

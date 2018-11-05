@@ -10,6 +10,7 @@
     tools:showIn="@layout/app_bar_visao_geral">
 
 
+
         <ListView
             android:id="@+id/listView"
             android:layout_width="match_parent"
@@ -18,6 +19,8 @@
             android:dividerHeight="0dp"
             android:divider="@color/white"
             android:scrollbars="vertical" />
+
+
 
     <include layout="@layout/layout_button_navigation"/>
 

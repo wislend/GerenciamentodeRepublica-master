@@ -1,6 +1,10 @@
-package com.example.deyvi.gerenciamentoderepublica.fragments;
+package com.example.deyvi.gerenciamentoderepublica.activitys;
 
+import android.annotation.SuppressLint;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -12,33 +16,27 @@ import android.widget.Toast;
 import com.example.deyvi.gerenciamentoderepublica.R;
 import com.example.deyvi.gerenciamentoderepublica.Util.validacion.EnderecoUtil;
 import com.example.deyvi.gerenciamentoderepublica.Util.validacion.MaskEditUtil;
-import com.example.deyvi.gerenciamentoderepublica.activitys.CadastroActivity;
+import com.example.deyvi.gerenciamentoderepublica.activitys.base.BaseActivity;
+import com.example.deyvi.gerenciamentoderepublica.application.DbLogs;
 import com.example.deyvi.gerenciamentoderepublica.bll.Enderecos;
 import com.example.deyvi.gerenciamentoderepublica.bll.Imoveis;
 import com.example.deyvi.gerenciamentoderepublica.constantsApp.SqliteConstantes;
 import com.example.deyvi.gerenciamentoderepublica.entitys.Endereco;
 import com.example.deyvi.gerenciamentoderepublica.entitys.Imovel;
-import com.example.deyvi.gerenciamentoderepublica.fragments.baseFragment.BaseStepCadastroLocatarioFragment;
-import com.stepstone.stepper.BlockingStep;
-import com.stepstone.stepper.StepperLayout;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Click;
-import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
-@EFragment(R.layout.cadastro_imovel_fragment)
-public class CadastroImovelFragment extends BaseStepCadastroLocatarioFragment implements BlockingStep,
-        RadioGroup.OnCheckedChangeListener {
+@SuppressLint("Registered")
+@EActivity(R.layout.activity_cadastro_imovel)
+public class CadastroImovelActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener {
 
 
-    //region ById
     @ViewById
     RadioButton rdPropio;
     @ViewById
@@ -71,14 +69,19 @@ public class CadastroImovelFragment extends BaseStepCadastroLocatarioFragment im
     EditText edtJurosDia;
     @ViewById
     EditText edtJurosMes;
+    @ViewById
+    Toolbar toolbar;
 
-    //endregion
-    private List<String> estadosList = new ArrayList<>();
-
-    private Long enderecoId;
+    private Endereco endereco;
 
     @AfterViews
     void initCadastroImovelFrag() {
+
+
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
         inserirMask();
         setJurosPadrao();
         radioPropioAlugado.setOnCheckedChangeListener(this);
@@ -156,7 +159,7 @@ public class CadastroImovelFragment extends BaseStepCadastroLocatarioFragment im
     void finishAddressUI(Endereco enderecoImovel) {
 
         //se o resultado for nulo ou o usuário não ter esperado e cancelado o diálogo
-        if (enderecoImovel == null || !isProgressDialogShowing()) {
+        if (enderecoImovel == null) {
             return;
         }
         edtRua.setText("");
@@ -172,7 +175,8 @@ public class CadastroImovelFragment extends BaseStepCadastroLocatarioFragment im
         edtEstado.setText(enderecoImovel.getEstado());
 
         if (enderecoImovel.getCep() != null) {
-            salvarEndereco(enderecoImovel);
+            dismissProgressDialog();
+            endereco = enderecoImovel;
         }
     }
 
@@ -180,57 +184,82 @@ public class CadastroImovelFragment extends BaseStepCadastroLocatarioFragment im
     void salvarEndereco(Endereco endereco) {
         Enderecos enderecos = new Enderecos();
         //Salva endereco
-        enderecoId = enderecos.salvarEndereco(endereco);
+        endereco.setNumero(edtNumero.getText().toString());
+        enderecos.salvarEndereco(endereco);
         responseEndereco();
     }
 
     @UiThread
     void responseEndereco() {
-        dismissProgressDialog();
-        Toast.makeText(getContext(), "Endereço Salvo", Toast.LENGTH_SHORT).show();
-    }
-
-
-
-    @Override
-    public void onNextClicked(StepperLayout.OnNextClickedCallback callback) {
-
+        Toast.makeText(this, "Endereço Salvo", Toast.LENGTH_SHORT).show();
     }
 
 
     @Override
-    @UiThread
-    public void onCompleteClicked(final StepperLayout.OnCompleteClickedCallback callback) {
-        if (validation()){
-        Imovel imovel = new Imovel();
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.cadastrar_quarto_activity, menu);
+        return true;
+    }
 
-        if(!edtValorAluguel.getText().toString().isEmpty()){
-            imovel.setValor(Double.parseDouble(edtValorAluguel.getText().toString()));
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_salvar) {
+            if (validation()) {
+                Imovel imovel = new Imovel();
+
+                if (!edtValorAluguel.getText().toString().isEmpty()) {
+                    imovel.setValor(Double.parseDouble(edtValorAluguel.getText().toString()));
+                }
+
+                imovel.setNome(edtNomeImovel.getText().toString());
+                imovel.setQuantQuartos(Integer.parseInt(edtNumeroDeQuartos.getText().toString()));
+                imovel.setAlugado(rdAlugado.isChecked());
+                showProgressDialog("Salvando seus dados...");
+                salvarCadastroBackground(imovel);
+
+                return true;
+            }
         }
-
-        imovel.setEnderecoId(enderecoId);
-        imovel.setNome(edtNomeImovel.getText().toString());
-        imovel.setQuantQuartos(Integer.parseInt(edtNumeroDeQuartos.getText().toString()));
-        imovel.setAlugado(rdAlugado.isChecked());
-        salvarCadastroBackground(imovel);
-        showProgressDialog("Salvando seus dados...");}
-    }
-
-
-    @Override
-    public void onBackClicked(StepperLayout.OnBackClickedCallback callback) {
+        return super.onOptionsItemSelected(item);
     }
 
 
     @Background
     void salvarCadastroBackground(Imovel imovel) {
         Imoveis imoveis = new com.example.deyvi.gerenciamentoderepublica.bll.Imoveis();
-        if (imoveis.imovelExiste(imovel.getNome())){
-            naoAutorizado();
-        }else {
-            imoveis.salvarImovel(imovel);
-            salvarCadastroClienteFinished(imovel, null);
+        try {
+            if (imoveis.imovelExiste(imovel.getNome())) {
+                naoAutorizado();
+            } else {
+                salvarEndereco(endereco);
+                imovel.setEnderecoId(endereco.getId());
+                //evita que imovel seja salvo antes que exista o id do endereco.
+                if (imovel.getEnderecoId() != null){
+                    imoveis.salvarImovel(imovel);
+                }
+                salvarCadastroClienteFinished(imovel, null);
+            }
+        } catch (Exception e) {
+            salvarCadastroClienteFinished(imovel, e);
         }
+
+
+    }
+
+    private void salvarCadastroClienteFinished(Imovel imovel, Exception e) {
+        if (imovel.getEnderecoId() == null){
+            dismissProgressDialog();
+            return;
+        }
+
+        if (e != null) {
+            DbLogs.Log("Erro ao salvar cadastro cliente", e, "");
+            return;
+        }
+
+        dismissProgressDialog();
+        VisaoGeral_.intent(this).start();
+        finish();
 
     }
 
@@ -238,13 +267,7 @@ public class CadastroImovelFragment extends BaseStepCadastroLocatarioFragment im
     @UiThread
     void naoAutorizado() {
         dismissProgressDialog();
-        Toast.makeText(getContext(), SqliteConstantes.IMOVEL_JA_CADASTRADO, Toast.LENGTH_SHORT).show();
-    }
-
-    @UiThread(delay = 3000)
-    void salvarCadastroClienteFinished(Imovel imovel, Exception ex) {
-        dismissProgressDialog();
-        ((CadastroActivity) getActivity()).onCompleted(null);
+        Toast.makeText(this, SqliteConstantes.IMOVEL_JA_CADASTRADO, Toast.LENGTH_SHORT).show();
     }
 
 
@@ -256,5 +279,11 @@ public class CadastroImovelFragment extends BaseStepCadastroLocatarioFragment im
         } else {
             edtValorAluguel.setVisibility(View.VISIBLE);
         }
+    }
+
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
     }
 }

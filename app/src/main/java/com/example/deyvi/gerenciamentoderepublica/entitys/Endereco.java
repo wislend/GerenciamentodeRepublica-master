@@ -11,7 +11,7 @@ public class Endereco extends BaseEntitys {
     @Column
     private String rua;
     @Column
-    private int numero;
+    private String numero;
     @Column
     private String cep;
     @Column
@@ -33,11 +33,11 @@ public class Endereco extends BaseEntitys {
         this.rua = rua;
     }
 
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 

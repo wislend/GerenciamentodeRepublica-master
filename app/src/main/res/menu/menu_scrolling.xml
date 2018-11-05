@@ -4,7 +4,13 @@
     tools:context="com.example.deyvi.gerenciamentoderepublica.activitys.ScrollingActivity">
     <item
         android:id="@+id/actionSair"
-        android:orderInCategory="100"
+        android:orderInCategory="1"
         android:title="@string/sair"
         app:showAsAction="never" />
+
+    <item android:id="@+id/actionAddImovel"
+        android:orderInCategory="0"
+        android:title="@string/adicionar_imovel"/>
+
+
 </menu>

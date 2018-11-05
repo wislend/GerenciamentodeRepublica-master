@@ -3,6 +3,7 @@ package com.example.deyvi.gerenciamentoderepublica.activitys;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.LoaderManager;
@@ -19,13 +20,16 @@ import com.example.deyvi.gerenciamentoderepublica.R;
 import com.example.deyvi.gerenciamentoderepublica.activitys.base.BaseDrawer;
 import com.example.deyvi.gerenciamentoderepublica.activitys.base.LoadersAdapter;
 import com.example.deyvi.gerenciamentoderepublica.adapters.ImoveisAdapter;
+import com.example.deyvi.gerenciamentoderepublica.application.DbLogs;
 import com.example.deyvi.gerenciamentoderepublica.bll.Imoveis;
 import com.example.deyvi.gerenciamentoderepublica.entitys.Imovel;
 import com.example.deyvi.gerenciamentoderepublica.views.row.CardImoveisCadastradosRowView;
 import com.pixplicity.easyprefs.library.Prefs;
 
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 
 import java.util.ArrayList;
@@ -42,7 +46,6 @@ public class VisaoGeral extends BaseDrawer implements
     @ViewById(R.id.listView)
     ListView listView;
     ImoveisAdapter mImoveisAdapter;
-    Imoveis imoveis;
 
 
     @ViewById
@@ -55,19 +58,39 @@ public class VisaoGeral extends BaseDrawer implements
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-
-        getSupportLoaderManager().initLoader(1, null, this);
-        mImoveisAdapter = new ImoveisAdapter(this, test());
-        listView.setAdapter(mImoveisAdapter);
-        mImoveisAdapter.setOnClickManipulacaoImoveis(this);
-        imoveis = new Imoveis();
-
-
+        showProgressDialog();
+        listarImoveis();
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+    }
+
+
+    @Background
+    void listarImoveis() {
+        Imoveis imoveis = new Imoveis();
+        try {
+            listarImoveisResposta(imoveis.listImoveis(), null);
+        } catch (Exception e) {
+            listarImoveisResposta(null, e);
+        }
+
+    }
+
+
+    @UiThread
+    void listarImoveisResposta(List<Imovel> list, Exception e) {
+        if (e != null) {
+            DbLogs.Log("Não foi possível trazer lista de imoveis", e, "");
+            return;
+        }
+        mImoveisAdapter = new ImoveisAdapter(this, list);
+        listView.setAdapter(mImoveisAdapter);
+        mImoveisAdapter.setOnClickManipulacaoImoveis(this);
+        getSupportLoaderManager().initLoader(1, null, this);
+        dismissProgressDialog();
     }
 
 
@@ -114,9 +137,14 @@ public class VisaoGeral extends BaseDrawer implements
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.actionSair){
-            Prefs.putBoolean("LOGADO",false);
-            finish();
+        switch (item.getItemId()) {
+            case R.id.actionSair:
+                Prefs.putBoolean("LOGADO", false);
+                finish();
+                return true;
+            case R.id.actionAddImovel:
+                CadastroImovelActivity_.intent(this).start();
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -126,17 +154,34 @@ public class VisaoGeral extends BaseDrawer implements
     public void onClickDelete(final Imovel imovel) {
         new AlertDialog.Builder(this)
                 .setTitle("Deletar Imovél?")
-                .setMessage("Você tem ceteza que deseja deletar " + imovel.getNome() )
+                .setMessage("Você tem ceteza que deseja deletar " + imovel.getNome())
                 .setPositiveButton("Deletar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         mImoveisAdapter.remove(imovel);
-                        imoveis.deleteImovel(imovel);
+                        excluirImovel(imovel);
                         Toast.makeText(getApplication(), "Deletado com sucesso", Toast.LENGTH_SHORT).show();
                     }
                 }).setNegativeButton("Cancelar", null)
                 .show();
 
+    }
+
+    @Background
+    void excluirImovel(Imovel imovel) {
+        Imoveis imoveis = new Imoveis();
+        try {
+            imoveis.deleteImovel(imovel);
+        } catch (Exception e) {
+            excluirImovelResposta(e);
+        }
+    }
+
+    @UiThread
+    void excluirImovelResposta(Exception e) {
+        if (e != null) {
+            DbLogs.Log("Erro ao tentar deletar imovel", e, "");
+        }
     }
 
     @Override
@@ -145,8 +190,6 @@ public class VisaoGeral extends BaseDrawer implements
         Toast.makeText(this, "Editar", Toast.LENGTH_SHORT).show();
 
     }
-
-
 
 
     @Override
