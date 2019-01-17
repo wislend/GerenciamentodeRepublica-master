@@ -23,20 +23,16 @@ public class Imoveis extends Dao<Imovel> {
         return null;
     }
 
+
+
+
     @Override
     public void update(Imovel imovel) {
     }
 
     @Override
-    public boolean delete(Imovel imovel) {
-        try {
-            new Delete().from(Imovel.class).where("Id = ?",imovel.getId()).execute();
-            DbLogs.Log(SqliteConstantes.IMOVEL_DELETADO_SUCESS);
-            return true;
-        }catch (Exception e){
-            DbLogs.Log(SqliteConstantes.IMOVEL_DELETADO_ERROR);
-            return false;
-        }
+    public void delete(Imovel imovel) {
+         imovel.delete();
     }
 
     @Override

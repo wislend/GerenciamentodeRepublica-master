@@ -19,7 +19,7 @@ public abstract class Dao<T extends Model>   {
     }
 
 
-    public abstract boolean delete(T objeto);
+    public abstract void delete(T objeto);
 
 
     public T select(T objeto) {

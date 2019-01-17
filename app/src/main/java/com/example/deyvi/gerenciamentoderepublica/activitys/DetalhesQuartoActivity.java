@@ -1,83 +1,71 @@
 package com.example.deyvi.gerenciamentoderepublica.activitys;
 
+
 import android.annotation.SuppressLint;
-import android.content.DialogInterface;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.deyvi.gerenciamentoderepublica.R;
-import com.example.deyvi.gerenciamentoderepublica.activitys.base.BaseActivity;
-import com.example.deyvi.gerenciamentoderepublica.adapters.DetalhesQuartoPagerAdapter;
-import com.example.deyvi.gerenciamentoderepublica.entitys.Imovel;
+import com.example.deyvi.gerenciamentoderepublica.entitys.ListGsonSerializer;
+import com.example.deyvi.gerenciamentoderepublica.entitys.Quarto;
+import com.squareup.picasso.Picasso;
+import com.synnapps.carouselview.ImageClickListener;
+import com.synnapps.carouselview.ImageListener;
 
-import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
-import org.androidannotations.annotations.ViewById;
+import org.androidannotations.annotations.Extra;
 
+import java.util.ArrayList;
+import java.util.List;
 
 @SuppressLint("Registered")
-@EActivity(R.layout.activity_detalhes_quarto)
-public class DetalhesQuartoActivity extends BaseActivity {
+@EActivity(R.layout.activity_cadastro_quarto)
+public class DetalhesQuartoActivity extends CadastroQuartoActivity implements ImageClickListener {
 
+    @Extra
+    Quarto quarto;
 
-    @ViewById
-    Toolbar toolbar;
-    @ViewById
-    ViewPager viewPager;
-    @ViewById
-    TabLayout tab_layout;
-    boolean modEdit = false;
-
-
-    @AfterViews
-    void afterView() {
-        setSupportActionBar(toolbar);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayShowTitleEnabled(true);
-        }
-        DetalhesQuartoPagerAdapter detalhesQuartoPagerAdapter = new DetalhesQuartoPagerAdapter(this, getSupportFragmentManager());
-        viewPager.setAdapter(detalhesQuartoPagerAdapter);
-        tab_layout.setupWithViewPager(viewPager);
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (modEdit) {
-            new AlertDialog.Builder(this)
-                    .setTitle("Descartar seu cadastro?")
-                    .setMessage("As informações preenchidas até agora serão perdidas.")
-                    .setPositiveButton("Descartar", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            DetalhesQuartoActivity.super.onBackPressed();
-                        }
-                    }).setNegativeButton("Cancelar", null)
-                    .show();
-        } else {
-            DetalhesQuartoActivity.super.onBackPressed();
-        }
-    }
+    private List<String> listImagens = new ArrayList<>();
 
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            onBackPressed();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+    public void afterViews() {
+        super.afterViews();
+        listImagens = new ListGsonSerializer().deserialize(quarto.getImagens());
+        popular();
+
     }
 
-    public class ImovelChangeEvent{
-      public final  Imovel imovel;
 
-        public ImovelChangeEvent(Imovel imovel) {
-            this.imovel = imovel;
+    void popular() {
+        if (quarto != null) {
+            if (listImagens != null && listImagens.size() != 0) {
+                carouselView.setVisibility(View.VISIBLE);
+                carouselView.setPageCount(listImagens.size());
+                ImageListener imageListener = new ImageListener() {
+                    @Override
+                    public void setImageForPosition(int position, ImageView imageView) {
+                        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+                        Picasso.get().load(listImagens.get(position)).into(imageView);
+                    }
+                };
+
+                carouselView.setImageListener(imageListener);
+                carouselView.setImageClickListener(this);
+            }
+            edtIdentificacaoQuarto.setText(quarto.getNome());
+            edtPreco.setText(String.valueOf(quarto.getPreco()));
+            edtNumero.setText(String.valueOf(quarto.getNumero()));
+
         }
+
     }
+
+
+        //Click da imagem
+        @Override
+        public void onClick(int position) {
+            Toast.makeText(this, "clicou" + position, Toast.LENGTH_SHORT).show();
+        }
 }

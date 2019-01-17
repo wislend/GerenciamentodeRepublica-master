@@ -24,8 +24,8 @@ public class Locadores extends Dao<Locador> {
     }
 
     @Override
-    public boolean delete(Locador locador) {
-        return false;
+    public void delete(Locador locador) {
+       locador.delete();
     }
 
 

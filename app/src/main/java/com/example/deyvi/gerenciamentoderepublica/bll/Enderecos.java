@@ -15,8 +15,8 @@ public class Enderecos {
         return oEnderecoDao.save(endereco);
     }
 
-    public boolean enderecoExiste(String cep){
-        return oEnderecoDao.exists(cep);
+    public boolean enderecoExiste(String cep,String numero){
+        return oEnderecoDao.exists(cep,numero);
     }
 
     public Endereco selectEndereco(Long id){

@@ -3,10 +3,7 @@ package com.example.deyvi.gerenciamentoderepublica.views.row;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Typeface;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,27 +12,24 @@ import com.devspark.robototextview.widget.RobotoTextView;
 import com.example.deyvi.gerenciamentoderepublica.R;
 import com.example.deyvi.gerenciamentoderepublica.activitys.base.RowView;
 import com.example.deyvi.gerenciamentoderepublica.bll.Moveis;
+import com.example.deyvi.gerenciamentoderepublica.entitys.ListGsonSerializer;
 import com.example.deyvi.gerenciamentoderepublica.entitys.Movel;
 import com.example.deyvi.gerenciamentoderepublica.entitys.Quarto;
 import com.google.android.flexbox.FlexboxLayout;
+import com.squareup.picasso.Picasso;
+import com.synnapps.carouselview.CarouselView;
+import com.synnapps.carouselview.ImageListener;
 
-import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.EViewGroup;
 import org.androidannotations.annotations.ViewById;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
 @EViewGroup(R.layout.row_quartos_imovel)
-public class CardQuartosCadastradosRowView extends RowView<Quarto> {
+public class CardQuartosCadastradosRowView extends RowView<Quarto>  {
 
 
-    @ViewById
-    ImageView imgFoto;
-
-    @ViewById
-    RobotoTextView actionEdit;
 
     @ViewById
     ImageButton imgFavorito;
@@ -49,13 +43,27 @@ public class CardQuartosCadastradosRowView extends RowView<Quarto> {
     @ViewById
     FlexboxLayout containerMoveis;
 
+    @ViewById
+    CarouselView carouselView;
+
+    @ViewById
+    RobotoTextView txtValorQuarto;
+    @ViewById
+    RobotoTextView txtStatus;
+    @ViewById
+    ImageButton  imgEditar;
+
+    @ViewById
+    ImageView imgFoto;
+
+
    private List<Movel> listMoveis;
 
     private Context context;
 
     int chId = 1000;
 
-    OnClickManipulacaoImoveis onClickManipulacaoImoveis;
+    OnClickManipulacaoQuartos onClickManipulacaoQuartos;
 
     public CardQuartosCadastradosRowView(Context context) {
         super(context);
@@ -65,31 +73,52 @@ public class CardQuartosCadastradosRowView extends RowView<Quarto> {
     @Override
     public void bind(final Quarto item, final int position) {
         super.bind(item, position);
-        imgFoto.setImageResource(R.drawable.foto_indisponivel);
-        txtNomeQuarto.setText("Quarto com suite");
+        carouselView.setVisibility(View.VISIBLE);
+        final List<String> list = new ListGsonSerializer().deserialize(item.getImagens());
+
+        if (list.size() != 0){
+            carouselView.setPageCount(list.size());
+            ImageListener imageListener = new ImageListener() {
+                @Override
+                public void setImageForPosition(int position, ImageView imageView) {
+                    imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+                    Picasso.get().load(list.get(position)).into(imageView);
+                }
+            };
+
+            carouselView.setImageListener(imageListener);
+        }
+
+
+
+        txtNomeQuarto.setText(item.getNome());
+        txtValorQuarto.setText(String.valueOf(item.getPreco()));
+        txtStatus.setText(item.getStatus() == 0 ? "Status: Vago" : "Status: Ocupado");
         Moveis moveis = new Moveis();
         listMoveis = moveis.listMoveis(item.getId());
         if(listMoveis!= null) {
             configureCheckedBox(listMoveis);
         }
 
-        //txtValorMovel.setText(String.valueOf(item.getValor()));
 
 
-       /* imgDelete.setOnClickListener(new OnClickListener() {
+
+
+
+        imgDelete.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (getOnClickManipulacaoImoveis() != null) {
-                    getOnClickManipulacaoImoveis().onClickDelete(item);
+                if (getOnClickManipulacaoQuartos() != null) {
+                    getOnClickManipulacaoQuartos().onClickDelete(item);
                 }
             }
         });
 
-        actionEdit.setOnClickListener(new OnClickListener() {
+        imgEditar.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (getOnClickManipulacaoImoveis() != null) {
-                    getOnClickManipulacaoImoveis().onClickEdite(null,position,item);
+                if (getOnClickManipulacaoQuartos() != null) {
+                    getOnClickManipulacaoQuartos().onClickEdite(null,position,item);
 
                 }
             }
@@ -98,20 +127,20 @@ public class CardQuartosCadastradosRowView extends RowView<Quarto> {
         imgFavorito.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (getOnClickManipulacaoImoveis() != null){
-                    getOnClickManipulacaoImoveis().onClickAddQuarto();
+                if (getOnClickManipulacaoQuartos() != null){
+                    getOnClickManipulacaoQuartos().onClickFavoritar(item);
                 }
             }
         });
 
-        imgFoto.setOnClickListener(new OnClickListener() {
+        carouselView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (getOnClickManipulacaoImoveis() != null){
-                    getOnClickManipulacaoImoveis().onClickDetailsQuarto(item);
+                if (getOnClickManipulacaoQuartos() != null){
+                    getOnClickManipulacaoQuartos().onClickDetailsQuarto(item);
                 }
             }
-        });*/
+        });
 
 
     }
@@ -134,21 +163,19 @@ public class CardQuartosCadastradosRowView extends RowView<Quarto> {
 
 
 
-
-
-        public interface OnClickManipulacaoImoveis {
+    public interface OnClickManipulacaoQuartos {
         void onClickDelete(Quarto quarto);
         void onClickEdite(CardQuartosCadastradosRowView cadastradosRowView, int position, Quarto quarto);
-        void onClickAddQuarto();
         void onClickDetailsQuarto(Quarto quarto);
+        void onClickFavoritar(Quarto quarto);
     }
 
-    public OnClickManipulacaoImoveis getOnClickManipulacaoImoveis() {
-        return onClickManipulacaoImoveis;
+    public OnClickManipulacaoQuartos getOnClickManipulacaoQuartos() {
+        return onClickManipulacaoQuartos;
     }
 
-    public void setOnClickManipulacaoImoveis(OnClickManipulacaoImoveis onClickManipulacaoImoveis) {
-        this.onClickManipulacaoImoveis = onClickManipulacaoImoveis;
+    public void setOnClickManipulacaoQuartos(OnClickManipulacaoQuartos onClickManipulacaoQuartos) {
+        this.onClickManipulacaoQuartos = onClickManipulacaoQuartos;
     }
 
 

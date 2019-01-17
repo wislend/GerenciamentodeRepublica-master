@@ -6,8 +6,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.deyvi.gerenciamentoderepublica.R;
+import com.example.deyvi.gerenciamentoderepublica.Util.validacion.ImageUtil;
 import com.example.deyvi.gerenciamentoderepublica.activitys.base.RowView;
 import com.example.deyvi.gerenciamentoderepublica.entitys.Imovel;
+import com.squareup.picasso.Picasso;
 
 import org.androidannotations.annotations.EViewGroup;
 import org.androidannotations.annotations.ViewById;
@@ -42,7 +44,15 @@ public class CardImoveisCadastradosRowView extends RowView<Imovel> {
     @Override
     public void bind(final Imovel item, final int position) {
         super.bind(item, position);
-        imgFoto.setImageResource(R.drawable.foto_indisponivel);
+
+
+        if (item.getCaminhoImagem() == null || item.getCaminhoImagem().isEmpty()){
+            imgFoto.setImageResource(R.drawable.foto_indisponivel);
+        }else{
+            Picasso.get().load("file:///" + item.getCaminhoImagem()).into(imgFoto);
+        }
+
+
         txtNomeImovel.setText(item.getNome());
         txtQuantQuarto.setText(String.valueOf(item.getQuantQuartos()));
         txtValorImovel.setText(String.valueOf(item.getValor()));

@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toolbar;
 
 import com.example.deyvi.gerenciamentoderepublica.R;
 
@@ -23,6 +24,7 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.InstanceState;
 import org.androidannotations.annotations.UiThread;
+import org.androidannotations.annotations.ViewById;
 
 
 @SuppressLint("Registered")
@@ -39,20 +41,15 @@ public class BaseActivity extends AppCompatActivity {
     private ProgressDialog mProgressDialog;
     private ViewGroup viewContent;
     private int mShortAnimationDuration;
+    @ViewById
+    public android.support.v7.widget.Toolbar toolbar;
+
+
+
     @AfterViews
     @CallSuper
     protected void onAfterViews() {
-
-    }
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+        initToobar();
     }
 
 
@@ -185,6 +182,15 @@ public class BaseActivity extends AppCompatActivity {
 
     }
 
+    public  void initToobar(){
+          setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowTitleEnabled(true);
+        }
+    }
+
 
     /**
      * Retira o progress
@@ -199,6 +205,16 @@ public class BaseActivity extends AppCompatActivity {
 
         }
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
 
 

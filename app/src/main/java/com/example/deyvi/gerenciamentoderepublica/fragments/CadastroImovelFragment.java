@@ -1,24 +1,36 @@
 package com.example.deyvi.gerenciamentoderepublica.fragments;
 
+import android.content.Intent;
+import android.net.Uri;
+import android.os.StrictMode;
+import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.devspark.robototextview.widget.RobotoTextView;
 import com.example.deyvi.gerenciamentoderepublica.R;
 import com.example.deyvi.gerenciamentoderepublica.Util.validacion.EnderecoUtil;
+import com.example.deyvi.gerenciamentoderepublica.Util.validacion.ImageUtil;
+import com.example.deyvi.gerenciamentoderepublica.Util.validacion.InternetUtil;
 import com.example.deyvi.gerenciamentoderepublica.Util.validacion.MaskEditUtil;
 import com.example.deyvi.gerenciamentoderepublica.activitys.CadastroActivity;
+import com.example.deyvi.gerenciamentoderepublica.activitys.CadastroImovelActivity;
+import com.example.deyvi.gerenciamentoderepublica.application.DbLogs;
 import com.example.deyvi.gerenciamentoderepublica.bll.Enderecos;
 import com.example.deyvi.gerenciamentoderepublica.bll.Imoveis;
 import com.example.deyvi.gerenciamentoderepublica.constantsApp.SqliteConstantes;
 import com.example.deyvi.gerenciamentoderepublica.entitys.Endereco;
 import com.example.deyvi.gerenciamentoderepublica.entitys.Imovel;
 import com.example.deyvi.gerenciamentoderepublica.fragments.baseFragment.BaseStepCadastroLocatarioFragment;
+import com.google.android.gms.common.images.internal.ImageUtils;
 import com.stepstone.stepper.BlockingStep;
 import com.stepstone.stepper.StepperLayout;
 
@@ -26,15 +38,21 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
+import static android.app.Activity.RESULT_CANCELED;
+import static android.app.Activity.RESULT_OK;
+import static com.example.deyvi.gerenciamentoderepublica.Util.validacion.ImageUtil.decodeSampledBitmapFromFile;
+
 @EFragment(R.layout.cadastro_imovel_fragment)
-public class CadastroImovelFragment extends BaseStepCadastroLocatarioFragment implements BlockingStep,
+    public class CadastroImovelFragment extends BaseStepCadastroLocatarioFragment implements BlockingStep,
         RadioGroup.OnCheckedChangeListener {
 
 
@@ -71,6 +89,16 @@ public class CadastroImovelFragment extends BaseStepCadastroLocatarioFragment im
     EditText edtJurosDia;
     @ViewById
     EditText edtJurosMes;
+    @ViewById
+    ImageView imgPhoto;
+    @ViewById
+    ImageView iconPhoto;
+    @ViewById
+    RobotoTextView txtTitulo;
+
+
+    private static final int CAM_REQUEST = 1;
+    private Uri fileUri = null;
 
     //endregion
     private List<String> estadosList = new ArrayList<>();
@@ -85,6 +113,8 @@ public class CadastroImovelFragment extends BaseStepCadastroLocatarioFragment im
 
 
     }
+
+
 
 
     void inserirMask() {
@@ -141,6 +171,10 @@ public class CadastroImovelFragment extends BaseStepCadastroLocatarioFragment im
             edtCep.setError(getString(R.string.informe_cep));
             return;
         }
+        if (!InternetUtil.isConected(getBaseActivity())) {
+            Toast.makeText(getBaseActivity(), "Verifique sua conexão...", Toast.LENGTH_SHORT).show();
+            return;
+        }
         showProgressDialog();
         findAddressBackground(MaskEditUtil.unmask(edtCep.getText().toString()));
     }
@@ -154,9 +188,9 @@ public class CadastroImovelFragment extends BaseStepCadastroLocatarioFragment im
 
     @UiThread
     void finishAddressUI(Endereco enderecoImovel) {
-
-        //se o resultado for nulo ou o usuário não ter esperado e cancelado o diálogo
-        if (enderecoImovel == null || !isProgressDialogShowing()) {
+        dismissProgressDialog();
+        if (enderecoImovel == null) {
+            Toast.makeText(getBaseActivity(), "Cep não existe.", Toast.LENGTH_SHORT).show();
             return;
         }
         edtRua.setText("");
@@ -180,8 +214,10 @@ public class CadastroImovelFragment extends BaseStepCadastroLocatarioFragment im
     void salvarEndereco(Endereco endereco) {
         Enderecos enderecos = new Enderecos();
         //Salva endereco
-        enderecoId = enderecos.salvarEndereco(endereco);
-        responseEndereco();
+        if (!enderecos.enderecoExiste(endereco.getCep(), endereco.getNumero())) {
+            enderecoId = enderecos.salvarEndereco(endereco);
+            responseEndereco();
+        }
     }
 
     @UiThread
@@ -189,7 +225,6 @@ public class CadastroImovelFragment extends BaseStepCadastroLocatarioFragment im
         dismissProgressDialog();
         Toast.makeText(getContext(), "Endereço Salvo", Toast.LENGTH_SHORT).show();
     }
-
 
 
     @Override
@@ -201,19 +236,29 @@ public class CadastroImovelFragment extends BaseStepCadastroLocatarioFragment im
     @Override
     @UiThread
     public void onCompleteClicked(final StepperLayout.OnCompleteClickedCallback callback) {
-        if (validation()){
-        Imovel imovel = new Imovel();
+        concluir();
+    }
 
-        if(!edtValorAluguel.getText().toString().isEmpty()){
-            imovel.setValor(Double.parseDouble(edtValorAluguel.getText().toString()));
+    public void concluir() {
+        if (validation()) {
+            Imovel imovel = new Imovel();
+
+            if (!edtValorAluguel.getText().toString().isEmpty()) {
+                imovel.setValor(Double.parseDouble(edtValorAluguel.getText().toString()));
+            }
+
+            imovel.setEnderecoId(enderecoId);
+            if(fileUri != null){
+                imovel.setImagem(ImageUtil.decodeImageString(fileUri));
+                imovel.setCaminhoImagem(fileUri.getPath());
+            }
+
+            imovel.setNome(edtNomeImovel.getText().toString());
+            imovel.setQuantQuartos(Integer.parseInt(edtNumeroDeQuartos.getText().toString()));
+            imovel.setAlugado(rdAlugado.isChecked());
+            salvarCadastroBackground(imovel);
+            showProgressDialog("Salvando seus dados...");
         }
-
-        imovel.setEnderecoId(enderecoId);
-        imovel.setNome(edtNomeImovel.getText().toString());
-        imovel.setQuantQuartos(Integer.parseInt(edtNumeroDeQuartos.getText().toString()));
-        imovel.setAlugado(rdAlugado.isChecked());
-        salvarCadastroBackground(imovel);
-        showProgressDialog("Salvando seus dados...");}
     }
 
 
@@ -225,11 +270,15 @@ public class CadastroImovelFragment extends BaseStepCadastroLocatarioFragment im
     @Background
     void salvarCadastroBackground(Imovel imovel) {
         Imoveis imoveis = new com.example.deyvi.gerenciamentoderepublica.bll.Imoveis();
-        if (imoveis.imovelExiste(imovel.getNome())){
-            naoAutorizado();
-        }else {
-            imoveis.salvarImovel(imovel);
-            salvarCadastroClienteFinished(imovel, null);
+        try {
+            if (imoveis.imovelExiste(imovel.getNome())) {
+                naoAutorizado();
+            } else {
+                imoveis.salvarImovel(imovel);
+                salvarCadastroClienteFinished(imovel, null);
+            }
+        } catch (Exception e) {
+            salvarCadastroClienteFinished(imovel, e);
         }
 
     }
@@ -244,7 +293,12 @@ public class CadastroImovelFragment extends BaseStepCadastroLocatarioFragment im
     @UiThread(delay = 3000)
     void salvarCadastroClienteFinished(Imovel imovel, Exception ex) {
         dismissProgressDialog();
-        ((CadastroActivity) getActivity()).onCompleted(null);
+        if (ex != null) {
+            DbLogs.Log("Algum erro ocorreu", ex, "");
+        } else {
+            ((CadastroActivity) getActivity()).onCompleted(null);
+        }
+
     }
 
 
@@ -256,5 +310,74 @@ public class CadastroImovelFragment extends BaseStepCadastroLocatarioFragment im
         } else {
             edtValorAluguel.setVisibility(View.VISIBLE);
         }
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == CAM_REQUEST) {
+            if (resultCode == RESULT_OK) {
+
+                //Lê a foto gravada, redimensiona para 300x300 e coloca-a
+                // na ImageView
+                imgPhoto.setImageBitmap(decodeSampledBitmapFromFile(fileUri));
+
+            } else if (resultCode == RESULT_CANCELED) {
+                Toast.makeText(getBaseActivity(), "Captura da foto cancelada", Toast.LENGTH_LONG)
+                        .show();
+            } else {
+                Toast.makeText(getBaseActivity(), "Captura da foto falhou", Toast.LENGTH_LONG)
+                        .show();
+            }
+        }
+    }
+
+
+    @Click
+    void iconPhoto() {
+        tirarPhoto();
+    }
+
+    @Click
+    void imgPhoto() {
+        tirarPhoto();
+    }
+
+
+    void tirarPhoto() {
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
+        // cria um Uri com o caminho do arquivo para guardar a foto
+        //ex: /storage/sdcard0/Android/data/nome.da.sua.package/files/Pictures/MyCameraApp/IMG_20160817_000919.jpg
+        fileUri = ImageUtil.getOutputPictureUri("Fotos do Imovel");
+
+        if (fileUri != null) {
+
+            // Cria o intent para chamar a câmara
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            // seta o caminho do arquivo para guardar a foto
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+
+            // inicia a captura da foto
+            startActivityForResult(intent, CAM_REQUEST);
+        }
+    }
+
+    @Override
+    public void onStart() {
+        EventBus.getDefault().register(this);
+        super.onStart();
+    }
+
+    @Override
+    public void onStop() {
+        EventBus.getDefault().unregister(this);
+        super.onStop();
+    }
+
+    @Subscribe
+    public void onEvent(CadastroImovelActivity.DataCommunication event) {
+        concluir();
     }
 }

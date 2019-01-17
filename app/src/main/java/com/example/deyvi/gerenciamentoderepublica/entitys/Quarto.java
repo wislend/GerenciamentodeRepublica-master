@@ -13,8 +13,7 @@ public class Quarto extends BaseEntitys {
     private Integer numero;
     @Column
     private Integer quantidadeCamas;
-    @Column
-    private Double valor;
+
     @Column
     private Integer status;
     @Column
@@ -22,6 +21,17 @@ public class Quarto extends BaseEntitys {
     @Column
     private Double preco;
 
+    @Column
+    private String imagens;
+
+
+    public String getImagens() {
+        return imagens;
+    }
+
+    public void setImagens(String imagens) {
+        this.imagens = imagens;
+    }
 
     @Column(onDelete = Column.ForeignKeyAction.CASCADE, onUpdate = Column.ForeignKeyAction.CASCADE)
     private Long imovelId;
@@ -55,13 +65,6 @@ public class Quarto extends BaseEntitys {
         this.quantidadeCamas = quantidadeCamas;
     }
 
-    public Double getValor() {
-        return valor;
-    }
-
-    public void setValor(Double valor) {
-        this.valor = valor;
-    }
 
     public Integer getStatus() {
         return status;

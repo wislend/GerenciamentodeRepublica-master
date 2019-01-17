@@ -5,6 +5,9 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:name=".application.GerenciadorAluguelApplication"
@@ -20,7 +23,12 @@
             android:value="GERIR_ALUGEL.db" />
         <meta-data
             android:name="AA_DB_VERSION"
-            android:value="8" />
+            android:value="11" />
+
+        <meta-data android:name="AA_SERIALIZERS"
+            android:value="my.package.CustomTypeSerializer,my.package.AnotherCustomeTypeSerializer" />
+
+
         <meta-data
             android:name="AA_MODELS"
             android:value="com.example.deyvi.gerenciamentoderepublica.entitys" />
@@ -38,11 +46,16 @@
             android:name=".activitys.CadastroActivity_"
             android:label="Cadastro" />
         <activity android:name=".activitys.WelcomeActivity_" />
-        <activity android:name=".activitys.CadastroQuartoActivity_" />
+        <activity android:name=".activitys.CadastroQuartoActivity_"
+            android:label="Cadastrar um quarto"/>
         <activity android:name=".activitys.LoginActivity_" />
         <activity
             android:name=".activitys.Teste"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activitys.DetalhesImovelActivity_"
+            android:label="Mais Detalhes Imóvel" />
+
         <activity
             android:name=".activitys.DetalhesQuartoActivity_"
             android:label="Mais Detalhes Quarto" />
@@ -51,8 +64,7 @@
             android:label="@string/title_activity_exemplo_table"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".activitys.QuartosActivity_"
-            android:label="Quartos do imóvel" />
+            android:name=".activitys.QuartosActivity_" />
         <activity android:name=".activitys.CadastroImovelActivity_" />
     </application>
 

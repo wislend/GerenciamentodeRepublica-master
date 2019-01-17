@@ -22,13 +22,15 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            android:layout_marginBottom="8dp"
             android:animateLayoutChanges="true"
             app:alignContent="flex_start"
             app:alignItems="flex_start"
             app:flexWrap="wrap"
+            app:layout_constraintBottom_toTopOf="@+id/imgEditar"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/imgFoto">
+            app:layout_constraintTop_toBottomOf="@+id/carouselView">
 
         </com.google.android.flexbox.FlexboxLayout>
 
@@ -37,6 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="24dp"
             android:layout_gravity="center"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:gravity="center"
             android:text="QUARTO TAL"
@@ -62,17 +65,39 @@
             app:layout_constraintTop_toTopOf="@+id/txtNomeQuarto" />
 
 
+
         <ImageView
             android:id="@+id/imgFoto"
-            android:layout_width="0dp"
+            android:layout_width="310dp"
             android:layout_height="194dp"
-            android:scaleType="centerCrop"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:scaleType="fitXY"
             android:src="@drawable/foto_indisponivel"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toBottomOf="@+id/txtNomeQuarto"
             card_view:ignore="MissingConstraints" />
+
+        <com.synnapps.carouselview.CarouselView
+            android:id="@+id/carouselView"
+            android:layout_width="310dp"
+            android:layout_height="194dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:fillColor="#FFFFFFFF"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/txtNomeQuarto"
+            app:pageColor="#00000000"
+            app:slideInterval="4000"
+            app:strokeColor="#FF777777"
+            app:strokeWidth="1dp"
+            card_view:ignore="MissingConstraints" />
+
 
 
         <android.support.constraint.Guideline
@@ -101,39 +126,68 @@
             android:id="@+id/imgFavorito"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
             android:tint="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintTop_toBottomOf="@+id/containerMoveis"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/imgDelete"
+            app:layout_constraintTop_toTopOf="@+id/imgEditar"
+            app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/ic_favorite_white_24dp" />
 
         <ImageButton
             android:id="@+id/imgDelete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
             android:tint="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imgFavorito"
-            app:layout_constraintTop_toTopOf="@+id/imgFavorito"
-            app:srcCompat="@drawable/ic_stat_action_delete" />
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/imgEditar"
+            app:srcCompat="@drawable/ic_stat_action_delete"
+            card_view:ignore="MissingConstraints" />
 
-        <com.devspark.robototextview.widget.RobotoTextView
-            android:id="@+id/actionEdit"
-            style="@style/Widget.AppCompat.Button.Borderless"
+
+        <ImageButton
+            android:id="@+id/imgEditar"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:text="Editar"
+            android:layout_height="44dp"
+            android:layout_marginStart="96dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            android:tint="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imgDelete"
-            app:layout_constraintHorizontal_bias="0.04"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toEndOf="@+id/txtStatus"
+            app:layout_constraintTop_toTopOf="@+id/containerMoveis"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@drawable/ic_editor_mode_edit"
+            card_view:ignore="MissingConstraints" />
+
+        <com.devspark.robototextview.widget.RobotoTextView
+            android:id="@+id/txtStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Status"
+            android:textColor="@color/colorAccent"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toBottomOf="@+id/containerMoveis"
-            app:layout_constraintVertical_bias="0.65"
             card_view:ignore="MissingConstraints" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="39dp" />
     </android.support.constraint.ConstraintLayout>
 </android.support.v7.widget.CardView>

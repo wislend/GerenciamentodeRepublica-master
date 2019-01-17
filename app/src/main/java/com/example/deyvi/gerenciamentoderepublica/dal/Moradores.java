@@ -25,8 +25,8 @@ public class Moradores extends  Dao<Morador>{
     }
 
     @Override
-    public boolean delete(Morador morador) {
-        return false;
+    public void delete(Morador morador) {
+         morador.delete();
     }
 
     @Override

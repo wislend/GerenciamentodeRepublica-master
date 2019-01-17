@@ -25,7 +25,10 @@ public class WelcomeActivity extends AppCompatActivity implements DialogInterfac
 
     private String [] permissoes = new String[]{
             Manifest.permission.SEND_SMS,
-            Manifest.permission.INTERNET
+            Manifest.permission.INTERNET,
+            Manifest.permission.CAMERA,
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
 
     @ViewById

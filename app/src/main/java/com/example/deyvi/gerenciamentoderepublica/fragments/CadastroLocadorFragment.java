@@ -6,11 +6,15 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.example.deyvi.gerenciamentoderepublica.R;
 import com.example.deyvi.gerenciamentoderepublica.Util.validacion.MaskEditUtil;
 import com.example.deyvi.gerenciamentoderepublica.activitys.base.BaseActivity;
+import com.example.deyvi.gerenciamentoderepublica.application.DbLogs;
 import com.example.deyvi.gerenciamentoderepublica.bll.Locadores;
+import com.example.deyvi.gerenciamentoderepublica.constantsApp.SqliteConstantes;
+import com.example.deyvi.gerenciamentoderepublica.entitys.Locador;
 import com.example.deyvi.gerenciamentoderepublica.firebase.ConfigFireBase;
 import com.example.deyvi.gerenciamentoderepublica.firebase.FireBaseManager;
 import com.example.deyvi.gerenciamentoderepublica.fragments.baseFragment.BaseStepCadastroLocatarioFragment;
@@ -24,6 +28,7 @@ import com.stepstone.stepper.VerificationError;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 
 import java.util.regex.Matcher;
@@ -43,7 +48,7 @@ public class CadastroLocadorFragment extends BaseStepCadastroLocatarioFragment i
     EditText edtConfirmacaoSenha;
 
     FirebaseAuth firebaseAuth;
-
+    private boolean existe;
 
     @AfterViews
     void initFragment() {
@@ -107,7 +112,10 @@ public class CadastroLocadorFragment extends BaseStepCadastroLocatarioFragment i
             getLocador().setEmail(edtEmail.getText().toString());
             getLocador().setSenha(edtSenha.getText().toString());
             getLocador().setTelefone(edtTelefone.getText().toString());
-            salvarLocador();
+            if (!existe){
+                locadorExiste(getLocador());
+            }
+
         }
         return null;
     }
@@ -118,6 +126,33 @@ public class CadastroLocadorFragment extends BaseStepCadastroLocatarioFragment i
         if (baseActivity != null && baseActivity.getSupportActionBar() != null) {
             baseActivity.setTitle("");
         }
+    }
+
+
+    @Background
+    void locadorExiste(Locador locador){
+        Locadores locadores = new Locadores();
+
+        try{
+           respostaLocadorExiste(locadores.locadorExists(locador.getEmail()),null);
+        }catch (Exception e){
+            respostaLocadorExiste(false,e);
+        }
+
+    }
+
+    @UiThread
+    void respostaLocadorExiste(boolean existe, Exception e){
+            if (e != null){
+                DbLogs.Log("Não foi possivel verificar se o locador existe", e, "");
+                return;
+            }
+
+            if (existe){
+                Toast.makeText(getContext(), "Esse usuário já foi cadastrado!", Toast.LENGTH_SHORT).show();
+            }else{
+                salvarLocador();
+            }
     }
 
 
@@ -147,8 +182,12 @@ public class CadastroLocadorFragment extends BaseStepCadastroLocatarioFragment i
         //inicia bll locadores
          Locadores locadores = new Locadores();
 
+
+
         //Salva locador
-        locadores.salvarLocador(getLocador());
+
+            locadores.salvarLocador(getLocador());
+
         //fecha progresso
         dismissProgressDialog();
     }
@@ -161,6 +200,8 @@ public class CadastroLocadorFragment extends BaseStepCadastroLocatarioFragment i
         edtConfirmacaoSenha.setText("123456");
 
      }
+
+
 
     @Override
     public void onError(@NonNull VerificationError error) {

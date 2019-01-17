@@ -3,7 +3,6 @@ package com.example.deyvi.gerenciamentoderepublica.activitys;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.LoaderManager;
@@ -48,13 +47,12 @@ public class VisaoGeral extends BaseDrawer implements
     ImoveisAdapter mImoveisAdapter;
 
 
-    @ViewById
-    Toolbar toolbar;
+
 
     @AfterViews
     void init() {
 
-        setSupportActionBar(toolbar);
+
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
@@ -94,24 +92,6 @@ public class VisaoGeral extends BaseDrawer implements
     }
 
 
-    List<Imovel> test() {
-
-        List<Imovel> list = new ArrayList<>();
-        for (int i = 0; i < 15; i++) {
-            Imovel imovel = new Imovel();
-            imovel.setNome("imovel" + i);
-            imovel.setJurosDia(100);
-            imovel.setJurosMes(120);
-            imovel.setAlugado(true);
-            imovel.setQuantQuartos(i);
-            imovel.setValor(155500);
-            list.add(imovel);
-        }
-
-        return list;
-    }
-
-
     @NonNull
     @Override
     public android.support.v4.content.Loader<List<Imovel>> onCreateLoader(int id, @Nullable Bundle args) {
@@ -133,6 +113,7 @@ public class VisaoGeral extends BaseDrawer implements
         getMenuInflater().inflate(R.menu.menu_scrolling, menu);
         return true;
     }
+
 
 
     @Override
@@ -186,20 +167,18 @@ public class VisaoGeral extends BaseDrawer implements
 
     @Override
     public void onClickEdite(CardImoveisCadastradosRowView cadastradosRowView, int position, Imovel imovel) {
-        DetalhesQuartoActivity_.intent(this).start();
-        Toast.makeText(this, "Editar", Toast.LENGTH_SHORT).show();
-
+        DetalhesImovelActivity_.intent(this).imovel(imovel).start();
     }
 
 
     @Override
     public void onClickAddQuarto(final Imovel imovel) {
-        CadastroQuartoActivity_.intent(this).imovelId(imovel.getId()).start();
+        CadastroQuartoActivity_.intent(this).imovel(imovel).idImovel(imovel.getId()).start();
     }
 
     @Override
     public void onClickDetailsQuarto(Imovel imovel) {
         Toast.makeText(this, "Detalhes", Toast.LENGTH_SHORT).show();
-        QuartosActivity_.intent(this).imovel(imovel).start();
+        QuartosActivity_.intent(this).imovel(imovel).imovelId(imovel.getId()).start();
     }
 }

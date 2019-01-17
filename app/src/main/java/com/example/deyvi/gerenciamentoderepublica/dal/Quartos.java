@@ -3,7 +3,6 @@ package com.example.deyvi.gerenciamentoderepublica.dal;
 import com.activeandroid.query.Select;
 import com.example.deyvi.gerenciamentoderepublica.application.DbLogs;
 import com.example.deyvi.gerenciamentoderepublica.constantsApp.SqliteConstantes;
-import com.example.deyvi.gerenciamentoderepublica.entitys.Movel;
 import com.example.deyvi.gerenciamentoderepublica.entitys.Quarto;
 
 import java.util.List;
@@ -20,10 +19,13 @@ public class Quartos extends Dao<Quarto> {
 
     }
 
-    @Override
-    public boolean delete(Quarto quarto) {
-        return false;
+
+
+    public void delete(Quarto quarto) {
+        quarto.delete();
     }
+
+
 
     @Override
     public boolean exists(Integer numero) {
@@ -46,5 +48,8 @@ public class Quartos extends Dao<Quarto> {
             return  null;
         }
 
+        public List<Quarto> listQuartosForId(Long id){
+            return new Select().all().from(Quarto.class).where("imovelId= ?",id).execute();
+        }
 
 }

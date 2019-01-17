@@ -1,15 +1,11 @@
 package com.example.deyvi.gerenciamentoderepublica.dal;
 
-import com.activeandroid.query.From;
 import com.activeandroid.query.Select;
 import com.activeandroid.query.Update;
 import com.example.deyvi.gerenciamentoderepublica.application.DbLogs;
 import com.example.deyvi.gerenciamentoderepublica.constantsApp.SqliteConstantes;
-import com.example.deyvi.gerenciamentoderepublica.entitys.Imovel;
 import com.example.deyvi.gerenciamentoderepublica.entitys.Movel;
-import com.example.deyvi.gerenciamentoderepublica.entitys.Quarto;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Moveis extends Dao<Movel> {
@@ -57,8 +53,8 @@ public class Moveis extends Dao<Movel> {
     }
 
     @Override
-    public boolean delete(Movel movel) {
-        return false;
+    public void delete(Movel movel) {
+       movel.delete();
     }
 
     @Override

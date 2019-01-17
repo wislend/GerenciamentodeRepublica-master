@@ -1,7 +1,5 @@
 package com.example.deyvi.gerenciamentoderepublica.dal;
 
-import android.util.Log;
-
 import com.activeandroid.query.Select;
 import com.example.deyvi.gerenciamentoderepublica.application.DbLogs;
 import com.example.deyvi.gerenciamentoderepublica.constantsApp.SqliteConstantes;
@@ -26,8 +24,8 @@ public class Enderecos extends Dao<Endereco> {
     }
 
     @Override
-    public boolean delete(Endereco endereco) {
-        return false;
+    public void delete(Endereco endereco) {
+           endereco.delete();
     }
 
     @Override
@@ -43,10 +41,10 @@ public class Enderecos extends Dao<Endereco> {
         return endereco;
     }
 
-    @Override
-    public boolean exists(String cep) {
+
+    public boolean exists(String cep,String numero) {
         try{
-            return new Select().from(Endereco.class).where("cep = ?", cep).exists();
+            return new Select().from(Endereco.class).where("cep = ? and numero = ? ", cep,numero).exists();
         }catch (Exception e){
             DbLogs.Log(SqliteConstantes.ERRO_ENDERECO_EXISTS,e,cep);
         }

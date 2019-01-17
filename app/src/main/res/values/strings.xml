@@ -202,6 +202,8 @@
     <string name="data_saida">Data Saida</string>
     <string name="data_de_entrada">Data de entrada</string>
     <string name="morador">Morador</string>
+    <string name="morador_ja_cadastrado">Morador já cadastrado</string>
+
     <string name="salvar">Salvar</string>
 
     <string name="title_activity_fullscreen">FullscreenActivity</string>
@@ -209,6 +211,7 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="adicionar_quartos">Adicionar Quartos</string>
+    <string name="quarto_ja_cadastrado">O quarto já foi cadastrado.</string>
     <string name="title_activity_teste">Teste</string>
     <string name="nome_movel">Nome movél</string>
     <string name="adicionar_check_informacao">Adicione os movéis que existem no quarto.</string>

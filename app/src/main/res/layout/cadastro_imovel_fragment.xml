@@ -17,6 +17,7 @@
         android:padding="@dimen/android_space_large">
 
         <com.devspark.robototextview.widget.RobotoTextView
+            android:id="@+id/txtTitulo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -26,6 +27,25 @@
             android:textColor="@color/colorPrimary"
             android:textSize="24sp"
             app:robotoTypeface="roboto_mono_bold_italic" />
+
+
+        <ImageView
+            android:id="@+id/iconPhoto"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/ic_photo_camera_black_48dp"
+            android:tint="@color/colorPrimary" />
+
+        <ImageView
+            android:id="@+id/imgPhoto"
+            style="@style/styleEditText"
+            android:layout_width="match_parent"
+            android:scaleType="fitXY"
+            android:layout_marginTop="@dimen/android_space_medium"
+            android:layout_marginEnd="@dimen/android_space_small"
+            android:layout_height="200dp" />
+
+
 
         <RadioGroup
             android:id="@+id/radioPropioAlugado"
@@ -49,7 +69,6 @@
                 android:layout_weight="1"
                 android:text="@string/alugado" />
         </RadioGroup>
-
 
         <EditText
             android:id="@+id/edtNomeImovel"

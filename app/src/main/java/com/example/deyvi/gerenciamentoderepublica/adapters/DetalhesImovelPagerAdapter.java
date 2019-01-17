@@ -2,33 +2,33 @@ package com.example.deyvi.gerenciamentoderepublica.adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.ViewGroup;
 
 import com.example.deyvi.gerenciamentoderepublica.R;
 import com.example.deyvi.gerenciamentoderepublica.adapters.bases.BaseFragmentStatePagerAdapter;
-import com.example.deyvi.gerenciamentoderepublica.adapters.bases.BaseQuartoDetalhesPageFragment;
-import com.example.deyvi.gerenciamentoderepublica.fragments.DetalhesQuartoFragment;
-import com.example.deyvi.gerenciamentoderepublica.fragments.DetalhesQuartoFragment_;
-import com.example.deyvi.gerenciamentoderepublica.fragments.GastosQuartoFragment_;
-import com.example.deyvi.gerenciamentoderepublica.fragments.MelhoriasQuartoFragment_;
-
-import org.androidannotations.annotations.EFragment;
+import com.example.deyvi.gerenciamentoderepublica.adapters.bases.BaseImovelDetalhesPageFragment;
+import com.example.deyvi.gerenciamentoderepublica.entitys.Imovel;
+import com.example.deyvi.gerenciamentoderepublica.fragments.DetalhesImovelFragment_;
+import com.example.deyvi.gerenciamentoderepublica.fragments.GastosImovelFragment_;
+import com.example.deyvi.gerenciamentoderepublica.fragments.MelhoriasImovelFragment_;
 
 
-public class DetalhesQuartoPagerAdapter extends BaseFragmentStatePagerAdapter {
+public class DetalhesImovelPagerAdapter extends BaseFragmentStatePagerAdapter {
 
     private static final int DETALHES_PAGE_INDEX = 0;
     private static final int GASTOS_PAGE_INDEX = 1;
     private static final int MELHORIAS_PAGE_INDEX = 2;
-    private BaseQuartoDetalhesPageFragment[] pages;
+    private BaseImovelDetalhesPageFragment[] pages;
+    private Imovel imovel;
 
 
-    public DetalhesQuartoPagerAdapter(@NonNull Context context, @NonNull FragmentManager fragmentManager) {
+    public DetalhesImovelPagerAdapter(@NonNull Context context, @NonNull FragmentManager fragmentManager,Imovel imovel) {
         super(context, fragmentManager, R.array.detalhe_quarto_page_titles);
-        pages = new BaseQuartoDetalhesPageFragment[getCount()];
+        pages = new BaseImovelDetalhesPageFragment[getCount()];
+        this.imovel = imovel;
+
     }
 
     @Override
@@ -36,14 +36,14 @@ public class DetalhesQuartoPagerAdapter extends BaseFragmentStatePagerAdapter {
         if (pages[i] == null) {
             switch (i) {
                 case MELHORIAS_PAGE_INDEX:
-                    pages[i] = MelhoriasQuartoFragment_.builder().build();
+                    pages[i] = MelhoriasImovelFragment_.builder().build();
                     break;
                 case GASTOS_PAGE_INDEX:
-                    pages[i] = GastosQuartoFragment_.builder().build();
+                    pages[i] = GastosImovelFragment_.builder().build();
                     break;
                 case DETALHES_PAGE_INDEX:
                 default:
-                    pages[i] = DetalhesQuartoFragment_.builder().build();
+                    pages[i] = DetalhesImovelFragment_.builder().imovel(imovel).build();
                     break;
             }
         }
@@ -58,4 +58,7 @@ public class DetalhesQuartoPagerAdapter extends BaseFragmentStatePagerAdapter {
             pages[position] = null;
         }
     }
+
+
+
 }

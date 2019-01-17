@@ -1,19 +1,16 @@
 package com.example.deyvi.gerenciamentoderepublica.entitys;
 
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
+
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 
 @Table(name ="IMOVEL")
 public class Imovel extends BaseEntitys {
 
-    public Long getEnderecoId() {
-        return enderecoId;
-    }
-
-    public void setEnderecoId(Long enderecoId) {
-        this.enderecoId = enderecoId;
-    }
 
     @Column(onDelete = Column.ForeignKeyAction.CASCADE, onUpdate = Column.ForeignKeyAction.CASCADE)
     private Long enderecoId;
@@ -21,7 +18,13 @@ public class Imovel extends BaseEntitys {
     @Column
     private String nome;
 
-      @Column
+    @Column
+    private String imagem;
+
+    @Column
+    private String caminhoImagem;
+
+    @Column
     private int quantQuartos;
     @Column
     private boolean alugado;
@@ -32,6 +35,31 @@ public class Imovel extends BaseEntitys {
     @Column
     private double jurosMes;
 
+
+    public Long getEnderecoId() {
+        return enderecoId;
+    }
+
+    public void setEnderecoId(Long enderecoId) {
+        this.enderecoId = enderecoId;
+    }
+
+    public String getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
+    }
+
+
+    public String getCaminhoImagem() {
+        return caminhoImagem;
+    }
+
+    public void setCaminhoImagem(String caminhoImagem) {
+        this.caminhoImagem = caminhoImagem;
+    }
 
     public String getNome() {
         return nome;

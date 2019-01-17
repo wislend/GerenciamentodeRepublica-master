@@ -25,5 +25,10 @@ public class Quartos {
         return quartos.selectAll();
     }
 
+    public List<Quarto> listQuartosForId(Long id){
+        return quartos.listQuartosForId(id);
+    }
+
+    public void deletarQuarto(Quarto quarto){quartos.delete(quarto);}
 
 }
